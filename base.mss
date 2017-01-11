@@ -8,8 +8,7 @@
 /* LANDUSE & LANDCOVER
 /* ================================================================== */
 
-#land[zoom>=0][zoom<6],
-#shoreline_300[zoom>=6][zoom<10] {
+#land[zoom>=0][zoom<20] {
 	polygon-fill: @land;
 	polygon-gamma: 0.75;
 }
@@ -27,6 +26,20 @@ Map{
 	background-color:@water;
 }
 
+#water-areas[zoom>8] {
+	polygon-fill: @water;
+	[zoom=4]{
+		polygon-fill: @water4;
+	}
+	[zoom=5],[zoom=6]{
+		polygon-fill: @water56;
+	}
+	[zoom=7]{
+		polygon-fill: @water7;
+	}
+	polygon-smooth: 0.6;
+	polygon-clip: false;
+}
 
 
 /* ================================================================== */
