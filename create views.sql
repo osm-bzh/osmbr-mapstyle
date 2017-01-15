@@ -44,3 +44,39 @@ CREATE OR REPLACE VIEW osm_waterareas_gen0 AS
 
 
 
+-- osm_waterways
+CREATE OR REPLACE VIEW osm_waterways AS
+  SELECT
+    osm_id,
+    COALESCE(tags -> 'name:br'::text) as name,
+    COALESCE(tags -> 'source:name:br'::text) as source_name,
+    COALESCE(waterway, '') as type,
+    way as geometry
+  FROM planet_osm_line
+  WHERE 
+    waterway in ('weir','river','canal','derelict_canal','stream','drain','ditch','wadi')
+  ORDER BY z_order ;
+
+
+-- osm_waterways_gen1
+CREATE OR REPLACE VIEW osm_waterways_gen1 AS
+ SELECT
+    osm_id,
+    name,
+    source_name,
+    type,
+    (ST_SimplifyPreserveTopology(geometry, 50)) as geometry
+   FROM osm_waterways ;
+
+
+-- osm_waterways_gen0
+CREATE OR REPLACE VIEW osm_waterways_gen0 AS
+ SELECT
+    osm_id,
+    name,
+    source_name,
+    type,
+    (ST_SimplifyPreserveTopology(geometry, 50)) as geometry
+   FROM osm_waterways_gen1 ;
+
+
