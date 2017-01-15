@@ -57,3 +57,17 @@ Map{
 	[zoom=12]{ line-width: 0.8; }
 }
 
+#waterway_med[zoom>=13][zoom<=14] {
+	line-color: @water;
+	[type='river'],
+	[type='canal'] {
+		line-cap: round;
+		line-join: round;
+		[zoom=13]{ line-width: 1; }
+		[zoom=14]{ line-width: 1.5; }
+	}
+	[type='stream'] {
+		[zoom=13]{ line-width: 0.2; }
+		[zoom=14]{ line-width: 0.4; }
+	}
+}
