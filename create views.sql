@@ -14,7 +14,7 @@ CREATE OR REPLACE VIEW osm_waterareas AS
     OR (landuse = ANY (ARRAY['reservoir'::text, 'water'::text, 'basin'::text, 'salt_pond'::text]))
     OR ("natural" = ANY (ARRAY['lake'::text, 'water'::text])) OR amenity = 'swimming_pool'::text
     OR leisure = 'swimming_pool'::text
-  ORDER BY z_order, way_area DESC;
+  ORDER BY z_order, way_area DESC ;
 
 
 -- osm_waterareas_gen1
@@ -27,7 +27,7 @@ CREATE OR REPLACE VIEW osm_waterareas_gen1 AS
     area,
     geometry
    FROM osm_waterareas
-  WHERE ST_AREA(ST_SimplifyPreserveTopology(geometry, 50)) > 50000.000000
+  WHERE ST_AREA(ST_SimplifyPreserveTopology(geometry, 50)) > 50000.000000 ;
 
 
 -- osm_waterareas_gen0
@@ -40,6 +40,7 @@ CREATE OR REPLACE VIEW osm_waterareas_gen0 AS
     area,
     geometry
    FROM osm_waterareas_gen1
-  WHERE ST_AREA(ST_SimplifyPreserveTopology(geometry, 200)) > 50000.000000
+  WHERE ST_AREA(ST_SimplifyPreserveTopology(geometry, 200)) > 50000.000000 ;
+
 
 
