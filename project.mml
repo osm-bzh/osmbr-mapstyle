@@ -21,24 +21,30 @@
   ],
   "Layer": [
     {
+      "id": "land",
+      "name": "land",
+      "class": "shp",
+      "Datasource": {
+        "file": "/data/osm/simplified-land-polygons-complete-3857/simplified_land_polygons.shp"
+      },
       "geometry": "polygon",
+      "srs-name": "autodetect",
+      "srs": "",
       "extent": [
         -180,
         -85.051,
         180,
         83.6664731
       ],
-      "id": "land",
-      "class": "shp",
-      "Datasource": {
-        "file": "/data/osm/simplified-land-polygons-complete-3857/simplified_land_polygons.shp"
-      },
-      "srs-name": "autodetect",
-      "srs": "",
-      "advanced": {},
-      "name": "land"
+      "advanced": {}
     },
     {
+      "id": "landuse_0",
+      "name": "landuse_0",
+      "class": "",
+      "Datasource": {
+        "file": "/data/osm/z7.tif"
+      },
       "geometry": "raster",
       "extent": [
         -180,
@@ -46,17 +52,14 @@
         180,
         84.96651228427098
       ],
-      "id": "landuse_0",
-      "class": "",
-      "Datasource": {
-        "file": "/data/osm/z7.tif"
-      },
       "srs-name": "custom",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
-      "name": "landuse_0"
+      "advanced": {}
     },
     {
+      "id": "water_gen1",
+      "name": "water_gen1",
+      "class": "",
       "Datasource": {
         "type": "postgis",
         "host": "192.168.0.42",
@@ -72,10 +75,7 @@
         "table": "(  SELECT geometry, type, area\n  FROM osm_waterareas_gen1\n\n) AS data",
         "extent_cache": "auto"
       },
-      "class": "",
       "geometry": "polygon",
-      "id": "water_gen1",
-      "name": "water_gen1",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "srs-name": "900913",
       "extent": [
@@ -87,12 +87,9 @@
       "advanced": {}
     },
     {
-      "extent": [
-        -5.100414904469789,
-        47.30250866358967,
-        -1.0188664104709804,
-        48.86564190473949
-      ],
+      "id": "water",
+      "name": "water",
+      "class": "",
       "Datasource": {
         "type": "postgis",
         "host": "192.168.0.42",
@@ -105,12 +102,15 @@
         "extent_cache": "auto",
         "extent": "-567775.59,5991591.73,-113419.69,6252094.31"
       },
-      "id": "water",
-      "class": "",
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "advanced": {},
-      "name": "water"
+      "extent": [
+        -5.100414904469789,
+        47.30250866358967,
+        -1.0188664104709804,
+        48.86564190473949
+      ],
+      "advanced": {}
     }
   ],
   "scale": 1,
