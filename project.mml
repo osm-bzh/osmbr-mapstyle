@@ -194,6 +194,33 @@
         48.86564190473949
       ],
       "advanced": {}
+    },
+    {
+      "id": "waterway_high",
+      "name": "waterway_high",
+      "class": "",
+      "Datasource": {
+        "type": "postgis",
+        "host": "192.168.0.42",
+        "user": "osm",
+        "password": "osmbr",
+        "dbname": "osm",
+        "table": "( SELECT geometry, type\n  FROM osm_waterways\n) AS data",
+        "key_field": "",
+        "geometry_field": "geometry",
+        "extent_cache": "auto",
+        "extent": "-567775.59,5991591.73,-113419.69,6252094.31"
+      },
+      "geometry": "linestring",
+      "srs-name": "3857",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "extent": [
+        -5.100414904469789,
+        47.30250866358967,
+        -1.0188664104709804,
+        48.86564190473949
+      ],
+      "advanced": {}
     }
   ],
   "scale": 1,
