@@ -14,7 +14,7 @@
 }
 
 // raster z7.tif
-#landuse_0[zoom<=7] {
+#landuse_0[zoom<=6] {
   raster-opacity:0.7;
 }
 
@@ -26,8 +26,9 @@ Map{
 	background-color:@water;
 }
 
-#water_gen1[zoom>9][zoom<=12],
-#water[zoom>12] {
+#water_gen0[zoom>6][zoom<=9],
+#water_gen1[zoom>9][zoom<=11],
+#water[zoom>11] {
 	polygon-fill: @water;
 	[zoom=4]{
 		polygon-fill: @water4;

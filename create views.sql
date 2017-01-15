@@ -24,3 +24,20 @@ CREATE OR REPLACE VIEW osm_waterareas_gen1 AS
     geometry
    FROM osm_waterareas
   WHERE ST_AREA(ST_SimplifyPreserveTopology(geometry, 50)) > 50000.000000
+
+
+-- osm_waterareas_gen0
+CREATE OR REPLACE VIEW osm_waterareas_gen0 AS
+ SELECT 
+    osm_id,
+    name,
+    source_name,
+    type,
+    area,
+    geometry
+   FROM osm_waterareas_gen1
+  WHERE ST_AREA(ST_SimplifyPreserveTopology(geometry, 200)) > 50000.000000
+
+
+
+
