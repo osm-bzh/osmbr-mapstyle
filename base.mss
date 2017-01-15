@@ -26,7 +26,7 @@ Map{
 	background-color:@water;
 }
 
-#water-areas[zoom>8] {
+#water[zoom>8] {
 	polygon-fill: @water;
 	[zoom=4]{
 		polygon-fill: @water4;
