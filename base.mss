@@ -48,3 +48,12 @@ Map{
 /* WATER WAYS
 /* ================================================================== */
 
+#waterway_low[zoom>=8][zoom<=12] {
+	line-color: @water;
+	[zoom=8] { line-width: 0.1; }
+	[zoom=9] { line-width: 0.2; }
+	[zoom=10]{ line-width: 0.4; }
+	[zoom=11]{ line-width: 0.6; }
+	[zoom=12]{ line-width: 0.8; }
+}
+
