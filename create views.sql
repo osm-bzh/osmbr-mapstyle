@@ -80,3 +80,21 @@ CREATE OR REPLACE VIEW osm_waterways_gen0 AS
    FROM osm_waterways_gen1 ;
 
 
+
+-- osm_places
+CREATE OR REPLACE VIEW osm_places AS
+ SELECT
+    osm_id,
+    COALESCE(tags -> 'name:br'::text) as name,
+    COALESCE(tags -> 'source:name:br'::text) as source_name,
+    place as type,
+    z_order,
+    population,
+    way as geometry
+   FROM planet_osm_point
+   WHERE
+   	place is not null and place in ('country','state','region','county','city','town','village','hamlet','suburb','locality') ;
+
+
+
+
