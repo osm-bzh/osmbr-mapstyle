@@ -27,7 +27,7 @@
       "name": "land",
       "class": "shp",
       "Datasource": {
-        "file": "/data/osm/simplified-land-polygons-complete-3857/simplified_land_polygons.shp"
+        "file": "/data/osm/data/simplified-land-polygons-complete-3857/simplified_land_polygons.shp"
       },
       "geometry": "polygon",
       "srs-name": "3857",
@@ -45,7 +45,7 @@
       "name": "landuse_0",
       "class": "",
       "Datasource": {
-        "file": "/data/osm/z7.tif"
+        "file": "/data/osm/data/z7.tif"
       },
       "geometry": "raster",
       "srs-name": "custom",
