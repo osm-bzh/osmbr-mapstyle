@@ -229,6 +229,33 @@
       "advanced": {}
     },
     {
+      "id": "roads_high",
+      "name": "roads_high",
+      "class": "",
+      "Datasource": {
+        "type": "postgis",
+        "host": "192.168.0.42",
+        "user": "osm",
+        "password": "osmbr",
+        "dbname": "osm",
+        "table": "(SELECT geometry, type, 0 AS tunnel, 0 AS bridge, access, 'fill' AS render,\n  CASE\n    WHEN type IN ('motorway', 'trunk') THEN 'motorway'\n    WHEN type IN ('primary', 'secondary') THEN 'mainroad'\n    WHEN type IN ('motorway_link', 'trunk_link', 'primary_link', 'secondary_link', 'tertiary', 'tertiary_link', 'residential', 'unclassified', 'road', 'living_street') THEN 'minorroad'\n    WHEN type IN ('service', 'track') THEN 'service'\n    WHEN type IN ('path', 'cycleway', 'footway', 'pedestrian', 'steps', 'bridleway') THEN 'noauto'\n    WHEN type IN ('light_rail', 'subway', 'narrow_gauge', 'rail', 'tram','abandoned','disused') THEN 'railway'\n    ELSE 'other_rail' END AS stylegroup\n  FROM osm_roads\n  WHERE (type IS NOT NULL)\n    AND (tunnel IS NULL OR tunnel = '0')\n    AND (bridge IS NULL OR bridge = '0')\n  ORDER BY z_order\n) AS data",
+        "key_field": "",
+        "geometry_field": "geometry",
+        "extent_cache": "auto",
+        "extent": "-567775.59,5991591.73,-113419.69,6252094.31"
+      },
+      "geometry": "linestring",
+      "srs-name": "3857",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "extent": [
+        -5.100414904469789,
+        47.30250866358967,
+        -1.0188664104709804,
+        48.86564190473949
+      ],
+      "advanced": {}
+    },
+    {
       "id": "roads_med",
       "name": "roads_med",
       "class": "",
