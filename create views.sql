@@ -101,8 +101,8 @@ CREATE OR REPLACE VIEW osm_roads AS
  SELECT
     osm_id,
     COALESCE(highway, '') as type,
-    COALESCE(tags -> 'name:br'::text) as name,
-    COALESCE(tags -> 'source:name:br'::text) as source_name,
+    COALESCE(tags -> 'name:br'::text,'') as name,
+    COALESCE(tags -> 'source:name:br'::text,'') as source_name,
     tunnel,
     bridge,
     oneway,
@@ -113,15 +113,9 @@ CREATE OR REPLACE VIEW osm_roads AS
     service,
     'highway'::text as class,
     way as geometry
- FROM planet_osm_roads
+ FROM planet_osm_line
  WHERE
    highway IN ('motorway','motorway_link','trunk','trunk_link','primary','primary_link','secondary','secondary_link','tertiary','tertiary_link','road','path','track','service','footway','bridleway','cycleway','steps','pedestrian','living_street','unclassified','residential','raceway') ;
-
-
-
-
-
-
 
 
 
