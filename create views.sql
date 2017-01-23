@@ -118,4 +118,20 @@ CREATE OR REPLACE VIEW osm_roads AS
    highway IN ('motorway','motorway_link','trunk','trunk_link','primary','primary_link','secondary','secondary_link','tertiary','tertiary_link','road','path','track','service','footway','bridleway','cycleway','steps','pedestrian','living_street','unclassified','residential','raceway') ;
 
 
+-- osm_buildings
+CREATE OR REPLACE VIEW osm_buildings AS
+ SELECT
+    osm_id,
+    COALESCE(tags -> 'name:br'::text,'') as name,
+    COALESCE(tags -> 'source:name:br'::text,'') as source_name,
+    building as type,
+    COALESCE(tags -> 'building:levels','') as building_levels,
+    way as geometry
+   FROM planet_osm_polygon
+   WHERE
+    building is not null
+    --and (tags -> 'building:levels') ~ '^\d+$' ;
+
+
+
 
