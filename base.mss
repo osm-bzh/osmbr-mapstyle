@@ -109,7 +109,7 @@ Map{
 /* BUILDINGS
 /* ================================================================== */
 
-#buildings[zoom>=14][zoom<=16] {
+#buildings[zoom>=13][zoom<=16] {
 	polygon-fill:@building;
 	[type='church'] {
 		polygon-fill: @building*0.85;
@@ -130,14 +130,14 @@ Map{
 #buildings[zoom>=17][type != 'hedge'] {
 	building-fill: @building;
 	building-height: 2;
-	[building_levels != null] {
+	/*[building_levels != null] {
 		[building_levels<20]{
 			building-height: '[building_levels]';
 		}
 		[building_levels>=20]{
 			building-height: 20;
 		}		
-	}
+	}*/
 }
 
 #buildings[zoom>=17][type = 'hedge'] {
