@@ -134,4 +134,59 @@ CREATE OR REPLACE VIEW osm_buildings AS
 
 
 
+-- osm_landusages
+CREATE OR REPLACE VIEW osm_landusages AS
+  -- amenity
+  (SELECT
+    osm_id,
+    COALESCE(tags -> 'name:br'::text) as name,
+    COALESCE(tags -> 'source:name:br'::text) as source_name,
+    (case when amenity in ('university','school','college','library','fuel','parking','cinema','theatre','place_of_workship','hospital') then amenity end) as type,
+    way_area as area,
+    z_order,
+    way as geometry
+  FROM planet_osm_polygon
+  WHERE amenity in ('university','school','college','library','fuel','parking','cinema','theatre','place_of_workship','hospital') )
+  UNION
+  -- landuse
+  (SELECT
+    osm_id,
+    COALESCE(tags -> 'name:br'::text) as name,
+    COALESCE(tags -> 'source:name:br'::text) as source_name,
+    (case when landuse in ('park','forest','residential','retail','commercial','industrial','railway','cemetary','grass','farmyard','farm','farmland','orchard','vineyard','wood','meadow','village_green','recreation_ground','allotments','quarry') then landuse end) as type,
+    way_area as area,
+    z_order,
+    way as geometry
+  FROM planet_osm_polygon
+  WHERE landuse in ('park','forest','residential','retail','commercial','industrial','railway','cemetary','grass','farmyard','farm','farmland','orchard','vineyard','wood','meadow','village_green','recreation_ground','allotments','quarry') )
+  UNION
+  -- leisure
+  (SELECT
+    osm_id,
+    COALESCE(tags -> 'name:br'::text) as name,
+    COALESCE(tags -> 'source:name:br'::text) as source_name,
+    (case when leisure in ('park','garden','playground','golf_course','sports_centre','pitch','stadium','common','nature_reserve') then leisure end) as type,
+    way_area as area,
+    z_order,
+    way as geometry
+  FROM planet_osm_polygon
+  WHERE leisure in ('park','garden','playground','golf_course','sports_centre','pitch','stadium','common','nature_reserve') )
+  UNION
+  -- natural
+  (SELECT
+    osm_id,
+    COALESCE(tags -> 'name:br'::text) as name,
+    COALESCE(tags -> 'source:name:br'::text) as source_name,
+    (case when "natural" in ('wood','land','scrub','wetland','health') then "natural" end) as type,
+    way_area as area,
+    z_order,
+    way as geometry
+  FROM planet_osm_polygon
+  WHERE "natural" in ('wood','land','scrub','wetland','health') )
+  
+
+
+
+
+
 

@@ -18,6 +18,67 @@
   raster-opacity:0.7;
 }
 
+#landuse[zoom>12] {
+	[type='cemetery']          { polygon-fill: @cemetery; }
+	[type='college']           { polygon-fill: @school; }
+	[type='commercial']        { polygon-fill: @industrial; }
+	[type='common']            { polygon-fill: @park; }
+	[type='forest']            { polygon-fill: @wooded; }
+	[type='golf_course']       { polygon-fill: @sports; line-color: @standard_case*0.95; line-width: 1; }
+	[type='grass']             { polygon-fill: @grass; polygon-opacity: 0.6; }
+	[type='recreation_ground'] { polygon-fill: @grass; }
+	[type='meadow']            { polygon-fill: @grass; polygon-opacity: 0.5;}
+	[type='heath']             { polygon-fill: @grass; polygon-opacity: 0.5;}
+	[type='farm']              { polygon-fill: @grass; polygon-opacity: 0.4;}
+	[type='scrub']             { polygon-fill: @grass; }
+	[type='hospital']          { polygon-fill: @hospital; }
+	[type='industrial']        { polygon-fill: @industrial; }
+	[type='park']              { polygon-fill: @park; }
+	[type='parking'] {
+		polygon-fill: @parking*1.05;
+		polygon-opacity: 0.9;
+		[zoom>=17]{
+			marker-file: url(img/icon/parking.svg);
+			marker-opacity: 0.25;
+		}
+		[zoom=17]{
+			marker-transform: "scale(0.3)";
+		}
+		[zoom>=18]{
+			marker-transform: "scale(0.5)";
+		}
+	}
+	[type='pedestrian']  { polygon-fill: @pedestrian_fill; }
+	[type='residential'] { polygon-fill: @residential; }
+	[type='school']      { polygon-fill: @school; }
+	[type='sports_center'], [type='stadium'], [type='pitch'] {
+		polygon-fill: @sports;
+		
+		[zoom>13]{
+			line-color: @standard_case*0.95;
+			line-width: 0.5;
+			[zoom>14]{line-width: 1;}
+		}
+	}
+	[type='university'] { polygon-fill: @school; }
+	[type='wood']       { polygon-fill: @wooded; }
+	[type='playground'] {
+		polygon-fill: @sports;
+		[zoom>=17]{
+			marker-file: url(img/icon/playground.svg);
+				marker-opacity: 0.5;
+				marker-clip: false;
+		}
+		[zoom=17]{
+			marker-transform: 'scale(0.03)';
+		}
+		[zoom>=18]{
+			marker-transform: 'scale(0.03)';
+		}
+	}
+}
+
+
 /* ================================================================== */
 /* WATER AREAS
 /* ================================================================== */
