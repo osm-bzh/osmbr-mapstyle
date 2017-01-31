@@ -1,4 +1,13 @@
+
 ## specific towns < zoom 15
+
+# on efface
+rm -rf /data/osm/tiles/br/16/
+rm -rf /data/osm/tiles/br/17/
+rm -rf /data/osm/tiles/br/18/
+rm -rf /data/osm/tiles/br/19/
+rm -rf /data/osm/tiles/br/20/
+rm -rf /data/osm/tiles/br/22/
 
 
 # Pazieg Roazhon Bruz

@@ -1,4 +1,22 @@
 
+# on efface
+rm -rf /data/osm/tiles/br/0/
+rm -rf /data/osm/tiles/br/1/
+rm -rf /data/osm/tiles/br/2/
+rm -rf /data/osm/tiles/br/3/
+rm -rf /data/osm/tiles/br/4/
+rm -rf /data/osm/tiles/br/5/
+rm -rf /data/osm/tiles/br/6/
+rm -rf /data/osm/tiles/br/7/
+rm -rf /data/osm/tiles/br/8/
+rm -rf /data/osm/tiles/br/9/
+rm -rf /data/osm/tiles/br/10/
+rm -rf /data/osm/tiles/br/11/
+rm -rf /data/osm/tiles/br/12/
+rm -rf /data/osm/tiles/br/13/
+rm -rf /data/osm/tiles/br/14/
+rm -rf /data/osm/tiles/br/15/
+
 # monde -> 7
 render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/osm/tiles/ -z 0 -Z 7
 
