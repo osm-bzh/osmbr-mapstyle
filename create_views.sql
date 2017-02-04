@@ -118,6 +118,18 @@ CREATE OR REPLACE VIEW osm_roads AS
    highway IN ('motorway','motorway_link','trunk','trunk_link','primary','primary_link','secondary','secondary_link','tertiary','tertiary_link','road','path','track','service','footway','bridleway','cycleway','steps','pedestrian','living_street','unclassified','residential','raceway') ;
 
 
+-- osm_aeroways
+CREATE OR REPLACE VIEW osm_aeroways AS
+ SELECT
+    osm_id,
+    name,
+    COALESCE(aeroway, '') as type,
+    way as geometry
+ FROM planet_osm_line
+ WHERE
+   aeroway IN ('runway','taxiway','taxipath','parking_position') ;
+
+
 -- osm_buildings
 CREATE OR REPLACE VIEW osm_buildings AS
  SELECT
@@ -129,7 +141,7 @@ CREATE OR REPLACE VIEW osm_buildings AS
     way as geometry
    FROM planet_osm_polygon
    WHERE
-    building is not null
+    building is not null ;
     --and (tags -> 'building:levels') ~ '^\d+$' ;
 
 
@@ -183,8 +195,18 @@ CREATE OR REPLACE VIEW osm_landusages AS
     way as geometry
   FROM planet_osm_polygon
   WHERE "natural" in ('wood','land','scrub','wetland','health') )
-  
-
+  UNION
+  -- aeroway
+  (SELECT
+    osm_id,
+    COALESCE(tags -> 'name:br'::text) as name,
+    COALESCE(tags -> 'source:name:br'::text) as source_name,
+    (case when aeroway in ('runway','taxiway','apron','aerodrome') then aeroway end) as type,
+    way_area as area,
+    z_order,
+    way as geometry
+  FROM planet_osm_polygon
+  WHERE aeroway in ('runway','taxiway','apron','aerodrome') ) ;
 
 
 
