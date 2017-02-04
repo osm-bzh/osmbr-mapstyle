@@ -8,10 +8,16 @@
 /* LANDUSE & LANDCOVER
 /* ================================================================== */
 
-#land[zoom>=0][zoom<20] {
+// used for background color and coast line
+#land_low[zoom>=0][zoom<10] {
 	polygon-fill: @land;
 	polygon-gamma: 0.75;
 }
+#land_high[zoom>=10] {
+	polygon-fill: @land;
+	polygon-gamma: 0.75;
+}
+
 
 // raster z7.tif
 #landuse_0[zoom<=6] {
