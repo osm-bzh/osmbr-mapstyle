@@ -96,9 +96,10 @@ CREATE OR REPLACE VIEW osm_places AS
    	place is not null and place in ('country','state','region','county','city','town','village','hamlet','suburb','locality') ;
 
 
--- osm_roads
+-- osm_roads + railways
 CREATE OR REPLACE VIEW osm_roads AS
- SELECT
+ -- roads
+ (SELECT
     osm_id,
     COALESCE(highway, '') as type,
     COALESCE(tags -> 'name:br'::text,'') as name,
@@ -115,19 +116,30 @@ CREATE OR REPLACE VIEW osm_roads AS
     way as geometry
  FROM planet_osm_line
  WHERE
-   highway IN ('motorway','motorway_link','trunk','trunk_link','primary','primary_link','secondary','secondary_link','tertiary','tertiary_link','road','path','track','service','footway','bridleway','cycleway','steps','pedestrian','living_street','unclassified','residential','raceway') ;
-
-
--- osm_aeroways
-CREATE OR REPLACE VIEW osm_aeroways AS
+   highway IN ('motorway','motorway_link','trunk','trunk_link','primary','primary_link','secondary','secondary_link','tertiary','tertiary_link','road','path','track','service','footway','bridleway','cycleway','steps','pedestrian','living_street','unclassified','residential','raceway')
+)
+ UNION
+ -- railways
+(
  SELECT
     osm_id,
-    name,
-    COALESCE(aeroway, '') as type,
+    COALESCE(railway, '') as type,
+    COALESCE(tags -> 'name:br'::text,'') as name,
+    COALESCE(tags -> 'source:name:br'::text,'') as source_name,
+    tunnel,
+    bridge,
+    oneway,
+    layer,
+    ref,
+    z_order,
+    access,
+    service,
+    'highway'::text as class,
     way as geometry
  FROM planet_osm_line
  WHERE
-   aeroway IN ('runway','taxiway','taxipath','parking_position') ;
+   railway IN ('rail','light_rail','subway','tram','narrow_gauge','spur','siding','platform','abandoned','disused')
+);
 
 
 -- osm_buildings
