@@ -1,0 +1,8 @@
+﻿
+DROP VIEW IF EXISTS osm_buildings CASCADE ;
+DROP VIEW IF EXISTS osm_landusages CASCADE ;
+DROP VIEW IF EXISTS osm_places CASCADE ;
+DROP VIEW IF EXISTS osm_roads CASCADE ;
+DROP VIEW IF EXISTS osm_aeroways CASCADE ;
+DROP VIEW IF EXISTS osm_waterareas CASCADE ;
+DROP VIEW IF EXISTS osm_waterways CASCADE ;
