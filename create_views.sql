@@ -232,6 +232,25 @@ CREATE OR REPLACE VIEW osm_landusages AS
   WHERE aeroway in ('runway','taxiway','apron','aerodrome') ) ;
 
 
+-- osm_landusages_gen1
+CREATE OR REPLACE VIEW osm_landusages_gen1 AS
+ SELECT
+    osm_id,
+    type,
+    area,
+    (ST_SimplifyPreserveTopology(geometry, 50)) as geometry
+   FROM osm_landusages
+   WHERE ST_AREA(geometry) > 10000 ;
+
+-- osm_landusages_gen0
+CREATE OR REPLACE VIEW osm_landusages_gen0 AS
+ SELECT
+    osm_id,
+    type,
+    area,
+    (ST_SimplifyPreserveTopology(geometry, 50)) as geometry
+   FROM osm_landusages_gen1
+   WHERE ST_AREA(geometry) > 100000 ;
 
 
 
