@@ -142,6 +142,18 @@ CREATE OR REPLACE VIEW osm_roads AS
 );
 
 
+-- osm_aeroways
+CREATE OR REPLACE VIEW osm_aeroways AS
+ SELECT
+    osm_id,
+    name,
+    COALESCE(aeroway, '') as type,
+    way as geometry
+ FROM planet_osm_line
+ WHERE
+   aeroway IN ('runway','taxiway','taxipath','parking_position') ;
+
+
 -- osm_buildings
 CREATE OR REPLACE VIEW osm_buildings AS
  SELECT
@@ -155,7 +167,6 @@ CREATE OR REPLACE VIEW osm_buildings AS
    WHERE
     building is not null ;
     --and (tags -> 'building:levels') ~ '^\d+$' ;
-
 
 
 -- osm_landusages
