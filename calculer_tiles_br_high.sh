@@ -33,3 +33,5 @@ render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/osm/tiles/ -
 render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/osm/tiles/ -z 17 -Z 17 -x 63946 -y 45237 -X 63976 -Y 45264
 render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/osm/tiles/ -z 18 -Z 18 -x 127892 -y 90474 -X 127953 -Y 90528
 
+# Lannuon
+
