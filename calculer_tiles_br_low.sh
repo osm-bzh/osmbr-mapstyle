@@ -1,4 +1,6 @@
 
+date
+
 # on efface
 rm -rf /data/osm/tiles/br/0/
 rm -rf /data/osm/tiles/br/1/
@@ -17,3 +19,4 @@ render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/osm/tiles/ -
 # niveau 6 : europe
 render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/osm/tiles/ -z 6 -Z 6 -x 28 -X 37 -y 19 -Y 26
 
+date

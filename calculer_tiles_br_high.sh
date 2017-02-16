@@ -1,4 +1,6 @@
 
+date
+
 ## specific towns < zoom 15
 
 # on efface
@@ -35,3 +37,5 @@ render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/osm/tiles/ -
 
 # Lannuon
 
+
+date

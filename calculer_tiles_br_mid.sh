@@ -1,4 +1,6 @@
 
+date
+
 # on efface
 rm -rf /data/osm/tiles/br/7/
 rm -rf /data/osm/tiles/br/8/
@@ -37,3 +39,4 @@ render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/osm/tiles/ -
 # 15
 render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/osm/tiles/ -z 15 -Z 15 -x 15914 -X 16322 -y 11268 -Y 11540
 
+date
