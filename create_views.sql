@@ -7,7 +7,8 @@ CREATE OR REPLACE VIEW osm_waterareas AS
     COALESCE(tags -> 'source:name:br'::text) as source_name,
     COALESCE(waterway, '') || COALESCE(landuse, '') || COALESCE("natural", '') as type,
     way_area as area,
-    way as geometry
+    --way as geometry
+    ST_MULTI(way)::geometry(MultiPolygon,3857) as geometry
   FROM planet_osm_polygon
   WHERE 
     waterway = 'riverbank'::text
