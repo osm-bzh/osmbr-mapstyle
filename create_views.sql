@@ -234,7 +234,14 @@ CREATE OR REPLACE VIEW osm_landusages AS
 
 
 -- osm_landusages_gen1
-CREATE OR REPLACE VIEW osm_landusages_gen1 AS
+CREATE MATERIALIZED VIEW osm_landusages_gen1
+  (
+    osm_id,
+    type,
+    area,
+    geometry
+  )
+AS
  SELECT
     osm_id,
     type,
@@ -243,8 +250,16 @@ CREATE OR REPLACE VIEW osm_landusages_gen1 AS
    FROM osm_landusages
    WHERE ST_AREA(geometry) > 10000 ;
 
+
 -- osm_landusages_gen0
-CREATE OR REPLACE VIEW osm_landusages_gen0 AS
+CREATE MATERIALIZED VIEW osm_landusages_gen0
+  (
+    osm_id,
+    type,
+    area,
+    geometry
+  )
+AS
  SELECT
     osm_id,
     type,
