@@ -89,12 +89,17 @@ CREATE OR REPLACE VIEW osm_places AS
     COALESCE(tags -> 'name:br'::text) as name,
     COALESCE(tags -> 'source:name:br'::text) as source_name,
     place as type,
+    admin_level,
+    COALESCE(tags->'is_capital'::text) as is_capital,
     z_order,
-    population,
+    population::integer as population,
     way as geometry
    FROM planet_osm_point
    WHERE
-   	place is not null and place in ('country','state','region','county','city','town','village','hamlet','suburb','locality') ;
+    place in ('country','state','region','county','city','town','village','hamlet','suburb','locality')
+    AND COALESCE(tags -> 'name:br') is not null
+    -- keep only integer values for population
+    AND (population ~ '^\d+$' OR population IS NULL) ;
 
 
 -- osm_roads + railways
