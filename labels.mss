@@ -11,7 +11,7 @@
 /* ================================================================== */
 
 #place::country[type='country'][zoom>=5][zoom<8] {
-	text-name: '[iname]';
+	text-name: '[name]';
 	text-face-name: @sans_bold;
 	text-placement: point;
 	text-fill: @country_text;
@@ -32,7 +32,7 @@
 		text-size: 12 + @text_adjust;
 		text-wrap-width: 50;
 		text-line-spacing: 1;
-		text-name: '[iname]';
+		text-name: '[name]';
 	}
 	[zoom=6] {
 		text-size: 13 + @text_adjust;
@@ -49,7 +49,7 @@
 /* ---- Cities ------------------------------------------------------ */
 
 #place::city[type='city'][zoom>=6][zoom<=14] {
-	text-name: '[iname]';
+	text-name: '[name]';
 	text-face-name: @sans;
 	text-placement: point;
 	text-fill: @city_text;
@@ -113,7 +113,7 @@
 /* ---- Towns ------------------------------------------------------- */
 
 #place::town[type='town'][zoom>=9][zoom<=15] {
-	text-name: '[iname]';
+	text-name: '[name]';
 	text-face-name: @sans;
 	text-placement: point;
 	text-fill: @town_text;
@@ -169,7 +169,7 @@
 #place::small[type='suburb'][zoom>=13],
 #place::small[type='hamlet'][zoom>=13],
 #place::small[type='neighbourhood'][zoom>=13] {
-	text-name: '[iname]';
+	text-name: '[name]';
 	text-face-name: @sans;
 	text-placement: point;
 	text-fill: @other_text;
@@ -212,7 +212,7 @@
 }
 
 #place::small[type='locality'][zoom>=15] {
-	text-name: '[iname]';
+	text-name: '[name]';
 	text-face-name: @sans;
 	text-placement: point;
 	text-fill: @locality_text;

@@ -535,7 +535,7 @@
         "user": "osm",
         "password": "osmbr",
         "dbname": "osm",
-        "table": "(SELECT geometry, type, name, name as iname, z_order, population FROM osm_places ORDER BY population DESC) AS data",
+        "table": "(SELECT geometry, type, name, z_order, is_capital, population FROM osm_places) AS data",
         "key_field": "",
         "geometry_field": "geometry",
         "extent_cache": "auto",
@@ -635,7 +635,8 @@
     }
   ],
   "scale": 1,
-  "metatile": 2,
+  "metatile": 4,
   "name": "osmbr-mapstyle",
-  "description": "osmbr-mapstyle"
+  "description": "osmbr-mapstyle",
+  "attribution": ""
 }
