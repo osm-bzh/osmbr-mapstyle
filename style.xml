@@ -63,6 +63,7 @@
   </Rule>
 </Style>
 <Layer name="landuse_0"
+  status="off"
   srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
     <StyleName>landuse_0</StyleName>
     <Datasource>
@@ -234,7 +235,6 @@
        <Parameter name="user"><![CDATA[osm]]></Parameter>
        <Parameter name="password"><![CDATA[osmbr]]></Parameter>
        <Parameter name="dbname"><![CDATA[osm]]></Parameter>
-       <Parameter name="extent"><![CDATA[-20037508.34,-20037508.34,20037508.34,20037508.34]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geometry]]></Parameter>
        <Parameter name="id"><![CDATA[landuse]]></Parameter>
        <Parameter name="key_field"><![CDATA[]]></Parameter>
@@ -244,6 +244,7 @@
   ORDER BY area DESC
 ) AS data]]></Parameter>
        <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
+       <Parameter name="extent"><![CDATA[-607072.89,5713906.54,140649.73,6590288.74]]></Parameter>
     </Datasource>
   </Layer>
 
@@ -409,7 +410,6 @@
        <Parameter name="user"><![CDATA[osm]]></Parameter>
        <Parameter name="password"><![CDATA[osmbr]]></Parameter>
        <Parameter name="dbname"><![CDATA[osm]]></Parameter>
-       <Parameter name="extent"><![CDATA[-20037508.34,-20037508.34,20037508.34,20037508.34]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geometry]]></Parameter>
        <Parameter name="id"><![CDATA[landuse]]></Parameter>
        <Parameter name="key_field"><![CDATA[]]></Parameter>
@@ -419,6 +419,7 @@
   ORDER BY area DESC
 ) AS data]]></Parameter>
        <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
+       <Parameter name="extent"><![CDATA[-607072.89,5713906.54,140649.73,6590288.74]]></Parameter>
     </Datasource>
   </Layer>
 
@@ -629,7 +630,6 @@
        <Parameter name="user"><![CDATA[osm]]></Parameter>
        <Parameter name="password"><![CDATA[osmbr]]></Parameter>
        <Parameter name="dbname"><![CDATA[osm]]></Parameter>
-       <Parameter name="extent"><![CDATA[-20037508.34,-20037508.34,20037508.34,20037508.34]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geometry]]></Parameter>
        <Parameter name="id"><![CDATA[landuse]]></Parameter>
        <Parameter name="key_field"><![CDATA[]]></Parameter>
@@ -639,6 +639,7 @@
   ORDER BY area DESC
 ) AS data]]></Parameter>
        <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
+       <Parameter name="extent"><![CDATA[-607072.89,5713906.54,140649.73,6590288.74]]></Parameter>
     </Datasource>
   </Layer>
 
@@ -663,7 +664,6 @@
        <Parameter name="user"><![CDATA[osm]]></Parameter>
        <Parameter name="password"><![CDATA[osmbr]]></Parameter>
        <Parameter name="dbname"><![CDATA[osm]]></Parameter>
-       <Parameter name="extent"><![CDATA[-20037508.34,-20037508.34,20037508.34,20037508.34]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geometry]]></Parameter>
        <Parameter name="id"><![CDATA[water_gen0]]></Parameter>
        <Parameter name="key_field"><![CDATA[]]></Parameter>
@@ -673,6 +673,7 @@
 
 ) AS data]]></Parameter>
        <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
+       <Parameter name="extent"><![CDATA[-607072.89,5713906.54,140649.73,6590288.74]]></Parameter>
     </Datasource>
   </Layer>
 
@@ -692,7 +693,6 @@
        <Parameter name="user"><![CDATA[osm]]></Parameter>
        <Parameter name="password"><![CDATA[osmbr]]></Parameter>
        <Parameter name="dbname"><![CDATA[osm]]></Parameter>
-       <Parameter name="extent"><![CDATA[-20037508.34,-20037508.34,20037508.34,20037508.34]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geometry]]></Parameter>
        <Parameter name="id"><![CDATA[water_gen1]]></Parameter>
        <Parameter name="key_field"><![CDATA[]]></Parameter>
@@ -702,6 +702,7 @@
 
 ) AS data]]></Parameter>
        <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
+       <Parameter name="extent"><![CDATA[-607072.89,5713906.54,140649.73,6590288.74]]></Parameter>
     </Datasource>
   </Layer>
 
@@ -724,7 +725,7 @@
        <Parameter name="key_field"><![CDATA[]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geometry]]></Parameter>
        <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-567775.59,5991591.73,-113419.69,6252094.31]]></Parameter>
+       <Parameter name="extent"><![CDATA[-607072.89,5713906.54,140649.73,6590288.74]]></Parameter>
     </Datasource>
   </Layer>
 
@@ -771,7 +772,7 @@
        <Parameter name="key_field"><![CDATA[]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geometry]]></Parameter>
        <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-567775.59,5991591.73,-113419.69,6252094.31]]></Parameter>
+       <Parameter name="extent"><![CDATA[-607072.89,5713906.54,140649.73,6590288.74]]></Parameter>
     </Datasource>
   </Layer>
 
@@ -834,7 +835,7 @@
        <Parameter name="key_field"><![CDATA[]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geometry]]></Parameter>
        <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-567775.59,5991591.73,-113419.69,6252094.31]]></Parameter>
+       <Parameter name="extent"><![CDATA[-607072.89,5713906.54,140649.73,6590288.74]]></Parameter>
     </Datasource>
   </Layer>
 
@@ -1028,7 +1029,7 @@
        <Parameter name="key_field"><![CDATA[]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geometry]]></Parameter>
        <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-567775.59,5991591.73,-113419.69,6252094.31]]></Parameter>
+       <Parameter name="extent"><![CDATA[-607072.89,5713906.54,140649.73,6590288.74]]></Parameter>
     </Datasource>
   </Layer>
 
@@ -1164,7 +1165,7 @@
        <Parameter name="key_field"><![CDATA[]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geometry]]></Parameter>
        <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-567775.59,5991591.73,-113419.69,6252094.31]]></Parameter>
+       <Parameter name="extent"><![CDATA[-607072.89,5713906.54,140649.73,6590288.74]]></Parameter>
     </Datasource>
   </Layer>
 
@@ -1281,7 +1282,7 @@
        <Parameter name="key_field"><![CDATA[]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geometry]]></Parameter>
        <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-567775.59,5991591.73,-113419.69,6252094.31]]></Parameter>
+       <Parameter name="extent"><![CDATA[-607072.89,5713906.54,140649.73,6590288.74]]></Parameter>
     </Datasource>
   </Layer>
 
@@ -2428,7 +2429,7 @@
        <Parameter name="key_field"><![CDATA[]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geometry]]></Parameter>
        <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-567775.59,5991591.73,-113419.69,6252094.31]]></Parameter>
+       <Parameter name="extent"><![CDATA[-607072.89,5713906.54,140649.73,6590288.74]]></Parameter>
     </Datasource>
   </Layer>
 
@@ -19562,7 +19563,7 @@
        <Parameter name="key_field"><![CDATA[]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geometry]]></Parameter>
        <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-567775.59,5991591.73,-113419.69,6252094.31]]></Parameter>
+       <Parameter name="extent"><![CDATA[-607072.89,5713906.54,140649.73,6590288.74]]></Parameter>
     </Datasource>
   </Layer>
 
@@ -19686,7 +19687,7 @@
        <Parameter name="key_field"><![CDATA[]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geometry]]></Parameter>
        <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-567775.59,5991591.73,-113419.69,6252094.31]]></Parameter>
+       <Parameter name="extent"><![CDATA[-607072.89,5713906.54,140649.73,6590288.74]]></Parameter>
     </Datasource>
   </Layer>
 
@@ -19753,7 +19754,7 @@
        <Parameter name="key_field"><![CDATA[]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geometry]]></Parameter>
        <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-567775.59,5991591.73,-113419.69,6252094.31]]></Parameter>
+       <Parameter name="extent"><![CDATA[-607072.89,5713906.54,140649.73,6590288.74]]></Parameter>
     </Datasource>
   </Layer>
 
@@ -19777,7 +19778,7 @@
        <Parameter name="key_field"><![CDATA[]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geometry]]></Parameter>
        <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-567775.59,5991591.73,-113419.69,6252094.31]]></Parameter>
+       <Parameter name="extent"><![CDATA[-607072.89,5713906.54,140649.73,6590288.74]]></Parameter>
     </Datasource>
   </Layer>
 
@@ -20082,7 +20083,7 @@
        <Parameter name="key_field"><![CDATA[]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geometry]]></Parameter>
        <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-567775.59,5991591.73,-113419.69,6252094.31]]></Parameter>
+       <Parameter name="extent"><![CDATA[-607072.89,5713906.54,140649.73,6590288.74]]></Parameter>
     </Datasource>
   </Layer>
 
@@ -26467,7 +26468,7 @@
        <Parameter name="key_field"><![CDATA[]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geometry]]></Parameter>
        <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-567775.59,5991591.73,-113419.69,6252094.31]]></Parameter>
+       <Parameter name="extent"><![CDATA[-607072.89,5713906.54,140649.73,6590288.74]]></Parameter>
     </Datasource>
   </Layer>
 
@@ -26920,7 +26921,7 @@
        <Parameter name="key_field"><![CDATA[]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geometry]]></Parameter>
        <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-567775.59,5991591.73,-113419.69,6252094.31]]></Parameter>
+       <Parameter name="extent"><![CDATA[-607072.89,5713906.54,140649.73,6590288.74]]></Parameter>
     </Datasource>
   </Layer>
 
@@ -27057,7 +27058,7 @@
        <Parameter name="key_field"><![CDATA[]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[geometry]]></Parameter>
        <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-       <Parameter name="extent"><![CDATA[-567775.59,5991591.73,-113419.69,6252094.31]]></Parameter>
+       <Parameter name="extent"><![CDATA[-607072.89,5713906.54,140649.73,6590288.74]]></Parameter>
     </Datasource>
   </Layer>
 
