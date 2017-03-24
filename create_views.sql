@@ -81,6 +81,20 @@ CREATE OR REPLACE VIEW osm_waterways_gen0 AS
    FROM osm_waterways_gen1 ;
 
 
+-- osm_admin
+CREATE OR REPLACE VIEW osm_admin AS 
+ SELECT
+    b.osm_id,
+    b.admin_level,
+    COALESCE(b.tags -> 'maritime'::text, 'no'::text) AS maritime,
+    count(r.*) AS nb,
+    string_agg(r.id::text, ','::text) AS rels,
+    b.way::geometry(LineString,3857) AS geometry
+   FROM planet_osm_roads b
+     LEFT JOIN planet_osm_rels r ON r.parts @> ARRAY[b.osm_id] AND r.members @> ARRAY['w'::text || b.osm_id] AND regexp_replace(r.tags::text, '[{}]'::text, ','::text) ~ format('(,admin_level,%s.*,boundary,administrative|,boundary,administrative.*,admin_level,%s,)'::text, b.admin_level, b.admin_level)
+   WHERE b.boundary = 'administrative'::text AND b.admin_level IS NOT NULL
+   GROUP BY b.osm_id, b.way, b.admin_level, COALESCE(b.tags -> 'maritime'::text, 'no'::text);
+
 
 -- osm_places
 CREATE OR REPLACE VIEW osm_places AS
