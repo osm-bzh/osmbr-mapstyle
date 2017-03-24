@@ -29,10 +29,44 @@ and trunks. */
 /*
 Railway low
 */
-#rail_low[zoom>=9][zoom<=10]{
-	line-color: @rail_line;
-	line-opacity: 0.6;
-	line-width: 1;
+#rail_low {
+  [zoom>=5][zoom<=8] {
+    line-color: @rail_line;
+    line-opacity: 1.0;
+    line-width: 0.25;
+  }
+  [zoom>=9][zoom<=10] {
+    line-color: @rail_line;
+    line-opacity: 0.8;
+    line-width: 1.0;
+  }
+  [zoom>=11][zoom<=13] {
+    line-color: @rail_line;
+    line-opacity: 0.75;
+    line-width: 2.0;
+  }
+  [zoom>=14][zoom<=16] {
+    ::line {
+      line-color: #777;
+      line-width: 4.0;
+    }
+    ::dash {
+      line-color: #fff;
+      line-width: 3.0;
+      line-dasharray: 8, 12;
+    }
+  }
+  [zoom>=17] {
+    ::line {
+      line-color: #666;
+      line-width: 4.0;
+    }
+    ::dash {
+      line-color: #fff;
+      line-width: 3.0;
+      line-dasharray: 10, 18;
+    }
+  }
 }
 
 
