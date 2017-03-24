@@ -46,25 +46,29 @@ Railway low
     line-width: 2.0;
   }
   [zoom>=14][zoom<=16] {
-    ::line {
+    ::line, ::hatch {
       line-color: #777;
-      line-width: 4.0;
+      line-opacity: 0.75;
     }
-    ::dash {
-      line-color: #fff;
-      line-width: 3.0;
-      line-dasharray: 8, 12;
+    ::line {
+      line-width:2;
+    }
+    ::hatch {
+      line-width: 4;
+      line-dasharray: 1, 24;
     }
   }
   [zoom>=17] {
-    ::line {
+    ::line, ::hatch {
       line-color: #666;
-      line-width: 4.0;
+      line-opacity: 0.75;
     }
-    ::dash {
-      line-color: #fff;
-      line-width: 3.0;
-      line-dasharray: 10, 18;
+    ::line {
+      line-width:3;
+    }
+    ::hatch {
+      line-width: 6;
+      line-dasharray: 1, 24;
     }
   }
 }
