@@ -102,7 +102,10 @@ Map { font-directory: url('./fonts'); }
 /* BOUNDARY COLORS
 /* ================================================================== */
 
-@admin_2:           #324;
+@admin_boundaries: #ac46ac;
+@admin_boundary_line: #aa92aa;
+@admin_boundary_maritime: #0041ff;
+@admin_boundary_bkline: #fff;
 
 /* ================================================================== */
 /* LABEL COLORS
