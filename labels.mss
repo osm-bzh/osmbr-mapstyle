@@ -6,10 +6,98 @@
 
 /* Font sets are defined in palette.mss */
 
+
 /* ================================================================== */
-/* PLACE NAMES
+/* PLACE NAMES  for zoom > 13 -> admin_place
 /* ================================================================== */
 
+#admin_place [zoom>=5][zoom<=7] {
+  /* ---- Major cities ------------------------------------------------------ */
+  [type = 'city'][admin_level != 'prefecture'][admin_level != 'commune']  {
+	text-name: '[name]';
+	text-face-name: @sans;
+	text-placement: point;
+	text-fill: @city_text;
+	text-halo-fill: @city_halo;
+	text-halo-radius: 2;
+	text-label-position-tolerance: 20;
+
+	[zoom=5] {
+		text-min-distance: 20;
+		text-size: 12;
+		text-halo-radius: 1.2;
+	}
+	[zoom=6] {
+		text-min-distance: 20;
+		text-size: 13;
+		text-halo-radius: 1.3;
+	}
+	[zoom=7] {
+		text-min-distance: 20;
+		text-size: 13;
+		text-halo-radius: 1.5;
+	}
+	[zoom=8] {
+		text-min-distance: 20;
+		text-size: 14;
+      	text-face-name: @sans_bold;
+		text-halo-radius: 2.0;
+	}
+  }
+}
+
+#admin_place [zoom>=8][zoom<=13] {
+  /* ---- Major cities ------------------------------------------------------ */
+  [type = 'city'][admin_level != 'prefecture'][admin_level != 'commune']  {
+	text-name: '[name]';
+	text-face-name: @sans_bold;
+	text-placement: point;
+	text-fill: @city_text;
+	text-halo-fill: @city_halo;
+	text-halo-radius: 2;
+	text-label-position-tolerance: 20;
+
+	[zoom=8] {
+		text-min-distance: 20;
+		text-size: 14;
+		text-halo-radius: 2.0;
+	}
+	[zoom=9] {
+		text-min-distance: 20;
+		text-size: 16;
+		text-halo-radius: 2.0;
+	}
+  }
+  /* ---- Local cities ------------------------------------------------------ */
+  [admin_level = 'prefecture'][type != 'city'] {
+	text-name: '[name]';
+	text-face-name: @sans;
+	text-placement: point;
+	text-fill: @city_text;
+	text-halo-fill: @city_halo;
+	text-halo-radius: 2;
+	text-label-position-tolerance: 20;
+
+	[zoom=8] {
+		text-min-distance: 20;
+		text-size: 12;
+		text-halo-radius: 1.3;
+	}
+	[zoom=9] {
+		text-min-distance: 20;
+		text-size: 13;
+		text-halo-radius: 1.5;
+	}
+  }
+}
+
+
+
+
+/* ================================================================== */
+/* PLACE NAMES  for zoom > 13 -> place
+/* ================================================================== */
+/*
 #place::country[type='country'][zoom>=5][zoom<8] {
 	text-name: '[name]';
 	text-face-name: @sans_bold;
@@ -44,10 +132,10 @@
 		text-size: 15 + @text_adjust;
 		text-character-spacing: 2;
 	}
-}
+}*/
 
 /* ---- Cities ------------------------------------------------------ */
-
+/*
 #place::city[type='city'][zoom>=6][zoom<=14] {
 	text-name: '[name]';
 	text-face-name: @sans;
@@ -109,9 +197,9 @@
 		text-transform: uppercase;
 	}
 }
-
+*/
 /* ---- Towns ------------------------------------------------------- */
-
+/*
 #place::town[type='town'][zoom>=9][zoom<=15] {
 	text-name: '[name]';
 	text-face-name: @sans;
@@ -162,7 +250,7 @@
 		text-line-spacing: 6;
 	}
 }
-
+*/
 /* ---- Other small places ------------------------------------------ */
 
 #place::small[type='village'][zoom>=13],

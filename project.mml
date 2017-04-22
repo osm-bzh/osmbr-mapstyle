@@ -584,6 +584,33 @@
       "advanced": {}
     },
     {
+      "id": "admin_place",
+      "name": "admin_place",
+      "class": "",
+      "Datasource": {
+        "type": "postgis",
+        "host": "db.openstreetmap.local",
+        "user": "osm",
+        "password": "osmbr",
+        "dbname": "osm",
+        "table": "(SELECT osm_id, name, admin_level, type, geometry FROM osm_admin_places) AS data",
+        "key_field": "",
+        "geometry_field": "geometry",
+        "extent_cache": "auto",
+        "extent": "-607072.89,5713906.54,140649.73,6590288.74"
+      },
+      "geometry": "point",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "extent": [
+        -5.45342855661609,
+        45.58382919290151,
+        1.2634780216628398,
+        50.82438888235747
+      ],
+      "advanced": {}
+    },
+    {
       "id": "motorway_label",
       "name": "motorway_label",
       "class": "",
