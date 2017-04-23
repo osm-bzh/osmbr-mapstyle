@@ -124,7 +124,8 @@ CREATE OR REPLACE VIEW osm_admin_places AS
   way as geometry,
   name as name_fr,
   COALESCE(tags -> 'name:br'::text) as name,
-  'prefecture' as admin_level,
+  '3' as admin_level,
+  'prefecture' as admin_name,
   place as type,
   population::integer as population
 FROM planet_osm_point
@@ -147,7 +148,8 @@ UNION
   way as geometry,
   name as name_fr,
   COALESCE(tags -> 'name:br'::text) as name,
-  'chef-lieu de canton' as admin_level,
+  '2' as admin_level,
+  'chef-lieu de canton' as admin_name,
   place as type,
   population::integer as population
 FROM planet_osm_point
@@ -170,7 +172,8 @@ UNION
   way as geometry,
   name as name_fr,
   COALESCE(tags -> 'name:br'::text) as name,
-  'commune' as admin_level,
+  '1' as admin_level,
+  'commune' as admin_name,
   place as type,
   population::integer as population
 FROM planet_osm_point

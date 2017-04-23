@@ -81,8 +81,7 @@
         180,
         84.96651228427098
       ],
-      "advanced": {},
-      "status": "off"
+      "advanced": {}
     },
     {
       "id": "landuse_gen0",
@@ -593,8 +592,8 @@
         "user": "osm",
         "password": "osmbr",
         "dbname": "osm",
-        "table": "(SELECT osm_id, name, admin_level, type, geometry FROM osm_admin_places) AS data",
-        "key_field": "",
+        "table": "(SELECT a.osm_id, a.name, a.name_fr, a.admin_level, a.admin_name, a.type, a.geometry FROM osm_admin_places a JOIN (SELECT osm_id, name, MAX(admin_level) AS admin_level FROM osm_admin_places GROUP BY osm_id, name) b ON a.osm_id = b.osm_id AND a.admin_level = b.admin_level ORDER BY a.admin_level DESC, a.name ASC) AS data",
+        "key_field": "osm_id",
         "geometry_field": "geometry",
         "extent_cache": "auto",
         "extent": "-607072.89,5713906.54,140649.73,6590288.74"
