@@ -48,6 +48,7 @@
 	}
 	[zoom=10] {
 		text-size: 17;
+    	text-halo-radius: 2.5;
 		text-wrap-width: 70;
 	}
 	[zoom=11] {
@@ -99,10 +100,11 @@
 	}
 	[zoom>=10] {
 		text-size: 16;
-    	text-halo-radius:1 ;
+    	text-halo-radius:1.5 ;
 	}
 	[zoom>=11] {
     	text-size:17;
+    	text-halo-radius: 2.0;
   	}
 	[zoom>=12] {
 		text-size: 18;
@@ -140,18 +142,21 @@
 		text-size: 10;
 	}
 	[zoom>=10] {
-		text-halo-radius:1 ;
-		text-size: 11;
+		text-fill: #333;
+    	text-halo-radius:1.5 ;
+		text-size: 14;
 	}
 	[zoom>=11] {
-    	text-size:12;
+    	text-fill: #333;
+    	text-size:16;
+    	text-halo-radius: 2.0;
   	}
 	[zoom>=12] {
-		text-size: 14;
+		text-size: 17;
 		text-line-spacing: 1;
 	}
 	[zoom>=13] {
-		text-size: 18;
+		text-size: 20;
 		text-character-spacing: 0;
 		text-line-spacing: 2;
 	}
@@ -159,29 +164,33 @@
 
 
 /* ---- Town / village / municipality ------------------------------------------------------ */
-
 /* France = commune */
-#admin_place [admin_level='1'][type!='city'][zoom>=11][zoom<=13] {
+#admin_place [admin_level='1'][type!='city'][zoom>=10][zoom<=13] {
 	text-name: '[name]';
 	text-face-name: @sans;
 	text-placement: point;
 	text-fill: @town_text;
-	text-size: 11;
+	text-size: 9;
 	text-halo-fill: @town_halo;
 	text-halo-radius: 1.5;
 	text-wrap-width: 50;
 	text-label-position-tolerance: 20;
     text-allow-overlap: false;
 
+	[zoom>=10] {
+    	text-size:9;
+  	}
 	[zoom>=11] {
-    	text-size:10;
+    	text-size:11;
+    	text-halo-radius: 2.0;
   	}
 	[zoom>=12] {
-		text-size: 12;
+		text-fill: #333;
+    	text-size: 13;
 		text-line-spacing: 1;
 	}
 	[zoom>=13] {
-		text-size: 14;
+		text-size: 15;
     	text-character-spacing: 1;
 		text-line-spacing: 2;
 	}
