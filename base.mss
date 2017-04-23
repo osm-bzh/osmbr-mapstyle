@@ -20,11 +20,11 @@
 
 
 // raster z7.tif
-#landuse_0[zoom<=7] {
+#landuse_0[zoom<=6] {
   raster-opacity:0.7;
 }
 
-#landuse_gen0[zoom>7][zoom<=9],
+#landuse_gen0[zoom>6][zoom<=9],
 #landuse_gen1[zoom>9][zoom<=12],
 #landuse[zoom>12] {
 	[type='cemetery']          { polygon-fill: @cemetery; }
