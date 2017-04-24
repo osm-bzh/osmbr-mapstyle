@@ -240,8 +240,42 @@
 
 
 /* ================================================================== */
-/* PLACE NAMES  for zoom > 13 -> place
+/* PLACE NAMES  for zoom >= 13 -> place
 /* ================================================================== */
+
+
+
+#place::town[type='town'][zoom>=13],
+#place::town[type='village'][zoom>=13] {
+	text-name: '[name]';
+	text-face-name: @sans;
+	text-placement: point;
+	text-fill: @town_text;
+	text-size: 15;
+	text-halo-fill: @town_halo;
+	text-halo-radius: 1.5;
+	text-wrap-width: 50;
+	text-label-position-tolerance: 20;
+    text-allow-overlap: false;
+
+	[zoom>=13] {
+		text-size: 15;
+    	text-character-spacing: 1;
+		text-line-spacing: 2;
+	}
+	[zoom>=14] {
+		text-size: 18;
+    	text-character-spacing: 1;
+		text-line-spacing: 2;
+	}
+}
+
+
+
+
+
+
+
 
 
 /* ---- Cities ------------------------------------------------------ */
