@@ -81,8 +81,7 @@
         180,
         84.96651228427098
       ],
-      "advanced": {},
-      "status": "off"
+      "advanced": {}
     },
     {
       "id": "landuse_gen0",
@@ -111,8 +110,7 @@
         179.9999999749438,
         85.051
       ],
-      "advanced": {},
-      "status": "off"
+      "advanced": {}
     },
     {
       "id": "landuse_gen1",
@@ -141,8 +139,7 @@
         179.9999999749438,
         85.051
       ],
-      "advanced": {},
-      "status": "off"
+      "advanced": {}
     },
     {
       "id": "landuse",
@@ -171,8 +168,7 @@
         179.9999999749438,
         85.051
       ],
-      "advanced": {},
-      "status": "off"
+      "advanced": {}
     },
     {
       "id": "water_gen0",
