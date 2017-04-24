@@ -124,7 +124,7 @@ Map { font-directory: url('./fonts'); }
 @city_text:     #444;
 @city_halo:     @place_halo;
 
-@town_text:     #555;
+@town_text:     #333;
 @town_halo:     @place_halo;
 
 @poi_text:      #888;
@@ -142,7 +142,8 @@ Map { font-directory: url('./fonts'); }
 @village_text: #888;
 @village_halo: @place_halo;
 
-
+@place_text: #444;
+@place_text_light: #666;
 
 
 
