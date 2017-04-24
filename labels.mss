@@ -48,7 +48,7 @@
 
 
 /* ================================================================== */
-/* PLACE NAMES  for zoom > 13 -> admin_place
+/* PLACE NAMES  for zoom >= 13 -> admin_place
 /* ================================================================== */
 
 /* ---- Big cities ------------------------------------------------------ */
@@ -243,6 +243,29 @@
 /* PLACE NAMES  for zoom >= 13 -> place
 /* ================================================================== */
 
+#place::city[type='city'][zoom>=13], {
+	text-name: '[name]';
+	text-face-name: @sans;
+	text-placement: point;
+	text-fill: @city_text;
+	text-halo-fill: @city_halo;
+	text-halo-radius: 2;
+	text-label-position-tolerance: 20;
+    text-allow-overlap: true;
+  
+	[zoom=13] {
+		text-size: 24;
+		text-character-spacing: 3;
+		text-wrap-width: 200;
+		text-transform: uppercase;
+	}
+	[zoom=14] {
+		text-size: 24;
+		text-character-spacing: 4;
+		text-wrap-width: 300;
+		text-transform: uppercase;
+	}
+}
 
 
 #place::town[type='town'][zoom>=13],
