@@ -271,7 +271,34 @@
 }
 
 
-
+#place::small[type='hamlet'][zoom>=13],
+#place::small[type='localty'][zoom>=13] {
+	text-name: '[name]';
+	text-face-name: @sans;
+	text-placement: point;
+	text-fill: @place_text;
+	text-size: 10;
+	text-halo-fill: @other_halo;
+	text-halo-radius: 2;
+	text-wrap-width: 30;
+	text-avoid-edges: true;
+	text-label-position-tolerance: 20;
+  
+	[zoom>=13] {
+		text-size: 10;
+    	text-fill: @place_text_light;
+		text-character-spacing: 1;
+		text-wrap-width: 40;
+		text-line-spacing: 1;
+	}
+	[zoom>=14] {
+		text-size: 12;
+    	text-fill: @place_text;
+		text-character-spacing: 1;
+		text-wrap-width: 50;
+		text-line-spacing: 1;
+	}
+}
 
 
 
