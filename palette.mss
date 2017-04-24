@@ -129,7 +129,7 @@ Map { font-directory: url('./fonts'); }
 
 @poi_text:      #888;
 
-@road_text:     #666;
+@road_text:     #333;
 @road_halo:     #fff;
 
 @other_text:    #777;

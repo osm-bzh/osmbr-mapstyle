@@ -48,11 +48,11 @@
 
 
 /* ================================================================== */
-/* PLACE NAMES  for zoom >= 13 -> admin_place
+/* PLACE NAMES  for zoom < 13 -> admin_place
 /* ================================================================== */
 
 /* ---- Big cities ------------------------------------------------------ */
-#admin_place [type='city'][zoom>=5][zoom<=13] {
+#admin_place [type='city'][zoom>=5][zoom<13] {
 	text-name: '[name]';
 	text-face-name: @sans;
 	text-placement: point;
@@ -103,18 +103,12 @@
 		text-wrap-width: 100;
     	text-transform: uppercase;
 	}
-	[zoom=13] {
-		text-size: 24;
-		text-character-spacing: 2;
-		text-wrap-width: 200;
-		text-transform: uppercase;
-	}
 }
 
 
 /* ---- Regional cities ------------------------------------------------------ */
 /* France = préfectures */
-#admin_place [admin_level='3'][type!='city'][zoom>=7][zoom<=13] {
+#admin_place [admin_level='3'][type!='city'][zoom>=7][zoom<13] {
 	text-name: '[name]';
 	text-face-name: @sans;
 	text-placement: point;
@@ -150,18 +144,12 @@
 		text-size: 18;
 		text-line-spacing: 1;
 	}
-	[zoom>=13] {
-		text-size: 20;
-    	text-transform: uppercase;
-		text-character-spacing: 1;
-		text-line-spacing: 2;
-	}
 }
 
 
 /* ---- Minor cities ------------------------------------------------------ */
 /* France = chef-lieu de canton */
-#admin_place [admin_level='2'][type!='city'][zoom>=8][zoom<=13] {
+#admin_place [admin_level='2'][type!='city'][zoom>=8][zoom<13] {
 	text-name: '[name]';
 	text-face-name: @sans;
 	text-placement: point;
@@ -195,17 +183,12 @@
 		text-size: 17;
 		text-line-spacing: 1;
 	}
-	[zoom>=13] {
-		text-size: 20;
-		text-character-spacing: 0;
-		text-line-spacing: 2;
-	}
 }
 
 
 /* ---- Town / village / municipality ------------------------------------------------------ */
 /* France = commune */
-#admin_place [admin_level='1'][type!='city'][zoom>=10][zoom<=13] {
+#admin_place [admin_level='1'][type!='city'][zoom>=10][zoom<13] {
 	text-name: '[name]';
 	text-face-name: @sans;
 	text-placement: point;
@@ -228,11 +211,6 @@
 		text-fill: #333;
     	text-size: 13;
 		text-line-spacing: 1;
-	}
-	[zoom>=13] {
-		text-size: 15;
-    	text-character-spacing: 1;
-		text-line-spacing: 2;
 	}
 }
 
@@ -268,8 +246,8 @@
 }
 
 
-#place::town[type='town'][zoom>=13],
-#place::town[type='village'][zoom>=13] {
+#place::town[type='town'][zoom>=13][zoom<16],
+#place::town[type='village'][zoom>=13][zoom<16] {
 	text-name: '[name]';
 	text-face-name: @sans;
 	text-placement: point;
@@ -281,12 +259,12 @@
 	text-label-position-tolerance: 20;
     text-allow-overlap: false;
 
-	[zoom>=13] {
+	[zoom=13] {
 		text-size: 15;
     	text-character-spacing: 1;
 		text-line-spacing: 2;
 	}
-	[zoom>=14] {
+	[zoom=14] {
 		text-size: 18;
     	text-character-spacing: 1;
 		text-line-spacing: 2;
@@ -307,19 +285,23 @@
 	text-avoid-edges: true;
 	text-label-position-tolerance: 20;
   
-	[zoom>=13] {
-		text-size: 10;
+	[zoom=13] {
+		text-size: 9;
     	text-fill: @place_text_light;
 		text-character-spacing: 1;
 		text-wrap-width: 40;
 		text-line-spacing: 1;
 	}
 	[zoom>=14] {
-		text-size: 12;
+		text-size: 10;
     	text-fill: @place_text;
 		text-character-spacing: 1;
 		text-wrap-width: 50;
 		text-line-spacing: 1;
+	}
+	[zoom=15] {
+		text-size: 11;
+		text-wrap-width: 60; 
 	}
 }
 
