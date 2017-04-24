@@ -6,6 +6,46 @@
 
 /* Font sets are defined in palette.mss */
 
+/* ================================================================== */
+/* PLACE NAMES  for countries
+/* ================================================================== */
+
+#place::country[type='country'][zoom>=5][zoom<8] {
+	text-name: '[name]';
+	text-face-name: @sans_bold;
+	text-placement: point;
+	text-fill: @country_text;
+	text-halo-fill: @country_halo;
+	text-halo-radius: 1;
+	[zoom=3] {
+		text-size: 10 + @text_adjust;
+		text-wrap-width: 40;
+	}
+	[zoom=4] {
+		text-size: 11 + @text_adjust;
+		text-wrap-width: 50;
+	}
+	[zoom>4] {
+		text-halo-radius: 2;
+	}
+	[zoom=5] {
+		text-size: 12 + @text_adjust;
+		text-wrap-width: 50;
+		text-line-spacing: 1;
+		text-name: '[name]';
+	}
+	[zoom=6] {
+		text-size: 13 + @text_adjust;
+		text-character-spacing: 1;
+		text-wrap-width: 80;
+		text-line-spacing: 2;
+	}
+	[zoom=7] {
+		text-size: 15 + @text_adjust;
+		text-character-spacing: 2;
+	}
+}
+
 
 /* ================================================================== */
 /* PLACE NAMES  for zoom > 13 -> admin_place
@@ -202,42 +242,7 @@
 /* ================================================================== */
 /* PLACE NAMES  for zoom > 13 -> place
 /* ================================================================== */
-/*
-#place::country[type='country'][zoom>=5][zoom<8] {
-	text-name: '[name]';
-	text-face-name: @sans_bold;
-	text-placement: point;
-	text-fill: @country_text;
-	text-halo-fill: @country_halo;
-	text-halo-radius: 1;
-	[zoom=3] {
-		text-size: 10 + @text_adjust;
-		text-wrap-width: 40;
-	}
-	[zoom=4] {
-		text-size: 11 + @text_adjust;
-		text-wrap-width: 50;
-	}
-	[zoom>4] {
-		text-halo-radius: 2;
-	}
-	[zoom=5] {
-		text-size: 12 + @text_adjust;
-		text-wrap-width: 50;
-		text-line-spacing: 1;
-		text-name: '[name]';
-	}
-	[zoom=6] {
-		text-size: 13 + @text_adjust;
-		text-character-spacing: 1;
-		text-wrap-width: 80;
-		text-line-spacing: 2;
-	}
-	[zoom=7] {
-		text-size: 15 + @text_adjust;
-		text-character-spacing: 2;
-	}
-}*/
+
 
 /* ---- Cities ------------------------------------------------------ */
 /*
