@@ -136,6 +136,9 @@ Map { font-directory: url('./fonts'); }
 @place_text: #444;
 @place_text_light: #666;
 
+@suburb_text: #444;
+@suburb_halo: @town_halo;
+
 @road_text:     #333;
 @road_halo:     #fff;
 
