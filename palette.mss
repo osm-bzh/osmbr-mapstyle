@@ -127,7 +127,14 @@ Map { font-directory: url('./fonts'); }
 @town_text:     #333;
 @town_halo:     @place_halo;
 
-@poi_text:      #888;
+@village_text: #333;
+@village_halo: @place_halo;
+
+@locality_text: #aaa;
+@locality_halo: @land;
+
+@place_text: #444;
+@place_text_light: #666;
 
 @road_text:     #333;
 @road_halo:     #fff;
@@ -135,15 +142,7 @@ Map { font-directory: url('./fonts'); }
 @other_text:    #777;
 @other_halo:    @place_halo;
 
-@locality_text: #aaa;
-@locality_halo: @land;
-
-/* Also used for other small places: hamlets, suburbs, localities */
-@village_text: #888;
-@village_halo: @place_halo;
-
-@place_text: #444;
-@place_text_light: #666;
+@poi_text:      #888;
 
 
 
