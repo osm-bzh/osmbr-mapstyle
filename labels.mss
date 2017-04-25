@@ -477,7 +477,7 @@
 /* ONE-WAY ARROWS
 /* ================================================================== */
 
-#motorway_label[zoom>=16],
+/*#motorway_label[zoom>=16],
 #mainroad_label[zoom>=16],
 #minorroad_label[zoom>=16] {
 	[oneway='yes'],[oneway=1],[oneway='true'],[oneway=-1]{
@@ -490,7 +490,7 @@
 	}
 	[oneway=1] { marker-file: url('img/icon/oneway.svg'); }
 	[oneway=-1] { marker-file: url('img/icon/oneway-reverse.svg'); }	
-}
+}*/
 
 /* Addresses */
 
