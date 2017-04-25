@@ -221,7 +221,7 @@
 /* PLACE NAMES  for zoom >= 13 -> place
 /* ================================================================== */
 
-#place::city[type='city'][zoom>=13], {
+#place::city[type='city'][zoom>=13][zoom<=14] {
 	text-name: '[name]';
 	text-face-name: @sans;
 	text-placement: point;
@@ -238,7 +238,7 @@
 		text-transform: uppercase;
 	}
 	[zoom=14] {
-		text-size: 24;
+		text-size: 26;
 		text-character-spacing: 4;
 		text-wrap-width: 300;
 		text-transform: uppercase;
@@ -246,8 +246,8 @@
 }
 
 
-#place::town[type='town'][zoom>=13][zoom<16],
-#place::town[type='village'][zoom>=13][zoom<16] {
+#place::town[type='town'][zoom>=13][zoom<15],
+#place::village[type='village'][zoom>=13][zoom<15] {
 	text-name: '[name]';
 	text-face-name: @sans;
 	text-placement: point;
@@ -301,6 +301,10 @@
 	}
 	[zoom=15] {
 		text-size: 11;
+		text-wrap-width: 60; 
+	}
+  	[zoom>=16] {
+		text-size: 13;
 		text-wrap-width: 60; 
 	}
 }
