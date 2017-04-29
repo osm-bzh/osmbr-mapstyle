@@ -4,6 +4,7 @@ DROP VIEW IF EXISTS osm_landusages CASCADE ;
 DROP MATERIALIZED VIEW osm_landusages_gen1 ;
 DROP MATERIALIZED VIEW osm_landusages_gen0 ;
 DROP VIEW IF EXISTS osm_admin CASCADE ;
+DROP VIEW IF EXISTS osm_admin_places CASCADE ;
 DROP VIEW IF EXISTS osm_places CASCADE ;
 DROP VIEW IF EXISTS osm_roads CASCADE ;
 DROP VIEW IF EXISTS osm_aeroways CASCADE ;
