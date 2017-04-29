@@ -10,20 +10,21 @@
 Map { font-directory: url('./fonts'); }
 
 /* set up font sets for various weights and styles */
-/*
+
 @sans_lt:           'Open Sans Regular';
 @sans_lt_italic:    'Open Sans Italic';
 @sans:              'Open Sans Semibold';
 @sans_italic:       'Open Sans Semibold Italic';
 @sans_bold:         'Open Sans Bold';
 @sans_bold_italic:  'Open Sans Bold Italic';
-*/
+/*
 @sans_lt:           'DejaVu Sans Book';
 @sans_lt_italic:    'DejaVu Sans Oblique';
 @sans:              'DejaVu Sans Book';
 @sans_italic:       'DejaVu Sans Oblique';
 @sans_bold:         'DejaVu Sans Bold';
 @sans_bold_italic:  'DejaVu Sans Bold Oblique';
+*/
 
 /* Some fonts are larger or smaller than others. Use this variable to
    globally increase or decrease the font sizes. */
