@@ -37,5 +37,9 @@ render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/osm/tiles/ -
 
 # Lannuon
 
+# Langoned
+render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/osm/tiles/ -z 16 -Z 16 -x 32121 -y 22724 -X 32147 -Y 22764
+render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/osm/tiles/ -z 17 -Z 16 -x 64243 -y 45447 -X 64294 -Y 45527
+render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/osm/tiles/ -z 18 -Z 16 -x 128486 -y 90893 -X 128588 -Y 91054
 
 date
