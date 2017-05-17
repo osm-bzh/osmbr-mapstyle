@@ -108,7 +108,7 @@ CREATE OR REPLACE VIEW osm_places AS
     way as geometry
    FROM planet_osm_point
    WHERE
-    place in ('country','state','region','county','city','town','village','hamlet','suburb','locality')
+    place in ('country','state','region','county','city','town','village','hamlet','suburb','locality','isolated_dwelling')
     AND COALESCE(tags -> 'name:br') is not null
     -- keep only integer values for population
     AND (population ~ '^\d+$' OR population IS NULL) ;
