@@ -21,7 +21,13 @@ render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/osm/tiles/ -
 # Gwipavaz
 render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/osm/tiles/ -z 16 -Z 16 -x 31958 -y 22569 -X 31975 -Y 22666
 render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/osm/tiles/ -z 17 -Z 17 -x 63917 -y 45318 -X 63951 -Y 45332
-render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/osm/tiles/ -z 18 -Z 18 -x 127834 -y 90636 -X 127903 -Y 90663
+render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/osm/tiles/ -z 18 -Z 18 -x 127820 -y 90631 -X 127918 -Y 90684
+
+
+# Lambaol-Blouarzhel
+render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/osm/tiles/ -z 16 -Z 16 -x 31897 -y 22653 -X 31904 -Y 22662
+render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/osm/tiles/ -z 17 -Z 17 -x 63794 -y 45306 -X 63808 -Y 45323
+render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/osm/tiles/ -z 18 -Z 18 -x 127587 -y 90613 -X 127617 -Y 90648  
 
 
 # Karaez
