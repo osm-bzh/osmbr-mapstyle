@@ -28,7 +28,7 @@
       "name": "land_low",
       "class": "shp",
       "Datasource": {
-        "file": "/data/osm/data/simplified-land-polygons-complete-3857/simplified_land_polygons.shp",
+        "file": "/data/styles/data/simplified-land-polygons-complete-3857/simplified_land_polygons.shp",
         "type": "shape",
         "srid": "3857"
       },
@@ -48,7 +48,7 @@
       "name": "land_high",
       "class": "shp",
       "Datasource": {
-        "file": "/data/osm/data/land-polygons-split-3857/land_polygons.shp",
+        "file": "/data/styles/data/land-polygons-split-3857/land_polygons.shp",
         "type": "shape",
         "srid": "3857"
       },
@@ -68,7 +68,7 @@
       "name": "landuse_0",
       "class": "",
       "Datasource": {
-        "file": "/data/osm/data/z7.tif",
+        "file": "/data/styles/data/z7.tif",
         "type": "gdal",
         "srid": "3857"
       },
