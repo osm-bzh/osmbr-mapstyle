@@ -8,10 +8,10 @@ date
 echo ""
 
 # on efface les dumps existants
-rm /data/osm/dumps/*.pbf
+rm /data/dumps/*.pbf
 
 # on récupère le dernier dump France
-wget -O /data/osm/dumps/france-latest.osm.pbf http://download.geofabrik.de/europe/france-latest.osm.pbf
+wget -O /data/dumps/france-latest.osm.pbf http://download.geofabrik.de/europe/france-latest.osm.pbf
 
 echo ""
 echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
@@ -22,7 +22,7 @@ date
 echo ""
 
 # on le decoupe selon un polygone
-osmconvert /data/osm/dumps/france-latest.osm.pbf -B=/data/osm/data/poly_extraction_bzh.poly --complete-ways -v -o=/data/osm/dumps/breizh.osm.pbf
+osmconvert /data/dumps/france-latest.osm.pbf -B=/data/osm/data/poly_extraction_bzh.poly --complete-ways -v -o=/data/dumps/breizh.osm.pbf
 
 echo ""
 echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
@@ -33,15 +33,15 @@ date
 echo ""
 
 # on supprime les vues
-psql -h db.openstreetmap.local -d osm -f drop_views.sql
+psql -h db.openstreetmap.local -U osm -d osm -f drop_views.sql
 
 # on met à jour la base de données
 # authentification dans le pgpass
 #osm2pgsql -d osm --hstore --slim --cache 2500 -E 3857 /data/osm/dumps/breizh.osm.pbf
-osm2pgsql -H db.openstreetmap.local -d osm --hstore --slim --cache 2500 -E 3857 -v /data/osm/dumps/breizh.osm.pbf 
+osm2pgsql -H db.openstreetmap.local -U osm -d osm --hstore --slim --cache 5000 -E 3857 -v /data/dumps/breizh.osm.pbf 
 
 # on recrée les vues
-psql -h db.openstreetmap.local -d osm -f create_views.sql
+psql -h db.openstreetmap.local -U osm -d osm -f create_views.sql
 
 echo ""
 echo " Fin de la maj de la BD "
