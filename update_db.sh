@@ -22,7 +22,7 @@ date
 echo ""
 
 # on le decoupe selon un polygone
-osmconvert /data/dumps/france-latest.osm.pbf -B=/data/osm/data/poly_extraction_bzh.poly --complete-ways -v -o=/data/dumps/breizh.osm.pbf
+osmconvert /data/dumps/france-latest.osm.pbf -B=/data/styles/data/poly_extraction_bzh.poly --complete-ways -v -o=/data/dumps/breizh.osm.pbf
 
 echo ""
 echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
