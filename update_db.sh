@@ -37,7 +37,6 @@ psql -h db.openstreetmap.local -U osm -d osm -f drop_views.sql
 
 # on met à jour la base de données
 # authentification dans le pgpass
-#osm2pgsql -d osm --hstore --slim --cache 2500 -E 3857 /data/osm/dumps/breizh.osm.pbf
 osm2pgsql -H db.openstreetmap.local -U osm -d osm --hstore --slim --cache 5000 -E 3857 -v /data/dumps/breizh.osm.pbf 
 
 # on recrée les vues
