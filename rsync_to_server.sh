@@ -1,3 +1,4 @@
+#!/bin/bash
 
 opts='-ar --delete'
 
@@ -5,7 +6,7 @@ SECONDS=0
 global_sec=0
 i=0
 
-while ((i <= 16))
+while ((i <= 18))
 	do
 	SECONDS=0
 	echo '===> '$i
