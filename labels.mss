@@ -273,7 +273,8 @@
 
 
 #place::small[type='hamlet'][zoom>=13],
-#place::small[type='locality'][zoom>=13] {
+#place::small[type='locality'][zoom>=13],
+#place::small[type='isolated_dwelling'][zoom>=13] {
 	text-name: '[name]';
 	text-face-name: @sans;
 	text-placement: point;
