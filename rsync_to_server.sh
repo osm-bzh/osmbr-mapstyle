@@ -10,8 +10,8 @@ while ((i <= 18))
 	do
 	SECONDS=0
 	echo '===> '$i
-	du -sh /data/osm/tiles/br/$i/
-	rsync $opts /data/osm/tiles/br/$i/ osm@breizhpositive.bzh:/data/osm/tiles/br/$i/
+	du -sh /data/tiles/br/$i/
+	rsync $opts /data/tiles/br/$i/ osm@breizhpositive.bzh:/data/tiles/br/$i/
 	
 	level_duration=$SECONDS
 	global_sec=$((global_sec + level_duration))
