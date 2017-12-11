@@ -24,6 +24,12 @@ render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/tiles/ -z 17
 render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/tiles/ -z 18 -Z 18 -x 127820 -y 90631 -X 127918 -Y 90684
 
 
+# Lokournan - Brest - Daoulas
+render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/tiles/ -z 16 -Z 16 -x 31923 -y 22660 -X 31996 -Y 22685
+render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/tiles/ -z 17 -Z 17 -x 63846 -y 45320 -X 63989 -Y 45372
+render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/tiles/ -z 18 -Z 18 -x 127692 -y 90640 -X 127978 -Y 90743
+
+
 # Lambaol-Blouarzhel
 render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/tiles/ -z 16 -Z 16 -x 31897 -y 22653 -X 31904 -Y 22662
 render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/tiles/ -z 17 -Z 17 -x 63794 -y 45306 -X 63808 -Y 45323
@@ -45,7 +51,14 @@ render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/tiles/ -z 18
 
 # Langoned
 render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/tiles/ -z 16 -Z 16 -x 32121 -y 22724 -X 32147 -Y 22764
-render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/tiles/ -z 17 -Z 16 -x 64243 -y 45447 -X 64294 -Y 45527
-render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/tiles/ -z 18 -Z 16 -x 128486 -y 90893 -X 128588 -Y 91054
+render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/tiles/ -z 17 -Z 17 -x 64243 -y 45447 -X 64294 -Y 45527
+render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/tiles/ -z 18 -Z 18 -x 128486 -y 90893 -X 128588 -Y 91054
+
+
+# Gwened
+render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/tiles/ -z 16 -Z 16 -x 32255 -y 22867 -X 32279 -Y 22882
+render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/tiles/ -z 17 -Z 17 -x 64509 -y 45734 -X 64558 -Y 45764
+render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/tiles/ -z 18 -Z 18 -x 129018 -y 91468 -X 129117 -Y 91527
+
 
 date
