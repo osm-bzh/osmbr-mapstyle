@@ -11,26 +11,6 @@
 --
 
 
--- https://wiki.postgresql.org/wiki/Foreign_data_wrappers
--- http://www.postgresonline.com/journal/archives/322-Generating-Create-Foreign-Table-Statements-for-postgres_fdw.html
-
--- Adding the postgres_fdw extension
-CREATE EXTENSION IF NOT EXISTS postgres_fdw;
--- Adding the hstore extension
-CREATE EXTENSION IF NOT EXISTS hstore;
-
--- the "server" object
-CREATE SERVER world_db_server
-  FOREIGN DATA WRAPPER postgres_fdw
-  OPTIONS (host 'db.openstreetmap.local', port '5432', dbname 'osm');
-
--- a mapping for authentification
-CREATE USER MAPPING FOR public SERVER 
-  world_db_server
-  OPTIONS (user 'osm', password 'osmbr');
-
-
-
 
 CREATE FOREIGN TABLE public.planet_osm_point
 (
