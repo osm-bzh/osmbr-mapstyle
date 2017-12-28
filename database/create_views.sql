@@ -328,6 +328,8 @@ CREATE OR REPLACE VIEW osm_landusages AS
 
 
 -- osm_landusages_gen1
+-- we create MATERIALIZED view for performance
+-- /!\ beware of the space disk
 CREATE MATERIALIZED VIEW osm_landusages_gen1
   (
     osm_id,

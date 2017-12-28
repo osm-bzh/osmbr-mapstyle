@@ -1,5 +1,5 @@
 
--- this script will create the PostgreSQL + PostGIS databse
+-- this script will set up the PostgreSQL + PostGIS databse
 -- for the osm-br mapstyle
 
 -- must be run with a super user role
@@ -26,6 +26,4 @@ CREATE SERVER world_db_server
 CREATE USER MAPPING FOR public SERVER 
   world_db_server
   OPTIONS (user 'osm', password 'osmbr');
-
-
 
