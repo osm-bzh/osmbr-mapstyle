@@ -20,7 +20,7 @@ CREATE EXTENSION IF NOT EXISTS postgres_fdw;
 -- the "server" object
 CREATE SERVER world_db_server
   FOREIGN DATA WRAPPER postgres_fdw
-  OPTIONS (host 'db.openstreetmap.local', port '5432', dbname 'osm');
+  OPTIONS (host 'db.openstreetmap.world', port '5432', dbname 'osm');
 
 -- a mapping for authentification
 CREATE USER MAPPING FOR public SERVER 
