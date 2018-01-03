@@ -1,5 +1,16 @@
 
+
+echo ""
+echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+echo ""
+echo "      calcul tuiles high levels on specific towns"
+echo ""
+echo ""
+
+echo "--------------------------------"
+echo "  suppression"
 date
+echo ""
 
 ## specific towns < zoom 15
 
@@ -11,6 +22,11 @@ rm -rf /data/tiles/br/19/
 rm -rf /data/tiles/br/20/
 rm -rf /data/tiles/br/22/
 
+
+echo "--------------------------------"
+echo "  debut"
+date
+echo ""
 
 # Pazieg Roazhon Bruz
 render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/tiles/ -z 16 -Z 16 -x 32440 -X 32482 -y 22738 -Y 22790
@@ -37,9 +53,9 @@ render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/tiles/ -z 18
 
 
 # Karaez
-render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/tiles/ -z 16 -Z 16 -x 32111 -y 22702 -X 32125 -Y 22708
-render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/tiles/ -z 17 -Z 17 -x 64223 -y 45404 -X 64251 -Y 45416
-render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/tiles/ -z 18 -Z 18 -x 128446 -y 90807 -X 128503 -Y 90833
+render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/tiles/ -z 16 -Z 16 -x 32111 -y 22699 -X 32125 -Y 22708
+render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/tiles/ -z 17 -Z 17 -x 64222 -y 45397 -X 64251 -Y 45416
+render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/tiles/ -z 18 -Z 18 -x 128444 -y 90794 -X 128503 -Y 90833
 
 
 # Lesneven
@@ -47,7 +63,6 @@ render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/tiles/ -z 16
 render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/tiles/ -z 17 -Z 17 -x 63946 -y 45237 -X 63976 -Y 45264
 render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/tiles/ -z 18 -Z 18 -x 127892 -y 90474 -X 127953 -Y 90528
 
-# Lannuon
 
 # Langoned
 render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/tiles/ -z 16 -Z 16 -x 32121 -y 22724 -X 32147 -Y 22764
@@ -61,4 +76,7 @@ render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/tiles/ -z 17
 render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/tiles/ -z 18 -Z 18 -x 129018 -y 91468 -X 129117 -Y 91527
 
 
+echo "--------------------------------"
+echo "  fin"
 date
+echo ""
