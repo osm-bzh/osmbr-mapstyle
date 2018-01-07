@@ -1,14 +1,16 @@
 #!/bin/bash
 
-# update the database
-./update_db.sh
-
-# compute tiles
-./calculer_tiles_br_low.sh
-./calculer_tiles_br_mid.sh
-./calculer_tiles_br_high.sh
-
-# push to www server
-./rsync_to_server.sh
+cd /data/styles/br/
 
 
+# maj de la BDD
+sudo -u osm ./update_db.sh 
+
+
+# calcul des tuiles
+#sudo -u www-data ./calculer_tiles_br_low.sh
+#sudo -u www-data ./calculer_tiles_br_mid.sh
+#sudo -u www-data ./calculer_tiles_br_high.sh
+
+# pousse vers tile.osm.bzh
+sudo -u osm ./rsync_to_server.sh 
