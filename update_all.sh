@@ -1,16 +1,18 @@
 #!/bin/bash
 
-cd /data/styles/br/
-
-
 # maj de la BDD
-sudo -u osm ./update_db.sh 
+cd /data/dumps/
+sudo -u osm /data/styles/br/update_db.sh
 
 
 # calcul des tuiles
-#sudo -u www-data ./calculer_tiles_br_low.sh
-#sudo -u www-data ./calculer_tiles_br_mid.sh
-#sudo -u www-data ./calculer_tiles_br_high.sh
+#sudo -u www-data /data/styles/br/calculer_tiles_br_low.sh
+sudo -u www-data /data/styles/br/calculer_tiles_br_mid.sh
+sudo -u www-data /data/styles/br/calculer_tiles_br_high.sh
+
+#sudo -u www-data /data/styles/br/calculer_tiles_br_test.sh
+
 
 # pousse vers tile.osm.bzh
-sudo -u osm ./rsync_to_server.sh 
+sudo -u osm /data/styles/br/rsync_to_server.sh
+
