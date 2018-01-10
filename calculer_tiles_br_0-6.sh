@@ -2,16 +2,16 @@
 echo ""
 echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 echo ""
-echo "      calcul tuiles low levels"
+echo "      rendering tiles for levels 0 -> 6 "
 echo ""
 echo ""
 
 echo "--------------------------------"
-echo "  suppression"
+echo "  deleting old tiles"
 date
 echo ""
 
-# on efface
+# erasing
 rm -rf /data/tiles/br/0/
 rm -rf /data/tiles/br/1/
 rm -rf /data/tiles/br/2/
@@ -22,7 +22,7 @@ rm -rf /data/tiles/br/6/
 
 
 echo "--------------------------------"
-echo "  niveau 0 -> 4"
+echo "  level 0 -> 4 : world"
 date
 echo ""
 
@@ -32,12 +32,12 @@ render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/tiles/ -z 0 
 level_duration=$SECONDS
 echo "$(($level_duration / 60)) min and $(($level_duration % 60)) sec"
 echo ""
-echo "  fin" 
+echo "  end" 
 date
 
 
 echo "--------------------------------"
-echo "  niveau 5"
+echo "  level 5 : europe"
 date
 echo ""
 
@@ -47,12 +47,12 @@ render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/tiles/ -z 5 
 level_duration=$SECONDS
 echo "$(($level_duration / 60)) min and $(($level_duration % 60)) sec"
 echo ""
-echo "  fin" 
+echo "  end" 
 date
 
 
 echo "--------------------------------"
-echo "  niveau 6"
+echo "  level 6 : europe"
 date
 echo ""
 
@@ -62,5 +62,5 @@ render_list -a -m br -s /var/run/renderd/renderd.sock -n 3 -t /data/tiles/ -z 6 
 level_duration=$SECONDS
 echo "$(($level_duration / 60)) min and $(($level_duration % 60)) sec"
 echo ""
-echo "  fin" 
+echo "  end" 
 date
