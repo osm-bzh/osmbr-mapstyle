@@ -24,6 +24,7 @@ rm -rf /data/tiles/br/18/
 # by security
 rm -rf /data/tiles/br/19/
 rm -rf /data/tiles/br/20/
+rm -rf /data/tiles/br/21/
 rm -rf /data/tiles/br/22/
 
 
