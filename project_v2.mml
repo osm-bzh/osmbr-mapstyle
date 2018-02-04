@@ -65,18 +65,79 @@
       "advanced": {}
     },
 
+
     {
-      "id": "test",
-      "name": "test",
+      "id": "roads_high",
+      "name": "roads_high",
       "class": "",
       "Datasource": {
         "type": "postgis",
-        "host": "db.openstreetmap.world",
+        "host": "db.openstreetmap.local",
         "user": "osm",
         "password": "osmbr",
         "dbname": "osm",
-        "table": "( SELECT osm_id, way FROM planet_osm_roads ) AS data",
-        "key_field": "osm_id",
+        "table": "( SELECT way, COALESCE(highway, railway) AS type, 0 AS tunnel, 0 AS bridge, access, 'fill' AS render, CASE WHEN highway IN ('motorway', 'trunk') THEN 'motorway' WHEN highway IN ('primary', 'secondary') THEN 'mainroad' WHEN highway IN ('motorway_link', 'trunk_link', 'primary_link', 'secondary_link', 'tertiary', 'tertiary_link', 'residential', 'unclassified', 'road', 'living_street') THEN 'minorroad' WHEN highway IN ('service', 'track') THEN 'service' WHEN highway IN ('path', 'cycleway', 'footway', 'pedestrian', 'steps', 'bridleway') THEN 'noauto' WHEN railway IN ('light_rail', 'subway', 'narrow_gauge', 'rail', 'tram') THEN 'railway' ELSE 'other' END AS stylegroup FROM planet_osm_line WHERE (highway IS NOT NULL OR railway IS NOT NULL) AND (tunnel IS NULL OR tunnel = 'no') AND (bridge IS NULL OR bridge = 'no') ORDER BY z_order ) AS data",
+        "key_field": "",
+        "geometry_field": "way",
+        "asynchronous_request": "true",
+        "max_async_connection": "4",
+        "simplify_geometries": "true",
+        "extent_cache": "auto",
+        "extent": "-607072.89,5713906.54,140649.73,6590288.74"
+      },
+      "geometry": "linestring",
+      "srs-name": "3857",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "extent": [
+        -5.100414904469789,
+        47.30250866358967,
+        -1.0188664104709804,
+        48.86564190473949
+      ],
+      "advanced": {}
+    },
+    {
+      "id": "roads_med",
+      "name": "roads_med",
+      "class": "",
+      "Datasource": {
+        "type": "postgis",
+        "host": "db.openstreetmap.local",
+        "user": "osm",
+        "password": "osmbr",
+        "dbname": "osm",
+        "table": "( SELECT way, highway AS type FROM planet_osm_roads WHERE highway IN ('motorway', 'trunk', 'primary', 'secondary', 'motorway_link', 'trunk_link') ) AS data",
+        "key_field": "",
+        "geometry_field": "way",
+        "asynchronous_request": "true",
+        "max_async_connection": "4",
+        "simplify_geometries": "true",
+        "extent_cache": "auto",
+        "extent": "-607072.89,5713906.54,140649.73,6590288.74"
+      },
+      "geometry": "linestring",
+      "srs-name": "3857",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "extent": [
+        -5.100414904469789,
+        47.30250866358967,
+        -1.0188664104709804,
+        48.86564190473949
+      ],
+      "advanced": {}
+    },
+    {
+      "id": "roads_low",
+      "name": "roads_low",
+      "class": "",
+      "Datasource": {
+        "type": "postgis",
+        "host": "db.openstreetmap.local",
+        "user": "osm",
+        "password": "osmbr",
+        "dbname": "osm",
+        "table": "( SELECT way, highway AS type, bridge, tunnel FROM planet_osm_roads WHERE highway IN ('motorway', 'trunk') ) AS data",
+        "key_field": "",
         "geometry_field": "way",
         "asynchronous_request": "true",
         "max_async_connection": "4",
@@ -95,6 +156,9 @@
       ],
       "advanced": {}
     }
+
+
+
 
 
   ],
