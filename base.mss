@@ -133,25 +133,25 @@ Map{
 	}
 }*/
 	
-/*#waterway_high[zoom>=15] {
+#waterway_high[zoom>=15] {
 	line-color: @water;
 	[type='river'],
 	[type='canal'] {
 		line-cap: round;
 		line-join: round;
-		[zoom=15]{ line-width: 2; }
-		[zoom=16]{ line-width: 3; }
-		[zoom=17]{ line-width: 4; }
-		[zoom=18]{ line-width: 5; }
-		[zoom=19]{ line-width: 6; }
-		[zoom>19]{ line-width: 7; }
+		[zoom=15]{ line-width: 4; }
+		[zoom=16]{ line-width: 5; }
+		[zoom=17]{ line-width: 6; }
+		[zoom=18]{ line-width: 7; }
+		[zoom=19]{ line-width: 8; }
+		[zoom>19]{ line-width: 9; }
 	}
 	[type='stream'] {
-		[zoom=15]{ line-width: 0.6; }
-		[zoom=16]{ line-width: 0.8; }
-		[zoom=17]{ line-width: 1; }
-		[zoom=18]{ line-width: 1.5; }
-		[zoom>18]{ line-width: 2; }
+		[zoom=15]{ line-width: 2.5; }
+		[zoom=16]{ line-width: 3.0; }
+		[zoom=17]{ line-width: 3.5; }
+		[zoom=18]{ line-width: 4.0; }
+		[zoom>18]{ line-width: 6.0; }
 	}
 	[type='ditch'],
 	[type='drain'] {
@@ -162,7 +162,7 @@ Map{
 		[zoom=19]{ line-width: 1; }
 		[zoom>19]{ line-width: 1.5; }
 	}
-}*/
+}
 
 
 
