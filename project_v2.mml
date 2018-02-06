@@ -97,6 +97,36 @@
       "advanced": {}
     },
     {
+      "id": "water_med",
+      "name": "water_med",
+      "class": "",
+      "Datasource": {
+        "type": "postgis",
+        "host": "db.openstreetmap.world",
+        "user": "osm",
+        "password": "osmbr",
+        "dbname": "osm",
+        "table": "( SELECT osm_id, way, \"natural\" AS type, way_area AS area FROM planet_osm_polygon WHERE (\"natural\" IN ('water', 'pond') OR waterway IN ('basin', 'canal', 'mill_pond', 'pond', 'riverbank', 'stream')) AND way_area > 50000 ) AS data",
+        "key_field": "osm_id",
+        "geometry_field": "way",
+        "asynchronous_request": "true",
+        "max_async_connection": "4",
+        "simplify_geometries": "true",
+        "extent_cache": "auto",
+        "extent": "-607072.89,5713906.54,140649.73,6590288.74"
+      },
+      "geometry": "polygon",
+      "srs-name": "3857",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "extent": [
+        -5.100414904469789,
+        47.30250866358967,
+        -1.0188664104709804,
+        48.86564190473949
+      ],
+      "advanced": {}
+    },
+    {
       "id": "waterway_high",
       "name": "waterway_high",
       "class": "",

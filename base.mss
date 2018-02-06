@@ -96,8 +96,8 @@ Map{
 }
 
 /*#water_gen0[zoom>6][zoom<=9],*/
-/*#water_gen1[zoom>9][zoom<=11],*/
-#water[zoom>=11] {
+#water_med[zoom>9][zoom<=11],
+#water[zoom>=12] {
 	polygon-fill: @water;
 	polygon-smooth: 0.6;
 	polygon-clip: false;
