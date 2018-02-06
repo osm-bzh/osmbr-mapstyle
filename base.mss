@@ -95,8 +95,8 @@ Map{
 	background-color:@water;
 }
 
-#waterarea_high[zoom>6][zoom<=9],
-#waterarea_med[zoom>9][zoom<=11],
+#waterarea_high[zoom>=7][zoom<=9],
+#waterarea_med[zoom>=10][zoom<=11],
 #waterarea[zoom>=12] {
 	polygon-fill: @water;
 	polygon-smooth: 0.6;
