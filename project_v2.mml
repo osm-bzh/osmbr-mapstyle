@@ -67,8 +67,8 @@
 
 
     {
-      "id": "water",
-      "name": "water",
+      "id": "waterarea",
+      "name": "waterarea",
       "class": "",
       "Datasource": {
         "type": "postgis",
@@ -97,8 +97,8 @@
       "advanced": {}
     },
     {
-      "id": "water_med",
-      "name": "water_med",
+      "id": "waterarea_med",
+      "name": "waterarea_med",
       "class": "",
       "Datasource": {
         "type": "postgis",
