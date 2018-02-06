@@ -93,9 +93,7 @@ as well. */
 
 #roads_med::body[zoom>=9][zoom<=10] {
 	[type='motorway'],
-	[type='motorway_link'] {
-		line-color: @motorway_line;
-	}
+	[type='motorway_link'] { line-color: @motorway_line; }
 	[type='trunk'],
 	[type='trunk_link'] { line-color: @trunk_line; }
 	[type='primary'] { line-color: @primary_line*0.97; }
