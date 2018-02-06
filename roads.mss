@@ -98,7 +98,7 @@ as well. */
 	[type='trunk_link'] { line-color: @trunk_line; }
 	[type='primary'] { line-color: @primary_line*0.97; }
 	[type='secondary'] { line-color: @secondary_line; }
-	[type='tertiary'] { line-color: @standard_line; }
+	
 	
 	[zoom=9] {
 		[type='motorway'],
@@ -115,6 +115,7 @@ as well. */
 		[type='secondary'],
 		[type='motorway_link'],
 		[type='trunk_link'] { line-width: 1.8; }
+		[type='tertiary'] { line-color: @standard_line; line-width: 1.0; }
 	}
 }
 
