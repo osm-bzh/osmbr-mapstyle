@@ -57,6 +57,7 @@ and trunks. */
 #roads_low[zoom>=5][zoom<=8] {
 	[type='motorway'] { line-color: @motorway_line; }
 	[type='trunk'] { line-color: @trunk_line; }
+
 	[zoom=5] {
 		[type='motorway'] { line-width: 0.4; }
 		[type='trunk'] { line-width: 0.2; }
@@ -66,12 +67,14 @@ and trunks. */
 		[type='trunk'] { line-width: 0.25; }
 	}
 	[zoom=7] {
-		[type='motorway'] { line-width: 0.6; }
-		[type='trunk'] { line-width: 0.3; }
+		[type='motorway'] { line-width: 0.9; }
+		[type='trunk'] { line-width: 0.6; }
+		[type='primary'] { line-width: 0.3; line-color: @primary_line }
 	}
 	[zoom=8] {
-		[type='motorway'] { line-width: 1; }
-		[type='trunk'] { line-width: 0.5; }
+		[type='motorway'] { line-width: 1.4; }
+		[type='trunk'] { line-width: 1.2; }
+		[type='primary'] { line-width: 1.0; line-color: @primary_line }
 	}
 }
 
@@ -80,8 +83,9 @@ as well. */
 
 /*road med outline*/
 #roads_med::outline[zoom>=9][zoom<=10] {
-	[type='primary'] { line-color: @primary_line*0.80; }
+	[type='primary'] { line-color: @primary_line; }
 	[type='secondary'] { line-color: @secondary_line*0.80; }
+
 	[zoom=9] {
 		[type='primary'] { line-width: 1.6; }
 		[type='secondary'] {line-width: 1.3; }
