@@ -349,7 +349,7 @@
         "user": "osm",
         "password": "osmbr",
         "dbname": "osm",
-        "table": "( SELECT way, highway AS type, bridge, tunnel FROM planet_osm_roads WHERE highway IN ('motorway', 'trunk') ) AS data",
+        "table": "( SELECT osm_id, way, COALESCE(highway, railway) AS type, 0 AS tunnel, 0 AS bridge, access, 'fill' AS render, CASE WHEN highway IN ('motorway', 'trunk') THEN 'motorway' WHEN highway IN ('primary') THEN 'mainroad' WHEN railway IN ('rail') THEN 'railway' ELSE 'other' END AS stylegroup FROM planet_osm_line WHERE highway IN ('motorway', 'trunk', 'primary') OR railway IN ('rail') AND (tunnel IS NULL OR tunnel = 'no') AND (bridge IS NULL OR bridge = 'no') ORDER BY z_order ) AS data",
         "key_field": "",
         "geometry_field": "way",
         "asynchronous_request": "true",
