@@ -186,8 +186,11 @@ come in as well.
 	}
 	[stylegroup='railway'] {
 		[bridge=1] { line-color: @standard_case * 0.8; }
+		[tunnel=1] {
+			[type='subway'] { line-width: 0; line-opacity: 0; }
+		}
 	}
-	[tunnel=1] { line-dasharray: 3,3; }        
+	/*[tunnel=1] { line-dasharray: 3,3; }*/
 	/* -- widths -- */
 	[zoom=11] {
 		[stylegroup='motorway'] { line-width: @rdz11_maj + 2; }
@@ -499,6 +502,11 @@ come in as well.
 			::hatch {
 				line-width: 10;
 				line-dasharray: 1, 24;
+			}
+			[type='subway'] {
+				line-color: #FF9900;
+				line-width: 6;
+				::hatch { line-width: 0; }
 			}
 			/*[type='disused'] { line-width: 3;line-dasharray: 2,2; }
 			[type='abandoned'] {line-width: 0; }*/
