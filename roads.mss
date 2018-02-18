@@ -185,8 +185,6 @@ come in as well.
 		[bridge=1] { line-color: @secondary_case * 0.8; }
 	}
 	[stylegroup='railway'] {
-		/*line-color: fadeout(@land,50%);
-		line-opacity: 0;*/
 		[bridge=1] { line-color: @standard_case * 0.8; }
 	}
 	[tunnel=1] { line-dasharray: 3,3; }        
