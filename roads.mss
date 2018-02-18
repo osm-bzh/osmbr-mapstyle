@@ -172,11 +172,11 @@ come in as well.
 		line-color: @secondary_case;
 		[bridge=1] { line-color: @secondary_case * 0.8; }
 	}
-	/*[stylegroup='railway'] {
-		//line-color: fadeout(@land,50%);
-		//line-opacity: 0;
+	[stylegroup='railway'] {
+		/*line-color: fadeout(@land,50%);
+		line-opacity: 0;*/
 		[bridge=1] { line-color: @standard_case * 0.8; }
-	}*/
+	}
 	[tunnel=1] { line-dasharray: 3,3; }        
 	/* -- widths -- */
 	[zoom=11] {
@@ -267,7 +267,8 @@ come in as well.
 		[type='tertiary']{ line-width: @rdz18_min + 8.5; } 
 		[stylegroup='service']  { line-width: @rdz18_min / 3 + 3.5; }
 		[stylegroup='noauto']  { line-width: @rdz17_min / 4 + 1; line-color: @land;}
-		/*[stylegroup='railway']  { line-width: 4 + 6;
+		/*[stylegroup='railway']  { 
+			line-width: 4 + 6;
 			[type='disused'] { line-width: 4+6; line-color: @standard_case*1.08;}
 			[type='abandoned'] { line-width: 4+5; line-opacity: 0.1}
 		}*/
@@ -304,12 +305,11 @@ come in as well.
 	/*[stylegroup='railway'] {
 		line-color: @rail_line;
 		line-opacity: 0.8;
-		//line-dasharray: 1,1;
 		[type='subway'] { line-opacity: 0.3; }
 		[type='tram'] { line-opacity: 0.3; }
 		[type='disused'] { line-opacity: 0.0; }
 		[type='abandoned'] { line-opacity: 0;  line-width: 0;}
-	}
+	}/*
 	[stylegroup='other_rail'][zoom<=14]{
 		line-color: @rail_line;
 		line-opacity: 0.3; 	
@@ -438,11 +438,23 @@ come in as well.
 		[type='tertiary']{ line-width: @rdz18_min + 5.5; } 
 		[stylegroup='service']  { line-width: @rdz18_min / 2; }
 		[stylegroup='noauto']   { line-width: @rdz17_min / 4; line-color: @pedestrian_line }
-		/*[stylegroup='railway']  { 
-			line-width: 3; 
-			[type='disused'] { line-width: 3;line-dasharray: 2,2;}
-			[type='abandoned'] {line-width: 0;}
-		}*/
+		[stylegroup='railway']  { 
+			/*line-width: 3; 
+			[type='disused'] { line-width: 3;line-dasharray: 2,2; }
+			[type='abandoned'] {line-width: 0; }*/
+		    /* style rail_low */
+		    /*::line {
+		      line-width:3;
+		    }
+		    ::line, ::hatch {
+		      line-color: #666;
+		      line-opacity: 0.75;
+		    }
+		    ::hatch {
+		      line-width: 10;
+		      line-dasharray: 1, 24;
+		    }*/
+    	}
 	}
 }
 
