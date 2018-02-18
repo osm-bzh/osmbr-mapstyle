@@ -8,45 +8,45 @@ Railway low
 */
 /*#rail_low {
   [zoom>=5][zoom<=8] {
-    line-color: @rail_line;
-    line-opacity: 1.0;
-    line-width: 0.25;
+	 line-color: @rail_line;
+	 line-opacity: 1.0;
+	 line-width: 0.25;
   }
   [zoom>=9][zoom<=10] {
-    line-color: @rail_line;
-    line-opacity: 0.8;
-    line-width: 1.0;
+	 line-color: @rail_line;
+	 line-opacity: 0.8;
+	 line-width: 1.0;
   }
   [zoom>=11][zoom<=13] {
-    line-color: @rail_line;
-    line-opacity: 0.75;
-    line-width: 2.0;
+	 line-color: @rail_line;
+	 line-opacity: 0.75;
+	 line-width: 2.0;
   }
   [zoom>=14][zoom<=16] {
-    ::line, ::hatch {
-      line-color: #777;
-      line-opacity: 0.75;
-    }
-    ::line {
-      line-width:2;
-    }
-    ::hatch {
-      line-width: 4;
-      line-dasharray: 1, 24;
-    }
+	 ::line, ::hatch {
+		line-color: #777;
+		line-opacity: 0.75;
+	 }
+	 ::line {
+		line-width:2;
+	 }
+	 ::hatch {
+		line-width: 4;
+		line-dasharray: 1, 24;
+	 }
   }
   [zoom>=17] {
-    ::line, ::hatch {
-      line-color: #666;
-      line-opacity: 0.75;
-    }
-    ::line {
-      line-width:3;
-    }
-    ::hatch {
-      line-width: 6;
-      line-dasharray: 1, 24;
-    }
+	 ::line, ::hatch {
+		line-color: #666;
+		line-opacity: 0.75;
+	 }
+	 ::line {
+		line-width:3;
+	 }
+	 ::hatch {
+		line-width: 6;
+		line-dasharray: 1, 24;
+	 }
   }
 }*/
 
@@ -450,20 +450,20 @@ come in as well.
 		[stylegroup='service']  { line-width: @rdz18_min / 2; }
 		[stylegroup='noauto']   { line-width: @rdz17_min / 4; line-color: @pedestrian_line }
 		[stylegroup='railway']  { 
-		    ::line {
-		      line-width:3;
-		    }
-		    ::line, ::hatch {
-		      line-color: #666;
-		      line-opacity: 0.75;
-		    }
-		    ::hatch {
-		      line-width: 10;
-		      line-dasharray: 1, 24;
-		    }
+			::line {
+				line-width:3;
+			}
+			::line, ::hatch {
+				line-color: #666;
+				line-opacity: 0.75;
+			}
+			::hatch {
+				line-width: 10;
+				line-dasharray: 1, 24;
+			}
 			[type='disused'] { line-width: 3;line-dasharray: 2,2; }
 			[type='abandoned'] {line-width: 0; }
-    	}
+		}
 	}
 }
 
