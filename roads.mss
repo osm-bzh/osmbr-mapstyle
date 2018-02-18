@@ -6,49 +6,23 @@
 /*
 Railway low
 */
-/*#rail_low {
+#rail_low {
   [zoom>=5][zoom<=8] {
 	 line-color: @rail_line;
-	 line-opacity: 1.0;
-	 line-width: 0.25;
+	 line-opacity: 0.5;
+	 line-width: 0.75;
   }
   [zoom>=9][zoom<=10] {
 	 line-color: @rail_line;
-	 line-opacity: 0.8;
-	 line-width: 1.0;
+	 line-opacity: 0.65;
+	 line-width: 1.5;
   }
   [zoom>=11][zoom<=13] {
 	 line-color: @rail_line;
 	 line-opacity: 0.75;
-	 line-width: 2.0;
+	 line-width: 2.5;
   }
-  [zoom>=14][zoom<=16] {
-	 ::line, ::hatch {
-		line-color: #777;
-		line-opacity: 0.75;
-	 }
-	 ::line {
-		line-width:2;
-	 }
-	 ::hatch {
-		line-width: 4;
-		line-dasharray: 1, 24;
-	 }
-  }
-  [zoom>=17] {
-	 ::line, ::hatch {
-		line-color: #666;
-		line-opacity: 0.75;
-	 }
-	 ::line {
-		line-width:3;
-	 }
-	 ::hatch {
-		line-width: 6;
-		line-dasharray: 1, 24;
-	 }
-  }
-}*/
+}
 
 
 /* At lower zoomlevels, just show major automobile routes: motorways
@@ -363,7 +337,7 @@ come in as well.
 		[stylegroup='motorway'] { line-width: @rdz11_maj; }
 		[stylegroup='mainroad'] { line-width: @rdz11_med; }
 		[stylegroup='minorroad']{ line-width: 0; }
-		[stylegroup='railway']  { line-width: 0.2; }
+		[stylegroup='railway']  { line-width: 0; }
 	}
 	[zoom=12] {
 		[stylegroup='motorway'] { line-width: @rdz12_maj; }
