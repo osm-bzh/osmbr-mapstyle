@@ -138,7 +138,12 @@ come in as well.
 @rdz17_maj: 14;  @rdz17_med: 12;  @rdz17_min: 10;
 @rdz18_maj: 20;  @rdz18_med: 17;  @rdz18_min: 14;
 
-/* ---- Casing ----------------------------------------------- */
+
+
+/* ================================================================== */
+/*    Casing
+/* ================================================================== */
+
 
 #roads_high::outline[zoom>=11][zoom<=22],
 #tunnel[render='1_outline'][zoom>=11][zoom<=22],
@@ -267,15 +272,21 @@ come in as well.
 		[type='tertiary']{ line-width: @rdz18_min + 8.5; } 
 		[stylegroup='service']  { line-width: @rdz18_min / 3 + 3.5; }
 		[stylegroup='noauto']  { line-width: @rdz17_min / 4 + 1; line-color: @land;}
-		/*[stylegroup='railway']  { 
+		[stylegroup='railway']  { 
 			line-width: 4 + 6;
 			[type='disused'] { line-width: 4+6; line-color: @standard_case*1.08;}
 			[type='abandoned'] { line-width: 4+5; line-opacity: 0.1}
-		}*/
+		}
 	}
 }
 
-/* ---- Lines ----------------------------------------------- */
+
+
+
+/* ================================================================== */
+/*    Lines
+/* ================================================================== */
+
 
 #roads_high::body[zoom>=11][zoom<=22],
 #tunnel[render='3_inline'][zoom>=11][zoom<=22],
@@ -302,15 +313,15 @@ come in as well.
 		line-color: @secondary_fill;
 		[tunnel=1] { line-color: lighten(@secondary_fill, 10%); }
 	}
-	/*[stylegroup='railway'] {
+	[stylegroup='railway'] {
 		line-color: @rail_line;
 		line-opacity: 0.8;
 		[type='subway'] { line-opacity: 0.3; }
 		[type='tram'] { line-opacity: 0.3; }
 		[type='disused'] { line-opacity: 0.0; }
 		[type='abandoned'] { line-opacity: 0;  line-width: 0;}
-	}/*
-	[stylegroup='other_rail'][zoom<=14]{
+	}
+	/*[stylegroup='other_rail'][zoom<=14]{
 		line-color: @rail_line;
 		line-opacity: 0.3; 	
 	}
