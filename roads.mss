@@ -17,8 +17,8 @@ Railway low
 	 line-opacity: 0.65;
 	 line-width: 1.5;
   }
-  [zoom>=11][zoom<=13] {
-	 line-color: @rail_line;
+  [zoom>=11][zoom<=14] {
+	 line-color: @rail_line * 1.2;
 	 line-opacity: 0.75;
 	 line-width: 2.5;
   }
@@ -293,7 +293,7 @@ come in as well.
 		[tunnel=1] { line-color: lighten(@secondary_fill, 10%); }
 	}
 	[stylegroup='railway'] {
-		line-color: @rail_line;
+		line-color: @rail_line * 2.0;
 		line-opacity: 0.8;
 		//line-dasharray: 1,1;
 		[type='subway'] { line-opacity: 0.3; }
