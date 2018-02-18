@@ -450,11 +450,7 @@ come in as well.
 		[stylegroup='service']  { line-width: @rdz18_min / 2; }
 		[stylegroup='noauto']   { line-width: @rdz17_min / 4; line-color: @pedestrian_line }
 		[stylegroup='railway']  { 
-			/*line-width: 3; 
-			[type='disused'] { line-width: 3;line-dasharray: 2,2; }
-			[type='abandoned'] {line-width: 0; }*/
-		    /* style rail_low */
-		    /*::line {
+		    ::line {
 		      line-width:3;
 		    }
 		    ::line, ::hatch {
@@ -464,7 +460,9 @@ come in as well.
 		    ::hatch {
 		      line-width: 10;
 		      line-dasharray: 1, 24;
-		    }*/
+		    }
+			[type='disused'] { line-width: 3;line-dasharray: 2,2; }
+			[type='abandoned'] {line-width: 0; }
     	}
 	}
 }
