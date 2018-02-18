@@ -75,7 +75,7 @@
         "user": "osm",
         "password": "osmbr",
         "dbname": "osm",
-        "table": "( SELECT osm_id, way, way_area AS area, COALESCE(landuse, leisure, \"natural\", highway, amenity, tourism) AS type  FROM planet_osm_polygon ) AS data",
+        "table": "( SELECT osm_id, way, way_area AS area, COALESCE(landuse, leisure, \"natural\", highway, amenity, tourism) AS type  FROM planet_osm_polygon  WHERE way_area > 100000 ) AS data",
         "key_field": "osm_id",
         "geometry_field": "way",
         "asynchronous_request": "true",
