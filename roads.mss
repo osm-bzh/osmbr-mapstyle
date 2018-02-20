@@ -15,12 +15,12 @@ Railway low
   [zoom>=9][zoom<=10] {
 	 line-color: @rail_line;
 	 line-opacity: 0.65;
-	 line-width: 1.5;
+	 line-width: 1;
   }
   [zoom>=11][zoom<=14] {
-	 line-color: @rail_line * 1.2;
+	 line-color: @rail_line * 1.6;
 	 line-opacity: 0.75;
-	 line-width: 2.5;
+	 line-width: 2;
   }
 }
 
