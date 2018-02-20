@@ -95,8 +95,8 @@ CREATE TABLE admin_boundaries AS
   GROUP BY 1,2,3 ;
 
 
--- osm_places
-CREATE OR REPLACE VIEW osm_places AS
+-- places name:br
+CREATE TABLE places_br AS
  SELECT
     osm_id,
     COALESCE(tags -> 'name:br'::text) as name,
@@ -115,10 +115,10 @@ CREATE OR REPLACE VIEW osm_places AS
     AND (population ~ '^\d+$' OR population IS NULL) ;
 
 
--- osm_admin_places
+-- admin_places
 -- see http://dba.stackexchange.com/questions/104943/osm2pgsql-select-relation-member-by-role
 -- because planet_osm_rels.rels is not a hstore attribute
-CREATE OR REPLACE VIEW osm_admin_places AS
+CREATE TABLE admin_places_br AS
 -- préfecture
 (SELECT
   DISTINCT(osm_id),

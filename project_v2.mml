@@ -6,8 +6,8 @@
     85.0511
   ],
   "center": [
-    -1.284,
-    47.09,
+    -2.96,
+    48.03,
     8
   ],
   "format": "png",
@@ -602,6 +602,67 @@
         "extent": "-607072.89,5713906.54,140649.73,6590288.74"
       },
       "geometry": "linestring",
+      "srs-name": "3857",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "extent": [
+        -5.100414904469789,
+        47.30250866358967,
+        -1.0188664104709804,
+        48.86564190473949
+      ],
+      "advanced": {}
+    },
+
+    {
+      "id": "place",
+      "name": "place",
+      "class": "",
+      "Datasource": {
+        "type": "postgis",
+        "host": "db.openstreetmap.world",
+        "user": "osm",
+        "password": "osmbr",
+        "dbname": "osm",
+        "table": "( SELECT osm_id, geometry, type, name, z_order, is_capital, population FROM places_br ORDER BY z_order ) AS data",
+        "key_field": "osm_id",
+        "geometry_field": "geometry",
+        "asynchronous_request": "true",
+        "max_async_connection": "4",
+        "simplify_geometries": "true",
+        "extent_cache": "auto",
+        "extent": "-607072.89,5713906.54,140649.73,6590288.74"
+      },
+      "geometry": "point",
+      "srs-name": "3857",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "extent": [
+        -5.100414904469789,
+        47.30250866358967,
+        -1.0188664104709804,
+        48.86564190473949
+      ],
+      "advanced": {}
+    },
+    {
+      "id": "admin_place",
+      "name": "admin_place",
+      "class": "",
+      "Datasource": {
+        "type": "postgis",
+        "host": "db.openstreetmap.world",
+        "user": "osm",
+        "password": "osmbr",
+        "dbname": "osm",
+        "table": "( SELECT a.osm_id, a.name, a.name_fr, a.admin_level, a.admin_name, a.type, a.geometry FROM admin_places_br a JOIN (SELECT osm_id, name, MAX(admin_level) AS admin_level FROM admin_places_br GROUP BY osm_id, name) b ON a.osm_id = b.osm_id AND a.admin_level = b.admin_level ORDER BY a.admin_level DESC, a.name ASC ) AS data",
+        "key_field": "osm_id",
+        "geometry_field": "geometry",
+        "asynchronous_request": "true",
+        "max_async_connection": "4",
+        "simplify_geometries": "true",
+        "extent_cache": "auto",
+        "extent": "-607072.89,5713906.54,140649.73,6590288.74"
+      },
+      "geometry": "point",
       "srs-name": "3857",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "extent": [
