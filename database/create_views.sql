@@ -95,24 +95,30 @@ CREATE TABLE admin_boundaries AS
   GROUP BY 1,2,3 ;
 
 
--- places name:br
-CREATE TABLE places_br AS
- SELECT
-    osm_id,
-    COALESCE(tags -> 'name:br'::text) as name,
-    COALESCE(tags -> 'source:name:br'::text) as source_name,
-    place as type,
-    admin_level,
-    COALESCE(tags->'is_capital'::text) as is_capital,
-    z_order,
-    population::integer as population,
-    way as geometry
-   FROM planet_osm_point
-   WHERE
-    place in ('country','state','region','county','city','town','village','hamlet','suburb','locality','isolated_dwelling')
-    AND COALESCE(tags -> 'name:br') is not null
-    -- keep only integer values for population
-    AND (population ~ '^\d+$' OR population IS NULL) ;
+-- places
+CREATE MATERIALIZED VIEW places AS
+(SELECT
+  osm_id,
+  name,
+  COALESCE(tags -> 'name:fr'::text) as name_fr,
+  COALESCE(tags -> 'name:br'::text) as name_br, -- breton
+  COALESCE(tags -> 'name:eu'::text) as name_eu, -- basque
+  COALESCE(tags -> 'name:oc'::text) as name_oc, -- occitan
+  COALESCE(tags -> 'name:gsw'::text) as name_gsw, -- alsacien
+  COALESCE(tags -> 'name:ca'::text) as name_ca, -- catalan
+  COALESCE(tags -> 'name:co'::text) as name_co, -- corse
+  place as type,
+  admin_level,
+  COALESCE(tags->'is_capital'::text) as is_capital,
+  z_order,
+  population::integer as population,
+  way as geometry
+  FROM planet_osm_point
+  WHERE
+  place in ('country','state','region','county','city','town','village','hamlet','suburb','locality','isolated_dwelling')
+  -- keep only integer values for population
+  AND (population ~ '^\d+$' OR population IS NULL)
+) ;
 
 
 -- admin_places
@@ -123,7 +129,7 @@ CREATE MATERIALIZED VIEW admin_places AS
 (SELECT
   DISTINCT(osm_id),
   way as geometry,
-  name as name,
+  name,
   COALESCE(tags -> 'name:fr'::text) as name_fr,
   COALESCE(tags -> 'name:br'::text) as name_br, -- breton
   COALESCE(tags -> 'name:eu'::text) as name_eu, -- basque

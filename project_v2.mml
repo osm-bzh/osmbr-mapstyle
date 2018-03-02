@@ -623,7 +623,7 @@
         "user": "osm",
         "password": "osmbr",
         "dbname": "osm",
-        "table": "( SELECT osm_id, geometry, type, name, z_order, is_capital, population FROM places_br ORDER BY z_order ) AS data",
+        "table": "( SELECT osm_id, geometry, type, name_br AS name, z_order, is_capital, population FROM places WHERE name_br IS NOT NULL ORDER BY z_order ) AS data",
         "key_field": "osm_id",
         "geometry_field": "geometry",
         "asynchronous_request": "true",
