@@ -653,7 +653,7 @@
         "user": "osm",
         "password": "osmbr",
         "dbname": "osm",
-        "table": "( SELECT a.osm_id, a.name, a.name_fr, a.admin_level, a.admin_name, a.type, a.geometry FROM admin_places_br a JOIN (SELECT osm_id, name, MAX(admin_level) AS admin_level FROM admin_places_br GROUP BY osm_id, name) b ON a.osm_id = b.osm_id AND a.admin_level = b.admin_level ORDER BY a.admin_level DESC, a.name ASC ) AS data",
+        "table": "( SELECT a.osm_id, a.name_br AS name, a.admin_level, a.admin_name, a.type, a.geometry  FROM admin_places a JOIN (SELECT osm_id, name_br, MAX(admin_level) AS admin_level FROM admin_places GROUP BY osm_id, name_br) b ON a.osm_id = b.osm_id AND a.admin_level = b.admin_level  WHERE a.name_br IS NOT NULL ORDER BY a.admin_level DESC, a.name_br ASC ) AS data",
         "key_field": "osm_id",
         "geometry_field": "geometry",
         "asynchronous_request": "true",

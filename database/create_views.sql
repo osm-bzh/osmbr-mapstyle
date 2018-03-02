@@ -118,13 +118,20 @@ CREATE TABLE places_br AS
 -- admin_places
 -- see http://dba.stackexchange.com/questions/104943/osm2pgsql-select-relation-member-by-role
 -- because planet_osm_rels.rels is not a hstore attribute
-CREATE TABLE admin_places_br AS
+CREATE MATERIALIZED VIEW admin_places AS
 -- préfecture
 (SELECT
   DISTINCT(osm_id),
   way as geometry,
-  name as name_fr,
-  COALESCE(tags -> 'name:br'::text) as name,
+  name as name,
+  COALESCE(tags -> 'name:fr'::text) as name_fr,
+  COALESCE(tags -> 'name:br'::text) as name_br, -- breton
+  COALESCE(tags -> 'name:eu'::text) as name_eu, -- basque
+  COALESCE(tags -> 'name:oc'::text) as name_oc, -- occitan
+  COALESCE(tags -> 'name:gsw'::text) as name_gsw, -- alsacien
+  COALESCE(tags -> 'name:ca'::text) as name_ca, -- catalan
+  COALESCE(tags -> 'name:co'::text) as name_co, -- corse
+  'france' as admin_organisation,
   '3' as admin_level,
   'prefecture' as admin_name,
   place as type,
@@ -147,8 +154,15 @@ UNION
 (SELECT
   DISTINCT(osm_id),
   way as geometry,
-  name as name_fr,
-  COALESCE(tags -> 'name:br'::text) as name,
+  name as name,
+  COALESCE(tags -> 'name:fr'::text) as name_fr,
+  COALESCE(tags -> 'name:br'::text) as name_br, -- breton
+  COALESCE(tags -> 'name:eu'::text) as name_eu, -- basque
+  COALESCE(tags -> 'name:oc'::text) as name_oc, -- occitan
+  COALESCE(tags -> 'name:gsw'::text) as name_gsw, -- alsacien
+  COALESCE(tags -> 'name:ca'::text) as name_ca, -- catalan
+  COALESCE(tags -> 'name:co'::text) as name_co, -- corse
+  'france' as admin_organisation,
   '2' as admin_level,
   'chef-lieu de canton' as admin_name,
   place as type,
@@ -171,8 +185,15 @@ UNION
 (SELECT
   DISTINCT(osm_id),
   way as geometry,
-  name as name_fr,
-  COALESCE(tags -> 'name:br'::text) as name,
+  name as name,
+  COALESCE(tags -> 'name:fr'::text) as name_fr,
+  COALESCE(tags -> 'name:br'::text) as name_br, -- breton
+  COALESCE(tags -> 'name:eu'::text) as name_eu, -- basque
+  COALESCE(tags -> 'name:oc'::text) as name_oc, -- occitan
+  COALESCE(tags -> 'name:gsw'::text) as name_gsw, -- alsacien
+  COALESCE(tags -> 'name:ca'::text) as name_ca, -- catalan
+  COALESCE(tags -> 'name:co'::text) as name_co, -- corse
+  'france' as admin_organisation,
   '1' as admin_level,
   'commune' as admin_name,
   place as type,
@@ -364,6 +385,11 @@ AS
     (ST_SimplifyPreserveTopology(geometry, 50)) as geometry
    FROM osm_landusages_gen1
    WHERE ST_AREA(geometry) > 100000 ;
+
+
+
+
+
 
 
 
