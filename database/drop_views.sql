@@ -1,12 +1,4 @@
 ﻿
-DROP VIEW IF EXISTS osm_buildings CASCADE ;
-DROP VIEW IF EXISTS osm_landusages CASCADE ;
--- DROP MATERIALIZED VIEW osm_landusages_gen1 ;
--- DROP MATERIALIZED VIEW osm_landusages_gen0 ;
-DROP VIEW IF EXISTS osm_admin CASCADE ;
-DROP VIEW IF EXISTS osm_admin_places CASCADE ;
-DROP VIEW IF EXISTS osm_places CASCADE ;
-DROP VIEW IF EXISTS osm_roads CASCADE ;
-DROP VIEW IF EXISTS osm_aeroways CASCADE ;
-DROP VIEW IF EXISTS osm_waterareas CASCADE ;
-DROP VIEW IF EXISTS osm_waterways CASCADE ;
+DROP MATERIALIZED VIEW admin_boundaries;
+DROP MATERIALIZED VIEW admin_places;
+DROP MATERIALIZED VIEW places;
