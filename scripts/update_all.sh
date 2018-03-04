@@ -9,5 +9,5 @@
 sudo -u www-data /data/styles/br/scripts/calculer_tiles_br_13-18.sh
 
 # push to www server
-#/data/styles/br/scripts/rsync_to_server.sh
+/data/styles/br/scripts/rsync_to_server.sh
 
