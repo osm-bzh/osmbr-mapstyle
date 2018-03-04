@@ -53062,7 +53062,7 @@
     <StyleName><![CDATA[admin_boundaries]]></StyleName>
     <Datasource>
       <Parameter name="type"><![CDATA[postgis]]></Parameter>
-      <Parameter name="host"><![CDATA[db.openstreetmap.world]]></Parameter>
+      <Parameter name="host"><![CDATA[db.openstreetmap.local]]></Parameter>
       <Parameter name="user"><![CDATA[osm]]></Parameter>
       <Parameter name="password"><![CDATA[osmbr]]></Parameter>
       <Parameter name="dbname"><![CDATA[osm]]></Parameter>
@@ -53244,7 +53244,7 @@
     <StyleName><![CDATA[place-suburb]]></StyleName>
     <Datasource>
       <Parameter name="type"><![CDATA[postgis]]></Parameter>
-      <Parameter name="host"><![CDATA[db.openstreetmap.world]]></Parameter>
+      <Parameter name="host"><![CDATA[db.openstreetmap.local]]></Parameter>
       <Parameter name="user"><![CDATA[osm]]></Parameter>
       <Parameter name="password"><![CDATA[osmbr]]></Parameter>
       <Parameter name="dbname"><![CDATA[osm]]></Parameter>
@@ -53396,7 +53396,7 @@
     <StyleName><![CDATA[admin_place]]></StyleName>
     <Datasource>
       <Parameter name="type"><![CDATA[postgis]]></Parameter>
-      <Parameter name="host"><![CDATA[db.openstreetmap.world]]></Parameter>
+      <Parameter name="host"><![CDATA[db.openstreetmap.local]]></Parameter>
       <Parameter name="user"><![CDATA[osm]]></Parameter>
       <Parameter name="password"><![CDATA[osmbr]]></Parameter>
       <Parameter name="dbname"><![CDATA[osm]]></Parameter>

@@ -71,7 +71,7 @@
       "class": "",
       "Datasource": {
         "type": "postgis",
-        "host": "db.openstreetmap.world",
+        "host": "db.openstreetmap.local",
         "user": "osm",
         "password": "osmbr",
         "dbname": "osm",
@@ -101,7 +101,7 @@
       "class": "",
       "Datasource": {
         "type": "postgis",
-        "host": "db.openstreetmap.world",
+        "host": "db.openstreetmap.local",
         "user": "osm",
         "password": "osmbr",
         "dbname": "osm",
@@ -131,7 +131,7 @@
       "class": "",
       "Datasource": {
         "type": "postgis",
-        "host": "db.openstreetmap.world",
+        "host": "db.openstreetmap.local",
         "user": "osm",
         "password": "osmbr",
         "dbname": "osm",
@@ -162,7 +162,7 @@
       "class": "",
       "Datasource": {
         "type": "postgis",
-        "host": "db.openstreetmap.world",
+        "host": "db.openstreetmap.local",
         "user": "osm",
         "password": "osmbr",
         "dbname": "osm",
@@ -193,7 +193,7 @@
       "class": "",
       "Datasource": {
         "type": "postgis",
-        "host": "db.openstreetmap.world",
+        "host": "db.openstreetmap.local",
         "user": "osm",
         "password": "osmbr",
         "dbname": "osm",
@@ -223,7 +223,7 @@
       "class": "",
       "Datasource": {
         "type": "postgis",
-        "host": "db.openstreetmap.world",
+        "host": "db.openstreetmap.local",
         "user": "osm",
         "password": "osmbr",
         "dbname": "osm",
@@ -253,7 +253,7 @@
       "class": "",
       "Datasource": {
         "type": "postgis",
-        "host": "db.openstreetmap.world",
+        "host": "db.openstreetmap.local",
         "user": "osm",
         "password": "osmbr",
         "dbname": "osm",
@@ -283,7 +283,7 @@
       "class": "",
       "Datasource": {
         "type": "postgis",
-        "host": "db.openstreetmap.world",
+        "host": "db.openstreetmap.local",
         "user": "osm",
         "password": "osmbr",
         "dbname": "osm",
@@ -313,7 +313,7 @@
       "class": "",
       "Datasource": {
         "type": "postgis",
-        "host": "db.openstreetmap.world",
+        "host": "db.openstreetmap.local",
         "user": "osm",
         "password": "osmbr",
         "dbname": "osm",
@@ -343,7 +343,7 @@
       "class": "",
       "Datasource": {
         "type": "postgis",
-        "host": "db.openstreetmap.world",
+        "host": "db.openstreetmap.local",
         "user": "osm",
         "password": "osmbr",
         "dbname": "osm",
@@ -374,7 +374,7 @@
       "class": "",
       "Datasource": {
         "type": "postgis",
-        "host": "db.openstreetmap.world",
+        "host": "db.openstreetmap.local",
         "user": "osm",
         "password": "osmbr",
         "dbname": "osm",
@@ -404,7 +404,7 @@
       "class": "",
       "Datasource": {
         "type": "postgis",
-        "host": "db.openstreetmap.world",
+        "host": "db.openstreetmap.local",
         "user": "osm",
         "password": "osmbr",
         "dbname": "osm",
@@ -435,7 +435,7 @@
       "class": "",
       "Datasource": {
         "type": "postgis",
-        "host": "db.openstreetmap.world",
+        "host": "db.openstreetmap.local",
         "user": "osm",
         "password": "osmbr",
         "dbname": "osm",
@@ -466,7 +466,7 @@
       "class": "",
       "Datasource": {
         "type": "postgis",
-        "host": "db.openstreetmap.world",
+        "host": "db.openstreetmap.local",
         "user": "osm",
         "password": "osmbr",
         "dbname": "osm",
@@ -496,7 +496,7 @@
       "class": "",
       "Datasource": {
         "type": "postgis",
-        "host": "db.openstreetmap.world",
+        "host": "db.openstreetmap.local",
         "user": "osm",
         "password": "osmbr",
         "dbname": "osm",
@@ -526,7 +526,7 @@
       "class": "",
       "Datasource": {
         "type": "postgis",
-        "host": "db.openstreetmap.world",
+        "host": "db.openstreetmap.local",
         "user": "osm",
         "password": "osmbr",
         "dbname": "osm",
@@ -557,7 +557,7 @@
       "class": "",
       "Datasource": {
         "type": "postgis",
-        "host": "db.openstreetmap.world",
+        "host": "db.openstreetmap.local",
         "user": "osm",
         "password": "osmbr",
         "dbname": "osm",
@@ -680,7 +680,7 @@
       "class": "",
       "Datasource": {
         "type": "postgis",
-        "host": "db.openstreetmap.world",
+        "host": "db.openstreetmap.local",
         "user": "osm",
         "password": "osmbr",
         "dbname": "osm",
@@ -710,7 +710,7 @@
       "class": "",
       "Datasource": {
         "type": "postgis",
-        "host": "db.openstreetmap.world",
+        "host": "db.openstreetmap.local",
         "user": "osm",
         "password": "osmbr",
         "dbname": "osm",
@@ -740,7 +740,7 @@
       "class": "",
       "Datasource": {
         "type": "postgis",
-        "host": "db.openstreetmap.world",
+        "host": "db.openstreetmap.local",
         "user": "osm",
         "password": "osmbr",
         "dbname": "osm",
