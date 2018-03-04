@@ -46,7 +46,7 @@ CREATE MATERIALIZED VIEW admin_places AS
   '3' as admin_level,
   'prefecture' as admin_name,
   place as type,
-  population::integer as population
+  population::text as population
 FROM planet_osm_point
 JOIN (
         WITH numbered AS(
@@ -77,7 +77,7 @@ UNION
   '2' as admin_level,
   'chef-lieu de canton' as admin_name,
   place as type,
-  population::integer as population
+  population::text as population
 FROM planet_osm_point
 JOIN (
         WITH numbered AS(
@@ -108,7 +108,7 @@ UNION
   '1' as admin_level,
   'commune' as admin_name,
   place as type,
-  population::integer as population
+  population::text as population
 FROM planet_osm_point
 JOIN (
         WITH numbered AS(
