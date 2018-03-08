@@ -33,14 +33,22 @@ date
 echo ""
 
 # on supprime les vues
+<<<<<<< HEAD:scripts/update_db.sh
+psql -h db.openstreetmap.local -U osm -d osm -f /data/styles/br/database/drop_views.sql
+=======
 psql -h db.openstreetmap.local -U osm -d osm -f /data/styles/br/drop_views.sql
+>>>>>>> master:update_db.sh
 
 # on met à jour la base de données
 # authentification dans le pgpass
-osm2pgsql -H db.openstreetmap.local -U osm -d osm --hstore --slim --cache 5000 -E 3857 -v /data/dumps/breizh.osm.pbf 
+osm2pgsql -H db.openstreetmap.local -U osm -d osm --hstore --slim --cache 3000 -E 3857 -v /data/dumps/breizh.osm.pbf 
 
 # on recrée les vues
+<<<<<<< HEAD:scripts/update_db.sh
+psql -h db.openstreetmap.local -U osm -d osm -f /data/styles/br/database/create_views.sql
+=======
 psql -h db.openstreetmap.local -U osm -d osm -f /data/styles/br/create_views.sql
+>>>>>>> master:update_db.sh
 
 echo ""
 echo " Fin de la maj de la BD "
