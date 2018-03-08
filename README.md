@@ -16,60 +16,54 @@ Il est dérivé du style Lyrk que vous pouvez trouver ici : https://github.com/l
 
 # Set up
 
+## unix user and clone this repository
+
+Create a user 'osm' on your server.
+
+Create directories and clone this repository :
+
+```
+mkdir /data
+mkdir /data/styles
+
+git clone https://github.com/osm-bzh/osmbr-mapstyle.git
+
+# rename the directory
+mv osmbr-mapstyle br
+
+# move to the git clone repository
+cd /data/styles/br/
+```
+
+
 ## The database
 
-**We have 2 databases.**
-
-**One is a classic planet_osm database** loaded by the famous osm2pgsql programm. **The second will contain our views for the map style.** This views are using the classic planet_osm tables of the first database. The link is done by using foreign tables.
-
+**We use the classic planet_osm database an tables** loaded by the famous osm2pgsql programm.
 
 In your ```/etc/hosts``` file, add an entry for **db.openstreetmap.local**, with the IP of your PostgreSQL database server.
 
 
-Login as root then postgres :
+Create the database and the 'osm' role : 
 
 ```bash
-sudo -s
-su postgres
-```
-
-Create the role 'osm' then the database :
-
-```bash
+# osm user
 psql -c "CREATE USER osm WITH LOGIN SUPERUSER PASSWORD 'osmbr';"
 
+# the database
 psql -c "CREATE DATABASE osm WITH OWNER = osm ENCODING = 'UTF8';"
+
+# 2 classic extensions for OSM
+psql -d osm -c "CREATE EXTENSION IF NOT EXISTS hstore;"
+psql -d osm -c "CREATE EXTENSION IF NOT EXISTS postgis;"
 ```
 
+Then run ```/scripts/update_db.sh``` to load the database.
+It will :
 
-Then go back as osm user OR login as 'osm' user in a terminal.
+* download a France pbf file
+* cut France to Britanny
+* load the database
 
-Execute the SQL commands to setup the database :
-
-```
-# move to the git clone repository
-cd /data/styles/br/
-
-psql -h db.openstreetmap.local -d osm < database/setup_db.sql
-```
-
-Now, create the foreign tables corresponding to the 7 basics osm_planet tables.
-
-```
-psql -h db.openstreetmap.local -d osm < database/create_foreign_tables.sql 
-```
-
-You can try a simple query to test if all is ok :
-
-```sql
-select osm_id, name from planet_osm_line limit 5;
-```
-
-We now can create the views :
-
-```
-psql -h db.openstreetmap.local -d osm < database/create_views.sql
-```
 
 
 
