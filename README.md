@@ -24,8 +24,10 @@ Create directories and clone this repository :
 
 ```
 mkdir /data
+mkdir /data/dumps
 mkdir /data/styles
 
+cd /data/styles/
 git clone https://github.com/osm-bzh/osmbr-mapstyle.git
 
 # rename the directory
@@ -34,6 +36,14 @@ mv osmbr-mapstyle br
 # move to the git clone repository
 cd /data/styles/br/
 ```
+
+## Low scales datas
+
+Need 3 datas in /data/styles/data/ :
+
+* simplified-land-polygons-complete-3857/simplified_land_polygons.shp
+* land-polygons-split-3857/land_polygons.shp
+* z7.tif
 
 
 ## The database
