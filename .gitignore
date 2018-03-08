@@ -1,4 +1,8 @@
 
+database/*
+test*
+osm-bright.osm2pgsql.mml
+
 .thumb.png
 
 # OS generated files #
