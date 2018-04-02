@@ -199,7 +199,20 @@ SELECT osm_id, way, aeroway AS type  FROM planet_osm_line  WHERE aeroway IN ('ap
 
 
 -- admin_boundaries
-SELECT row_number() over() AS id, *  FROM admin_boundaries ORDER BY admin_level DESC
+SELECT
+  row_number() over() AS id,
+  b.way::geometry(LineString,3857) AS way,
+  admin_level::integer AS admin_level,
+  coalesce(b.tags->'maritime','no') AS maritime,
+  count(r.*)::integer AS nb,
+  string_agg(id::text,',') AS rels
+FROM planet_osm_roads b
+LEFT JOIN planet_osm_rels r ON (r.parts @> ARRAY[osm_id] AND r.members @> ARRAY['w' || osm_id] AND regexp_replace(r.tags::text,'[{}]',',') ~ format('(,admin_level,%s.*,boundary,administrative|,boundary,administrative.*,admin_level,%s,)',admin_level,admin_level)) 
+WHERE boundary='administrative' AND admin_level IS NOT NULL
+GROUP BY 1,2,3
+ORDER BY admin_level DESC
+
+SELECT  b.way::geometry(LineString,3857) AS way, admin_level::integer AS admin_level, coalesce(b.tags->'maritime','no') AS maritime, count(r.*)::integer AS nb, string_agg(id::text,',') AS rels  FROM planet_osm_roads b  LEFT JOIN planet_osm_rels r ON (r.parts @> ARRAY[osm_id] AND r.members @> ARRAY['w' || osm_id] AND regexp_replace(r.tags::text,'[{}]',',') ~ format('(,admin_level,%s.*,boundary,administrative|,boundary,administrative.*,admin_level,%s,)',admin_level,admin_level))  WHERE boundary='administrative' AND admin_level IS NOT NULL  GROUP BY 1,2,3  ORDER BY admin_level DESC
 
 
 -- admin_places (vue matérialisée)
@@ -255,7 +268,20 @@ WHERE
 SELECT osm_id, COALESCE(highway, '') as type, COALESCE(tags -> 'name:br'::text,'') as name, way FROM planet_osm_line WHERE highway IN ('motorway','motorway_link','trunk','trunk_link','primary','primary_link','secondary','secondary_link','tertiary','tertiary_link','road','path','track','service','footway','bridleway','cycleway','steps','pedestrian','living_street','unclassified','residential','raceway')
 
 
+-- places
+SELECT
+  osm_id,
+  COALESCE(tags -> 'name:br'::text) as name,
+  place as type,
+  admin_level,
+  COALESCE(tags->'is_capital'::text) as is_capital,
+  z_order,
+  way
+FROM planet_osm_point
+WHERE (tags -> 'name:br'::text IS NOT NULL)
+ORDER BY z_order ;
 
+SELECT osm_id, COALESCE(tags -> 'name:br'::text) as name, place as type, admin_level, COALESCE(tags->'is_capital'::text) as is_capital, z_order, way  FROM planet_osm_point  WHERE (tags -> 'name:br'::text IS NOT NULL) ORDER BY z_order
 
 
 -- =======================================================================
