@@ -347,6 +347,40 @@
 	}
 }
 
+#place::suburb[type='neighbourhood'][zoom>=13][zoom<=16] {
+	text-name: '[name]';
+	text-face-name: @sans_bold_italic;
+	text-placement: point;
+	text-fill: @suburb_text;
+	text-size: 13;
+	text-halo-fill: @suburb_halo;
+	text-halo-radius: 2.0;
+	text-wrap-width: 50;
+	text-label-position-tolerance: 20;
+    text-allow-overlap: false;
+
+	[zoom=13] {
+		text-size: 9;
+    	text-character-spacing: 1;
+		text-line-spacing: 2;
+	}
+	[zoom=14] {
+		text-size: 11;
+    	text-character-spacing: 1;
+		text-line-spacing: 2;
+	}
+	[zoom=15] {
+		text-size: 14;
+    	text-character-spacing: 2;
+		text-line-spacing: 2;
+	}
+	[zoom=16] {
+		text-size: 16;
+    	text-character-spacing: 4;
+		text-line-spacing: 2;
+	}
+}
+
 
 // =====================================================================
 // POI LABELS
