@@ -56528,7 +56528,7 @@
        <Parameter name="user"><![CDATA[osm]]></Parameter>
        <Parameter name="password"><![CDATA[osmbr]]></Parameter>
        <Parameter name="dbname"><![CDATA[osm]]></Parameter>
-       <Parameter name="table"><![CDATA[(SELECT row_number() over() AS id, *  FROM admin_boundaries ORDER BY admin_level DESC) AS data]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT  b.way::geometry(LineString,3857) AS way, admin_level::integer AS admin_level, coalesce(b.tags->'maritime','no') AS maritime, count(r.*)::integer AS nb, string_agg(id::text,',') AS rels  FROM planet_osm_roads b  LEFT JOIN planet_osm_rels r ON (r.parts @> ARRAY[osm_id] AND r.members @> ARRAY['w' || osm_id] AND regexp_replace(r.tags::text,'[{}]',',') ~ format('(,admin_level,%s.*,boundary,administrative|,boundary,administrative.*,admin_level,%s,)',admin_level,admin_level))  WHERE boundary='administrative' AND admin_level IS NOT NULL  GROUP BY 1,2,3  ORDER BY admin_level DESC ) AS data]]></Parameter>
        <Parameter name="key_field"><![CDATA[]]></Parameter>
        <Parameter name="geometry_field"><![CDATA[way]]></Parameter>
        <Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
@@ -56540,6 +56540,30 @@
   </Layer>
 
 <Style name="place-suburb" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([type] = 'neighbourhood')</Filter>
+    <TextSymbolizer size="16" character-spacing="4" line-spacing="2" face-name="Open Sans Bold Italic" placement="point" fill="#444444" halo-fill="rgba(255, 255, 255, 0.6599999999999999)" halo-radius="2" wrap-width="50" label-position-tolerance="20" allow-overlap="false" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([type] = 'neighbourhood')</Filter>
+    <TextSymbolizer size="14" character-spacing="2" line-spacing="2" face-name="Open Sans Bold Italic" placement="point" fill="#444444" halo-fill="rgba(255, 255, 255, 0.6599999999999999)" halo-radius="2" wrap-width="50" label-position-tolerance="20" allow-overlap="false" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <Filter>([type] = 'neighbourhood')</Filter>
+    <TextSymbolizer size="11" character-spacing="1" line-spacing="2" face-name="Open Sans Bold Italic" placement="point" fill="#444444" halo-fill="rgba(255, 255, 255, 0.6599999999999999)" halo-radius="2" wrap-width="50" label-position-tolerance="20" allow-overlap="false" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([type] = 'neighbourhood')</Filter>
+    <TextSymbolizer size="9" character-spacing="1" line-spacing="2" face-name="Open Sans Bold Italic" placement="point" fill="#444444" halo-fill="rgba(255, 255, 255, 0.6599999999999999)" halo-radius="2" wrap-width="50" label-position-tolerance="20" allow-overlap="false" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
@@ -56568,6 +56592,29 @@
 <Style name="place-small" filter-mode="first">
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
+    <Filter>([type] = 'farm')</Filter>
+    <TextSymbolizer size="13" wrap-width="60" fill="#444444" halo-radius="1.5" character-spacing="1" line-spacing="1" face-name="Open Sans Semibold" placement="point" halo-fill="rgba(255, 255, 255, 0.6599999999999999)" avoid-edges="true" label-position-tolerance="20" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>25000</MaxScaleDenominator>
+    <MinScaleDenominator>12500</MinScaleDenominator>
+    <Filter>([type] = 'farm')</Filter>
+    <TextSymbolizer size="11" halo-radius="2" wrap-width="60" fill="#444444" character-spacing="1" line-spacing="1" face-name="Open Sans Semibold" placement="point" halo-fill="rgba(255, 255, 255, 0.6599999999999999)" avoid-edges="true" label-position-tolerance="20" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <MinScaleDenominator>25000</MinScaleDenominator>
+    <Filter>([type] = 'farm')</Filter>
+    <TextSymbolizer size="10" fill="#444444" halo-radius="1.5" character-spacing="1" wrap-width="50" line-spacing="1" face-name="Open Sans Semibold" placement="point" halo-fill="rgba(255, 255, 255, 0.6599999999999999)" avoid-edges="true" label-position-tolerance="20" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([type] = 'farm')</Filter>
+    <TextSymbolizer size="9" fill="#666666" character-spacing="1" wrap-width="40" line-spacing="1" face-name="Open Sans Semibold" placement="point" halo-fill="rgba(255, 255, 255, 0.6599999999999999)" halo-radius="1" avoid-edges="true" label-position-tolerance="20" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>12500</MaxScaleDenominator>
     <Filter>([type] = 'isolated_dwelling')</Filter>
     <TextSymbolizer size="13" wrap-width="60" fill="#444444" halo-radius="1.5" character-spacing="1" line-spacing="1" face-name="Open Sans Semibold" placement="point" halo-fill="rgba(255, 255, 255, 0.6599999999999999)" avoid-edges="true" label-position-tolerance="20" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
@@ -56591,48 +56638,48 @@
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <Filter>([type] = 'locality')</Filter>
+    <Filter>([type] = 'hamlet')</Filter>
     <TextSymbolizer size="13" wrap-width="60" fill="#444444" halo-radius="1.5" character-spacing="1" line-spacing="1" face-name="Open Sans Semibold" placement="point" halo-fill="rgba(255, 255, 255, 0.6599999999999999)" avoid-edges="true" label-position-tolerance="20" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
-    <Filter>([type] = 'locality')</Filter>
+    <Filter>([type] = 'hamlet')</Filter>
     <TextSymbolizer size="11" halo-radius="2" wrap-width="60" fill="#444444" character-spacing="1" line-spacing="1" face-name="Open Sans Semibold" placement="point" halo-fill="rgba(255, 255, 255, 0.6599999999999999)" avoid-edges="true" label-position-tolerance="20" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>50000</MaxScaleDenominator>
     <MinScaleDenominator>25000</MinScaleDenominator>
-    <Filter>([type] = 'locality')</Filter>
+    <Filter>([type] = 'hamlet')</Filter>
     <TextSymbolizer size="10" fill="#444444" halo-radius="1.5" character-spacing="1" wrap-width="50" line-spacing="1" face-name="Open Sans Semibold" placement="point" halo-fill="rgba(255, 255, 255, 0.6599999999999999)" avoid-edges="true" label-position-tolerance="20" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>100000</MaxScaleDenominator>
     <MinScaleDenominator>50000</MinScaleDenominator>
-    <Filter>([type] = 'locality')</Filter>
+    <Filter>([type] = 'hamlet')</Filter>
     <TextSymbolizer size="9" fill="#666666" character-spacing="1" wrap-width="40" line-spacing="1" face-name="Open Sans Semibold" placement="point" halo-fill="rgba(255, 255, 255, 0.6599999999999999)" halo-radius="1" avoid-edges="true" label-position-tolerance="20" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>12500</MaxScaleDenominator>
-    <Filter>([type] = 'hamlet')</Filter>
+    <Filter>([type] = 'locality')</Filter>
     <TextSymbolizer size="13" wrap-width="60" fill="#444444" halo-radius="1.5" character-spacing="1" line-spacing="1" face-name="Open Sans Semibold" placement="point" halo-fill="rgba(255, 255, 255, 0.6599999999999999)" avoid-edges="true" label-position-tolerance="20" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>25000</MaxScaleDenominator>
     <MinScaleDenominator>12500</MinScaleDenominator>
-    <Filter>([type] = 'hamlet')</Filter>
+    <Filter>([type] = 'locality')</Filter>
     <TextSymbolizer size="11" halo-radius="2" wrap-width="60" fill="#444444" character-spacing="1" line-spacing="1" face-name="Open Sans Semibold" placement="point" halo-fill="rgba(255, 255, 255, 0.6599999999999999)" avoid-edges="true" label-position-tolerance="20" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>50000</MaxScaleDenominator>
     <MinScaleDenominator>25000</MinScaleDenominator>
-    <Filter>([type] = 'hamlet')</Filter>
+    <Filter>([type] = 'locality')</Filter>
     <TextSymbolizer size="10" fill="#444444" halo-radius="1.5" character-spacing="1" wrap-width="50" line-spacing="1" face-name="Open Sans Semibold" placement="point" halo-fill="rgba(255, 255, 255, 0.6599999999999999)" avoid-edges="true" label-position-tolerance="20" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
   <Rule>
     <MaxScaleDenominator>100000</MaxScaleDenominator>
     <MinScaleDenominator>50000</MinScaleDenominator>
-    <Filter>([type] = 'hamlet')</Filter>
+    <Filter>([type] = 'locality')</Filter>
     <TextSymbolizer size="9" fill="#666666" character-spacing="1" wrap-width="40" line-spacing="1" face-name="Open Sans Semibold" placement="point" halo-fill="rgba(255, 255, 255, 0.6599999999999999)" halo-radius="1" avoid-edges="true" label-position-tolerance="20" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
 </Style>
@@ -56712,9 +56759,9 @@
        <Parameter name="user"><![CDATA[osm]]></Parameter>
        <Parameter name="password"><![CDATA[osmbr]]></Parameter>
        <Parameter name="dbname"><![CDATA[osm]]></Parameter>
-       <Parameter name="table"><![CDATA[( SELECT osm_id, geometry, type, name_br AS name, z_order, is_capital, population FROM places WHERE name_br IS NOT NULL ORDER BY z_order ) AS data]]></Parameter>
+       <Parameter name="table"><![CDATA[( SELECT osm_id, COALESCE(tags -> 'name:br'::text) as name, place as type, admin_level, COALESCE(tags->'is_capital'::text) as is_capital, z_order, way  FROM planet_osm_point  WHERE (tags -> 'name:br'::text IS NOT NULL) ORDER BY z_order ) AS data]]></Parameter>
        <Parameter name="key_field"><![CDATA[osm_id]]></Parameter>
-       <Parameter name="geometry_field"><![CDATA[geometry]]></Parameter>
+       <Parameter name="geometry_field"><![CDATA[way]]></Parameter>
        <Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
        <Parameter name="max_async_connection"><![CDATA[4]]></Parameter>
        <Parameter name="simplify_geometries"><![CDATA[true]]></Parameter>
@@ -57829,23 +57876,6 @@
   </Rule>
   <Rule>
     <MaxScaleDenominator>2500</MaxScaleDenominator>
-    <Filter>([type] = 'primary')</Filter>
-    <TextSymbolizer size="14" face-name="Open Sans Semibold" placement="line" fill="#333333" halo-fill="#ffffff" halo-radius="1" minimum-distance="60" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>5000</MaxScaleDenominator>
-    <MinScaleDenominator>2500</MinScaleDenominator>
-    <Filter>([type] = 'primary')</Filter>
-    <TextSymbolizer size="13" face-name="Open Sans Semibold" placement="line" fill="#333333" halo-fill="#ffffff" halo-radius="1" minimum-distance="60" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>100000</MaxScaleDenominator>
-    <MinScaleDenominator>5000</MinScaleDenominator>
-    <Filter>([type] = 'primary')</Filter>
-    <TextSymbolizer face-name="Open Sans Semibold" placement="line" fill="#333333" halo-fill="#ffffff" halo-radius="1" minimum-distance="60" size="12" ><![CDATA[[name]]]></TextSymbolizer>
-  </Rule>
-  <Rule>
-    <MaxScaleDenominator>2500</MaxScaleDenominator>
     <Filter>([type] = 'secondary')</Filter>
     <TextSymbolizer size="14" face-name="Open Sans Semibold" placement="line" fill="#333333" halo-fill="#ffffff" halo-radius="1" minimum-distance="60" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
@@ -57859,6 +57889,23 @@
     <MaxScaleDenominator>50000</MaxScaleDenominator>
     <MinScaleDenominator>5000</MinScaleDenominator>
     <Filter>([type] = 'secondary')</Filter>
+    <TextSymbolizer face-name="Open Sans Semibold" placement="line" fill="#333333" halo-fill="#ffffff" halo-radius="1" minimum-distance="60" size="12" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>2500</MaxScaleDenominator>
+    <Filter>([type] = 'primary')</Filter>
+    <TextSymbolizer size="14" face-name="Open Sans Semibold" placement="line" fill="#333333" halo-fill="#ffffff" halo-radius="1" minimum-distance="60" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>5000</MaxScaleDenominator>
+    <MinScaleDenominator>2500</MinScaleDenominator>
+    <Filter>([type] = 'primary')</Filter>
+    <TextSymbolizer size="13" face-name="Open Sans Semibold" placement="line" fill="#333333" halo-fill="#ffffff" halo-radius="1" minimum-distance="60" ><![CDATA[[name]]]></TextSymbolizer>
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MinScaleDenominator>5000</MinScaleDenominator>
+    <Filter>([type] = 'primary')</Filter>
     <TextSymbolizer face-name="Open Sans Semibold" placement="line" fill="#333333" halo-fill="#ffffff" halo-radius="1" minimum-distance="60" size="12" ><![CDATA[[name]]]></TextSymbolizer>
   </Rule>
 </Style>
