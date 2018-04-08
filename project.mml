@@ -102,17 +102,12 @@
         "max_async_connection": "4",
         "simplify_geometries": "true",
         "extent_cache": "auto",
-        "extent": "-607072.89,5713906.54,140649.73,6590288.74"
+        "extent": "-1363990,3994624,1824475,9411676"
       },
       "geometry": "polygon",
       "srs-name": "3857",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "extent": [
-        -5.100414904469789,
-        47.30250866358967,
-        -1.0188664104709804,
-        48.86564190473949
-      ],
+      "extent": [ -10, 34, 20, 70 ],
       "advanced": {}
     },
     {
@@ -132,17 +127,12 @@
         "max_async_connection": "4",
         "simplify_geometries": "true",
         "extent_cache": "auto",
-        "extent": "-607072.89,5713906.54,140649.73,6590288.74"
+        "extent": "-1363990,3994624,1824475,9411676"
       },
       "geometry": "polygon",
       "srs-name": "3857",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "extent": [
-        -5.100414904469789,
-        47.30250866358967,
-        -1.0188664104709804,
-        48.86564190473949
-      ],
+      "extent": [ -10, 34, 20, 70 ],
       "advanced": {}
     },
     {
@@ -162,17 +152,12 @@
         "max_async_connection": "4",
         "simplify_geometries": "true",
         "extent_cache": "auto",
-        "extent": "-607072.89,5713906.54,140649.73,6590288.74"
+        "extent": "-1363990,3994624,1824475,9411676"
       },
       "geometry": "polygon",
       "srs-name": "3857",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "extent": [
-        -5.100414904469789,
-        47.30250866358967,
-        -1.0188664104709804,
-        48.86564190473949
-      ],
+      "extent": [ -10, 34, 20, 70 ],
       "advanced": {}
     },
 
@@ -193,17 +178,12 @@
         "max_async_connection": "4",
         "simplify_geometries": "true",
         "extent_cache": "auto",
-        "extent": "-607072.89,5713906.54,140649.73,6590288.74"
+        "extent": "-1363990,3994624,1824475,9411676"
       },
       "geometry": "polygon",
       "srs-name": "3857",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "extent": [
-        -5.100414904469789,
-        47.30250866358967,
-        -1.0188664104709804,
-        48.86564190473949
-      ],
+      "extent": [ -10, 34, 20, 70 ],
       "advanced": {}
     },   
 
@@ -224,17 +204,12 @@
         "max_async_connection": "4",
         "simplify_geometries": "true",
         "extent_cache": "auto",
-        "extent": "-607072.89,5713906.54,140649.73,6590288.74"
+        "extent": "-1363990,3994624,1824475,9411676"
       },
       "geometry": "polygon",
       "srs-name": "3857",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "extent": [
-        -5.100414904469789,
-        47.30250866358967,
-        -1.0188664104709804,
-        48.86564190473949
-      ],
+      "extent": [ -10, 34, 20, 70 ],
       "advanced": {}
     },
     {
@@ -254,17 +229,12 @@
         "max_async_connection": "4",
         "simplify_geometries": "true",
         "extent_cache": "auto",
-        "extent": "-607072.89,5713906.54,140649.73,6590288.74"
+        "extent": "-1363990,3994624,1824475,9411676"
       },
       "geometry": "polygon",
       "srs-name": "3857",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "extent": [
-        -5.100414904469789,
-        47.30250866358967,
-        -1.0188664104709804,
-        48.86564190473949
-      ],
+      "extent": [ -10, 34, 20, 70 ],
       "advanced": {}
     },
     {
@@ -284,17 +254,12 @@
         "max_async_connection": "4",
         "simplify_geometries": "true",
         "extent_cache": "auto",
-        "extent": "-607072.89,5713906.54,140649.73,6590288.74"
+        "extent": "-1363990,3994624,1824475,9411676"
       },
       "geometry": "polygon",
       "srs-name": "3857",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "extent": [
-        -5.100414904469789,
-        47.30250866358967,
-        -1.0188664104709804,
-        48.86564190473949
-      ],
+      "extent": [ -10, 34, 20, 70 ],
       "advanced": {}
     },
     {
@@ -314,17 +279,12 @@
         "max_async_connection": "4",
         "simplify_geometries": "true",
         "extent_cache": "auto",
-        "extent": "-607072.89,5713906.54,140649.73,6590288.74"
+        "extent": "-1363990,3994624,1824475,9411676"
       },
       "geometry": "linestring",
       "srs-name": "3857",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "extent": [
-        -5.100414904469789,
-        47.30250866358967,
-        -1.0188664104709804,
-        48.86564190473949
-      ],
+      "extent": [ -10, 34, 20, 70 ],
       "advanced": {}
     },
     {
@@ -344,17 +304,12 @@
         "max_async_connection": "4",
         "simplify_geometries": "true",
         "extent_cache": "auto",
-        "extent": "-607072.89,5713906.54,140649.73,6590288.74"
+        "extent": "-1363990,3994624,1824475,9411676"
       },
       "geometry": "linestring",
       "srs-name": "3857",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "extent": [
-        -5.100414904469789,
-        47.30250866358967,
-        -1.0188664104709804,
-        48.86564190473949
-      ],
+      "extent": [ -10, 34, 20, 70 ],
       "advanced": {}
     },
     {
@@ -374,17 +329,12 @@
         "max_async_connection": "4",
         "simplify_geometries": "true",
         "extent_cache": "auto",
-        "extent": "-607072.89,5713906.54,140649.73,6590288.74"
+        "extent": "-1363990,3994624,1824475,9411676"
       },
       "geometry": "linestring",
       "srs-name": "3857",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "extent": [
-        -5.100414904469789,
-        47.30250866358967,
-        -1.0188664104709804,
-        48.86564190473949
-      ],
+      "extent": [ -10, 34, 20, 70 ],
       "advanced": {}
     },
 
@@ -405,17 +355,12 @@
         "max_async_connection": "4",
         "simplify_geometries": "true",
         "extent_cache": "auto",
-        "extent": "-607072.89,5713906.54,140649.73,6590288.74"
+        "extent": "-1363990,3994624,1824475,9411676"
       },
       "geometry": "polygon",
       "srs-name": "3857",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "extent": [
-        -5.100414904469789,
-        47.30250866358967,
-        -1.0188664104709804,
-        48.86564190473949
-      ],
+      "extent": [ -10, 34, 20, 70 ],
       "advanced": {}
     },   
 
@@ -436,17 +381,12 @@
         "max_async_connection": "4",
         "simplify_geometries": "true",
         "extent_cache": "auto",
-        "extent": "-607072.89,5713906.54,140649.73,6590288.74"
+        "extent": "-1363990,3994624,1824475,9411676"
       },
       "geometry": "linestring",
       "srs-name": "3857",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "extent": [
-        -5.100414904469789,
-        47.30250866358967,
-        -1.0188664104709804,
-        48.86564190473949
-      ],
+      "extent": [ -10, 34, 20, 70 ],
       "advanced": {}
     },
       
@@ -468,17 +408,12 @@
         "max_async_connection": "4",
         "simplify_geometries": "true",
         "extent_cache": "auto",
-        "extent": "-607072.89,5713906.54,140649.73,6590288.74"
+        "extent": "-1363990,3994624,1824475,9411676"
       },
       "geometry": "linestring",
       "srs-name": "3857",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "extent": [
-        -5.100414904469789,
-        47.30250866358967,
-        -1.0188664104709804,
-        48.86564190473949
-      ],
+      "extent": [ -10, 34, 20, 70 ],
       "advanced": {}
     },
 
@@ -499,17 +434,12 @@
         "max_async_connection": "4",
         "simplify_geometries": "true",
         "extent_cache": "auto",
-        "extent": "-607072.89,5713906.54,140649.73,6590288.74"
+        "extent": "-1363990,3994624,1824475,9411676"
       },
       "geometry": "linestring",
       "srs-name": "3857",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "extent": [
-        -5.100414904469789,
-        47.30250866358967,
-        -1.0188664104709804,
-        48.86564190473949
-      ],
+      "extent": [ -10, 34, 20, 70 ],
       "advanced": {}
     },
     {
@@ -529,17 +459,12 @@
         "max_async_connection": "4",
         "simplify_geometries": "true",
         "extent_cache": "auto",
-        "extent": "-607072.89,5713906.54,140649.73,6590288.74"
+        "extent": "-1363990,3994624,1824475,9411676"
       },
       "geometry": "linestring",
       "srs-name": "3857",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "extent": [
-        -5.100414904469789,
-        47.30250866358967,
-        -1.0188664104709804,
-        48.86564190473949
-      ],
+      "extent": [ -10, 34, 20, 70 ],
       "advanced": {}
     },
     {
@@ -559,17 +484,12 @@
         "max_async_connection": "4",
         "simplify_geometries": "true",
         "extent_cache": "auto",
-        "extent": "-607072.89,5713906.54,140649.73,6590288.74"
+        "extent": "-1363990,3994624,1824475,9411676"
       },
       "geometry": "linestring",
       "srs-name": "3857",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "extent": [
-        -5.100414904469789,
-        47.30250866358967,
-        -1.0188664104709804,
-        48.86564190473949
-      ],
+      "extent": [ -10, 34, 20, 70 ],
       "advanced": {}
     },
 
@@ -590,17 +510,12 @@
         "max_async_connection": "4",
         "simplify_geometries": "true",
         "extent_cache": "auto",
-        "extent": "-607072.89,5713906.54,140649.73,6590288.74"
+        "extent": "-1363990,3994624,1824475,9411676"
       },
       "geometry": "linestring",
       "srs-name": "3857",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "extent": [
-        -5.100414904469789,
-        47.30250866358967,
-        -1.0188664104709804,
-        48.86564190473949
-      ],
+      "extent": [ -10, 34, 20, 70 ],
       "advanced": {}
     },
 
@@ -621,17 +536,12 @@
         "max_async_connection": "4",
         "simplify_geometries": "true",
         "extent_cache": "auto",
-        "extent": "-607072.89,5713906.54,140649.73,6590288.74"
+        "extent": "-1363990,3994624,1824475,9411676"
       },
       "geometry": "linestring",
       "srs-name": "3857",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "extent": [
-        -5.100414904469789,
-        47.30250866358967,
-        -1.0188664104709804,
-        48.86564190473949
-      ],
+      "extent": [ -10, 34, 20, 70 ],
       "advanced": {}
     },
 
@@ -652,17 +562,12 @@
         "max_async_connection": "4",
         "simplify_geometries": "true",
         "extent_cache": "auto",
-        "extent": "-607072.89,5713906.54,140649.73,6590288.74"
+        "extent": "-1363990,3994624,1824475,9411676"
       },
       "geometry": "point",
       "srs-name": "3857",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "extent": [
-        -5.100414904469789,
-        47.30250866358967,
-        -1.0188664104709804,
-        48.86564190473949
-      ],
+      "extent": [ -10, 34, 20, 70 ],
       "advanced": {}
     },
     {
@@ -682,17 +587,12 @@
         "max_async_connection": "4",
         "simplify_geometries": "true",
         "extent_cache": "auto",
-        "extent": "-607072.89,5713906.54,140649.73,6590288.74"
+        "extent": "-1363990,3994624,1824475,9411676"
       },
       "geometry": "point",
       "srs-name": "3857",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "extent": [
-        -5.100414904469789,
-        47.30250866358967,
-        -1.0188664104709804,
-        48.86564190473949
-      ],
+      "extent": [ -10, 34, 20, 70 ],
       "advanced": {}
     },
 
@@ -713,17 +613,12 @@
         "max_async_connection": "4",
         "simplify_geometries": "true",
         "extent_cache": "auto",
-        "extent": "-607072.89,5713906.54,140649.73,6590288.74"
+        "extent": "-1363990,3994624,1824475,9411676"
       },
       "geometry": "point",
       "srs-name": "3857",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "extent": [
-        -5.100414904469789,
-        47.30250866358967,
-        -1.0188664104709804,
-        48.86564190473949
-      ],
+      "extent": [ -10, 34, 20, 70 ],
       "advanced": {}
     },
     {
@@ -743,17 +638,12 @@
         "max_async_connection": "4",
         "simplify_geometries": "true",
         "extent_cache": "auto",
-        "extent": "-607072.89,5713906.54,140649.73,6590288.74"
+        "extent": "-1363990,3994624,1824475,9411676"
       },
       "geometry": "point",
       "srs-name": "3857",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "extent": [
-        -5.100414904469789,
-        47.30250866358967,
-        -1.0188664104709804,
-        48.86564190473949
-      ],
+      "extent": [ -10, 34, 20, 70 ],
       "advanced": {}
     },    
     {
@@ -773,17 +663,12 @@
         "max_async_connection": "4",
         "simplify_geometries": "true",
         "extent_cache": "auto",
-        "extent": "-607072.89,5713906.54,140649.73,6590288.74"
+        "extent": "-1363990,3994624,1824475,9411676"
       },
       "geometry": "point",
       "srs-name": "3857",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
-      "extent": [
-        -5.100414904469789,
-        47.30250866358967,
-        -1.0188664104709804,
-        48.86564190473949
-      ],
+      "extent": [ -10, 34, 20, 70 ],
       "advanced": {}
     }
 
