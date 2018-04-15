@@ -238,8 +238,8 @@
       "advanced": {}
     },
     {
-      "id": "waterarea_high",
-      "name": "waterarea_high",
+      "id": "waterarea_low",
+      "name": "waterarea_low",
       "class": "",
       "Datasource": {
         "type": "postgis",
