@@ -75,7 +75,7 @@
         "user": "osmbr",
         "password": "m4d31nbr31zh",
         "dbname": "osm",
-        "table": "( SELECT osm_id, way, way_area AS area  FROM planet_osm_polygon  WHERE landuse = 'forest' AND way_area > 100000 ) AS data",
+        "table": "( SELECT osm_id, way, way_area AS area  FROM planet_osm_polygon  WHERE landuse = 'forest' AND way_area > 5000000 ) AS data",
         "key_field": "osm_id",
         "geometry_field": "way",
         "asynchronous_request": "true",
