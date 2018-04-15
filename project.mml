@@ -95,7 +95,7 @@
         "user": "osmbr",
         "password": "m4d31nbr31zh",
         "dbname": "osm",
-        "table": "( SELECT osm_id, ST_Simplify(way, 20) AS way, way_area AS area, COALESCE(landuse, leisure, \"natural\", highway, amenity, tourism) AS type  FROM planet_osm_polygon  WHERE way_area > 100000 ) AS data",
+        "table": "( SELECT osm_id, way, way_area AS area, COALESCE(landuse, leisure, \"natural\", highway, amenity, tourism) AS type  FROM planet_osm_polygon  WHERE way_area > 100000 ) AS data",
         "key_field": "osm_id",
         "geometry_field": "way",
         "asynchronous_request": "true",
@@ -120,7 +120,7 @@
         "user": "osmbr",
         "password": "m4d31nbr31zh",
         "dbname": "osm",
-        "table": "( SELECT osm_id, ST_Simplify(way, 10) AS way, way_area AS area, COALESCE(landuse, leisure, \"natural\", highway, amenity, tourism) AS type  FROM planet_osm_polygon  WHERE way_area > 10000 ) AS data",
+        "table": "( SELECT osm_id, way, way_area AS area, COALESCE(landuse, leisure, \"natural\", highway, amenity, tourism) AS type  FROM planet_osm_polygon  WHERE way_area > 10000 ) AS data",
         "key_field": "osm_id",
         "geometry_field": "way",
         "asynchronous_request": "true",
@@ -161,7 +161,7 @@
       "advanced": {}
     },
 
-     {
+    {
       "id": "aeroway",
       "name": "aeroway",
       "class": "",
@@ -374,7 +374,7 @@
         "user": "osmbr",
         "password": "m4d31nbr31zh",
         "dbname": "osm",
-        "table": "( SELECT osm_id, ST_Simplify(way, 10) AS way, COALESCE(railway) AS type, tags->'usage'::text AS usage, tunnel, bridge FROM planet_osm_line  WHERE railway IN ('rail') AND tags->'usage'::text IN ('main', 'branch') ) AS data",
+        "table": "( SELECT osm_id, way, COALESCE(railway) AS type, tags->'usage'::text AS usage, tunnel, bridge FROM planet_osm_line  WHERE railway IN ('rail') AND tags->'usage'::text IN ('main', 'branch') ) AS data",
         "key_field": "osm_id",
         "geometry_field": "way",
         "asynchronous_request": "true",
