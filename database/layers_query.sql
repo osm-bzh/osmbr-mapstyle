@@ -1,4 +1,15 @@
-  
+
+-- big_forest
+SELECT osm_id, way, way_area AS area  FROM planet_osm_polygon  WHERE landuse = 'forest' AND way_area > 100000
+
+-- landuse_gen0
+SELECT osm_id, way, way_area AS area, COALESCE(landuse, leisure, "natural", highway, amenity, tourism) AS type  FROM planet_osm_polygon  WHERE way_area > 100000
+
+-- landuse_gen1
+SELECT osm_id, way, way_area AS area, COALESCE(landuse, leisure, "natural", highway, amenity, tourism) AS type  FROM planet_osm_polygon  WHERE way_area > 10000
+
+-- landuse
+SELECT osm_id, way, way_area AS area, COALESCE(landuse, leisure, "natural", highway, amenity, tourism) AS type  FROM planet_osm_polygon
 
 
 -- waterarea
@@ -120,7 +131,7 @@ SELECT osm_id, way, COALESCE(highway, railway) AS type, 0 AS tunnel, 0 AS bridge
 -- rail_low
 SELECT
   osm_id,
-  ST_Simplify(way, 10) AS way,
+  way,
   COALESCE(railway) AS type,
   tags->'usage'::text AS usage,
   tunnel,
