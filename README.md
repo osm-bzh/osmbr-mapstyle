@@ -39,11 +39,22 @@ cd /data/styles/br/
 
 ## Low scales datas
 
-Need 3 datas in /data/styles/data/ :
+Need 2 datas in /data/styles/data/ :
 
 * simplified-land-polygons-complete-3857/simplified_land_polygons.shp
 * land-polygons-split-3857/land_polygons.shp
-* z7.tif
+
+```
+cd /data/styles/data/
+
+wget http://data.openstreetmapdata.com/simplified-land-polygons-complete-3857.zip
+unzip simplified-land-polygons-complete-3857.zip
+
+wget http://data.openstreetmapdata.com/land-polygons-split-3857.zip
+unzip land-polygons-split-3857.zip
+
+wget 
+```
 
 
 ## The database
