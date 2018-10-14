@@ -53457,8 +53457,8 @@
     <Datasource>
       <Parameter name="type"><![CDATA[postgis]]></Parameter>
       <Parameter name="host"><![CDATA[db.openstreetmap.local]]></Parameter>
-      <Parameter name="user"><![CDATA[osm]]></Parameter>
-      <Parameter name="password"><![CDATA[osmbr]]></Parameter>
+      <Parameter name="user"><![CDATA[osmbr]]></Parameter>
+      <Parameter name="password"><![CDATA[m4d31nbr31zh]]></Parameter>
       <Parameter name="dbname"><![CDATA[osm]]></Parameter>
       <Parameter name="table"><![CDATA[( SELECT a.osm_id, a.name_br AS name, a.admin_level, a.admin_name, a.type, a.geometry  FROM admin_places a JOIN (SELECT osm_id, name_br, MAX(admin_level) AS admin_level FROM admin_places GROUP BY osm_id, name_br) b ON a.osm_id = b.osm_id AND a.admin_level = b.admin_level  WHERE a.name_br IS NOT NULL ORDER BY a.admin_level DESC, a.name_br ASC ) AS data]]></Parameter>
       <Parameter name="key_field"><![CDATA[osm_id]]></Parameter>
