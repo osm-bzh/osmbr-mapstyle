@@ -11,7 +11,7 @@ echo ""
 rm -f /data/dumps/*.pbf
 
 # on récupère le dernier dump Bretagne
-wget -O /data/dumps/france-latest.osm.pbf http://download.geofabrik.de/europe/france/bretagne-latest.osm.pbf
+wget -O /data/dumps/bretagne-latest.osm.pbf http://download.geofabrik.de/europe/france/bretagne-latest.osm.pbf
 
 echo ""
 echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
@@ -23,7 +23,7 @@ echo ""
 
 # on le decoupe selon un polygone
 # utiliser JOSM avec le plugin poly pour créer un fichier .poly
-osmconvert /data/dumps/france-latest.osm.pbf -B=/data/styles/data/bro_leon.poly --complete-ways -v -o=/data/dumps/bro_leon.osm.pbf
+osmconvert /data/dumps/bretagne-latest.osm.pbf -B=/data/styles/br/data/bro_leon.poly --complete-ways -v -o=/data/dumps/bro_leon.osm.pbf
 
 echo ""
 echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
