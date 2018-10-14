@@ -583,8 +583,8 @@
       "Datasource": {
         "type": "postgis",
         "host": "db.openstreetmap.local",
-        "user": "osm",
-        "password": "osmbr",
+        "user": "osmbr",
+        "password": "m4d31nbr31zh",
         "dbname": "osm",
         "table": "( SELECT a.osm_id, a.name_br AS name, a.admin_level, a.admin_name, a.type, a.geometry  FROM admin_places a JOIN (SELECT osm_id, name_br, MAX(admin_level) AS admin_level FROM admin_places GROUP BY osm_id, name_br) b ON a.osm_id = b.osm_id AND a.admin_level = b.admin_level  WHERE a.name_br IS NOT NULL ORDER BY a.admin_level DESC, a.name_br ASC ) AS data",
         "key_field": "osm_id",
