@@ -7,7 +7,7 @@
 Railway low
 */
 #rail_low {
-  [zoom>=5][zoom<=8] {
+  [zoom>=6][zoom<=8] {
 	 line-color: @rail_line;
 	 line-opacity: 0.5;
 	 line-width: 0.75;
@@ -28,7 +28,7 @@ Railway low
 /* At lower zoomlevels, just show major automobile routes: motorways
 and trunks. */
 
-#roads_low[zoom>=5][zoom<=8] {
+#roads_low[zoom>=6][zoom<=8] {
 	[type='motorway'] { line-color: @motorway_line; }
 	[type='trunk'] { line-color: @trunk_line; }
 
