@@ -2,6 +2,7 @@
 database/*
 test*
 osm-bright.osm2pgsql.mml
+tmp/*
 
 .thumb.png
 
