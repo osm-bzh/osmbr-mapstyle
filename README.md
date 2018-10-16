@@ -39,7 +39,7 @@ cd /data/styles/br/
 
 ## Low scales datas
 
-Need 2 datas in /data/styles/data/ :
+Need 2 layers in /data/styles/data/ :
 
 * simplified-land-polygons-complete-3857/simplified_land_polygons.shp
 * land-polygons-split-3857/land_polygons.shp
@@ -53,7 +53,11 @@ unzip simplified-land-polygons-complete-3857.zip
 wget http://data.openstreetmapdata.com/land-polygons-split-3857.zip
 unzip land-polygons-split-3857.zip
 
-wget 
+cd simplified-land-polygons-complete-3857
+shapeindex *.shp
+
+cd ../land-polygons-split-3857
+shapeindex *.shp
 ```
 
 
@@ -61,17 +65,17 @@ wget
 
 **We use the classic planet_osm database an tables** loaded by the famous osm2pgsql programm.
 
-In your ```/etc/hosts``` file, add an entry for **db.openstreetmap.local**, with the IP of your PostgreSQL database server.
+In your ```/etc/hosts``` file, add an entry for **db.openstreetmap.world**, with the IP of your PostgreSQL database server.
 
 
-Create the database and the 'osm' role : 
+Create the database and the 'osmbr' role : 
 
 ```bash
 # osm user
-psql -c "CREATE USER osm WITH LOGIN SUPERUSER PASSWORD 'osmbr';"
+psql -c "CREATE USER osm WITH LOGIN SUPERUSER PASSWORD 'm4d31nbr31zh';"
 
 # the database
-psql -c "CREATE DATABASE osm WITH OWNER = osm ENCODING = 'UTF8';"
+psql -c "CREATE DATABASE osm WITH OWNER = osmbr ENCODING = 'UTF8';"
 
 # 2 classic extensions for OSM
 psql -d osm -c "CREATE EXTENSION IF NOT EXISTS hstore;"
