@@ -18,7 +18,7 @@ Il est dérivé du style Lyrk que vous pouvez trouver ici : https://github.com/l
 
 ## unix user and clone this repository
 
-Create a user 'osm' on your server.
+Create a user 'osmbr' on your server.
 
 Create directories and clone this repository :
 
