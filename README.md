@@ -72,7 +72,7 @@ Create the database and the 'osmbr' role :
 
 ```bash
 # osm user
-psql -c "CREATE USER osm WITH LOGIN SUPERUSER PASSWORD 'm4d31nbr31zh';"
+psql -c "CREATE USER osmbr WITH LOGIN SUPERUSER PASSWORD 'm4d31nbr31zh';"
 
 # the database
 psql -c "CREATE DATABASE osm WITH OWNER = osmbr ENCODING = 'UTF8';"
