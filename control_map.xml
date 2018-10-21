@@ -5,7 +5,7 @@
     <Parameter name="bounds">-180,-85.0511,180,85.0511</Parameter>
     <Parameter name="center">-2.96,48.03,8</Parameter>
     <Parameter name="format"><![CDATA[png]]></Parameter>
-    <Parameter name="minzoom">0</Parameter>
+    <Parameter name="minzoom">10</Parameter>
     <Parameter name="maxzoom">18</Parameter>
     <Parameter name="scale">1</Parameter>
     <Parameter name="metatile">4</Parameter>
