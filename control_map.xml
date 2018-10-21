@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Map[]>
+<Map srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+  <Parameters>
+    <Parameter name="bounds">-180,-85.0511,180,85.0511</Parameter>
+    <Parameter name="center">-2.96,48.03,8</Parameter>
+    <Parameter name="format"><![CDATA[png]]></Parameter>
+    <Parameter name="minzoom">0</Parameter>
+    <Parameter name="maxzoom">18</Parameter>
+    <Parameter name="scale">1</Parameter>
+    <Parameter name="metatile">4</Parameter>
+    <Parameter name="name"><![CDATA[osmbr-control-map]]></Parameter>
+    <Parameter name="description"><![CDATA[osmbr-control-map]]></Parameter>
+  </Parameters>
+  <Style filter-mode="first" name="admin_boudaries" opacity="0.5">
+    <Rule>
+      <MaxScaleDenominator>6500000</MaxScaleDenominator>
+      <MinScaleDenominator>400000</MinScaleDenominator>
+      <LineSymbolizer stroke="#807c7f" stroke-width="0.1" />
+    </Rule>
+    <Rule>
+      <MinScaleDenominator>6500000</MinScaleDenominator>
+      <LineSymbolizer stroke="#807c7f" stroke-width="0" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>400000</MaxScaleDenominator>
+      <LineSymbolizer stroke="#807c7f" stroke-width="2" />
+    </Rule>
+  </Style>
+  <Layer name="admin_boudaries" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    <StyleName><![CDATA[admin_boudaries]]></StyleName>
+    <Datasource>
+      <Parameter name="type"><![CDATA[postgis]]></Parameter>
+      <Parameter name="host"><![CDATA[db.openstreetmap.world]]></Parameter>
+      <Parameter name="user"><![CDATA[osmbr]]></Parameter>
+      <Parameter name="password"><![CDATA[m4d31nbr31zh]]></Parameter>
+      <Parameter name="dbname"><![CDATA[osm]]></Parameter>
+      <Parameter name="table"><![CDATA[( SELECT osm_id, way FROM planet_osm_line WHERE admin_level = '8' AND boundary = 'administrative' ) AS data]]></Parameter>
+      <Parameter name="key_field"><![CDATA[osm_id]]></Parameter>
+      <Parameter name="geometry_field"><![CDATA[way]]></Parameter>
+      <Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+      <Parameter name="max_async_connection"><![CDATA[4]]></Parameter>
+      <Parameter name="simplify_geometries"><![CDATA[true]]></Parameter>
+      <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
+      <Parameter name="extent"><![CDATA[-1363990,3994624,1824475,9411676]]></Parameter>
+    </Datasource>
+  </Layer>
+  <Style filter-mode="first" name="places">
+    <Rule>
+      <MaxScaleDenominator>50000</MaxScaleDenominator>
+      <Filter><![CDATA[([check] = 'null')]]></Filter>
+      <MarkersSymbolizer fill="#a90825" stroke-opacity="0.75" width="10" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>100000</MaxScaleDenominator>
+      <MinScaleDenominator>50000</MinScaleDenominator>
+      <Filter><![CDATA[([check] = 'null')]]></Filter>
+      <MarkersSymbolizer fill="#a90825" stroke-opacity="0.6" width="8" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>200000</MaxScaleDenominator>
+      <MinScaleDenominator>100000</MinScaleDenominator>
+      <Filter><![CDATA[([check] = 'null')]]></Filter>
+      <MarkersSymbolizer fill="#a90825" stroke-opacity="0.3" width="6" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>400000</MaxScaleDenominator>
+      <MinScaleDenominator>200000</MinScaleDenominator>
+      <Filter><![CDATA[([check] = 'null')]]></Filter>
+      <MarkersSymbolizer fill="#a90825" stroke-opacity="0" width="4" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>750000</MaxScaleDenominator>
+      <MinScaleDenominator>400000</MinScaleDenominator>
+      <Filter><![CDATA[([check] = 'null')]]></Filter>
+      <MarkersSymbolizer fill="#a90825" stroke-opacity="0" width="2" />
+    </Rule>
+    <Rule>
+      <MinScaleDenominator>750000</MinScaleDenominator>
+      <Filter><![CDATA[([check] = 'null')]]></Filter>
+      <MarkersSymbolizer fill="#a90825" width="0" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>50000</MaxScaleDenominator>
+      <Filter><![CDATA[([check] = 'done')]]></Filter>
+      <MarkersSymbolizer fill="#3d9733" stroke-opacity="0.75" width="10" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>100000</MaxScaleDenominator>
+      <MinScaleDenominator>50000</MinScaleDenominator>
+      <Filter><![CDATA[([check] = 'done')]]></Filter>
+      <MarkersSymbolizer fill="#3d9733" stroke-opacity="0.6" width="8" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>200000</MaxScaleDenominator>
+      <MinScaleDenominator>100000</MinScaleDenominator>
+      <Filter><![CDATA[([check] = 'done')]]></Filter>
+      <MarkersSymbolizer fill="#3d9733" stroke-opacity="0.3" width="6" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>400000</MaxScaleDenominator>
+      <MinScaleDenominator>200000</MinScaleDenominator>
+      <Filter><![CDATA[([check] = 'done')]]></Filter>
+      <MarkersSymbolizer fill="#3d9733" stroke-opacity="0" width="4" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>750000</MaxScaleDenominator>
+      <MinScaleDenominator>400000</MinScaleDenominator>
+      <Filter><![CDATA[([check] = 'done')]]></Filter>
+      <MarkersSymbolizer fill="#3d9733" stroke-opacity="0" width="2" />
+    </Rule>
+    <Rule>
+      <MinScaleDenominator>750000</MinScaleDenominator>
+      <Filter><![CDATA[([check] = 'done')]]></Filter>
+      <MarkersSymbolizer fill="#3d9733" width="0" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>50000</MaxScaleDenominator>
+      <MarkersSymbolizer stroke-opacity="0.75" width="10" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>100000</MaxScaleDenominator>
+      <MinScaleDenominator>50000</MinScaleDenominator>
+      <MarkersSymbolizer stroke-opacity="0.6" width="8" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>200000</MaxScaleDenominator>
+      <MinScaleDenominator>100000</MinScaleDenominator>
+      <MarkersSymbolizer stroke-opacity="0.3" width="6" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>400000</MaxScaleDenominator>
+      <MinScaleDenominator>200000</MinScaleDenominator>
+      <MarkersSymbolizer stroke-opacity="0" width="4" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>750000</MaxScaleDenominator>
+      <MinScaleDenominator>400000</MinScaleDenominator>
+      <MarkersSymbolizer stroke-opacity="0" width="2" />
+    </Rule>
+    <Rule>
+      <MinScaleDenominator>750000</MinScaleDenominator>
+      <MarkersSymbolizer width="0" />
+    </Rule>
+  </Style>
+  <Layer name="places" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    <StyleName><![CDATA[places]]></StyleName>
+    <Datasource>
+      <Parameter name="type"><![CDATA[postgis]]></Parameter>
+      <Parameter name="host"><![CDATA[db.openstreetmap.world]]></Parameter>
+      <Parameter name="user"><![CDATA[osmbr]]></Parameter>
+      <Parameter name="password"><![CDATA[m4d31nbr31zh]]></Parameter>
+      <Parameter name="dbname"><![CDATA[osm]]></Parameter>
+      <Parameter name="table"><![CDATA[( SELECT  a.osm_id, a.name, b.local_name, CASE WHEN b.local_name IS NULL THEN 'null' ELSE 'done' END AS check, a.way  FROM planet_osm_point a FULL JOIN  ( SELECT osm_id, tags -> 'name:br' AS local_name FROM planet_osm_point  WHERE (tags -> 'name:br'::text IS NOT NULL) ) AS b ON a.osm_id = b.osm_id WHERE name IS NOT NULL AND place IS NOT NULL ) AS data]]></Parameter>
+      <Parameter name="key_field"><![CDATA[osm_id]]></Parameter>
+      <Parameter name="geometry_field"><![CDATA[way]]></Parameter>
+      <Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+      <Parameter name="max_async_connection"><![CDATA[4]]></Parameter>
+      <Parameter name="simplify_geometries"><![CDATA[true]]></Parameter>
+      <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
+      <Parameter name="extent"><![CDATA[-1363990,3994624,1824475,9411676]]></Parameter>
+    </Datasource>
+  </Layer>
+  <Style filter-mode="first" name="ways">
+    <Rule>
+      <MaxScaleDenominator>50000</MaxScaleDenominator>
+      <Filter><![CDATA[([check] = 'null')]]></Filter>
+      <LineSymbolizer stroke="#a90825" stroke-width="2.5" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>100000</MaxScaleDenominator>
+      <MinScaleDenominator>50000</MinScaleDenominator>
+      <Filter><![CDATA[([check] = 'null')]]></Filter>
+      <LineSymbolizer stroke="#a90825" stroke-width="1.5" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>200000</MaxScaleDenominator>
+      <MinScaleDenominator>100000</MinScaleDenominator>
+      <Filter><![CDATA[([check] = 'null')]]></Filter>
+      <LineSymbolizer stroke="#a90825" stroke-width="1" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>400000</MaxScaleDenominator>
+      <MinScaleDenominator>200000</MinScaleDenominator>
+      <Filter><![CDATA[([check] = 'null')]]></Filter>
+      <LineSymbolizer stroke="#a90825" stroke-width="0.5" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>750000</MaxScaleDenominator>
+      <MinScaleDenominator>400000</MinScaleDenominator>
+      <Filter><![CDATA[([check] = 'null')]]></Filter>
+      <LineSymbolizer stroke="#a90825" stroke-width="0.2" />
+    </Rule>
+    <Rule>
+      <MinScaleDenominator>750000</MinScaleDenominator>
+      <Filter><![CDATA[([check] = 'null')]]></Filter>
+      <LineSymbolizer stroke="#a90825" stroke-width="0" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>50000</MaxScaleDenominator>
+      <Filter><![CDATA[([check] = 'done')]]></Filter>
+      <LineSymbolizer stroke="#3d9733" stroke-width="2.5" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>100000</MaxScaleDenominator>
+      <MinScaleDenominator>50000</MinScaleDenominator>
+      <Filter><![CDATA[([check] = 'done')]]></Filter>
+      <LineSymbolizer stroke="#3d9733" stroke-width="1.5" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>200000</MaxScaleDenominator>
+      <MinScaleDenominator>100000</MinScaleDenominator>
+      <Filter><![CDATA[([check] = 'done')]]></Filter>
+      <LineSymbolizer stroke="#3d9733" stroke-width="1" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>400000</MaxScaleDenominator>
+      <MinScaleDenominator>200000</MinScaleDenominator>
+      <Filter><![CDATA[([check] = 'done')]]></Filter>
+      <LineSymbolizer stroke="#3d9733" stroke-width="0.5" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>750000</MaxScaleDenominator>
+      <MinScaleDenominator>400000</MinScaleDenominator>
+      <Filter><![CDATA[([check] = 'done')]]></Filter>
+      <LineSymbolizer stroke="#3d9733" stroke-width="0.2" />
+    </Rule>
+    <Rule>
+      <MinScaleDenominator>750000</MinScaleDenominator>
+      <Filter><![CDATA[([check] = 'done')]]></Filter>
+      <LineSymbolizer stroke="#3d9733" stroke-width="0" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>50000</MaxScaleDenominator>
+      <LineSymbolizer stroke-width="2.5" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>100000</MaxScaleDenominator>
+      <MinScaleDenominator>50000</MinScaleDenominator>
+      <LineSymbolizer stroke-width="1.5" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>200000</MaxScaleDenominator>
+      <MinScaleDenominator>100000</MinScaleDenominator>
+      <LineSymbolizer stroke-width="1" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>400000</MaxScaleDenominator>
+      <MinScaleDenominator>200000</MinScaleDenominator>
+      <LineSymbolizer stroke-width="0.5" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>750000</MaxScaleDenominator>
+      <MinScaleDenominator>400000</MinScaleDenominator>
+      <LineSymbolizer stroke-width="0.2" />
+    </Rule>
+    <Rule>
+      <MinScaleDenominator>750000</MinScaleDenominator>
+      <LineSymbolizer stroke-width="0" />
+    </Rule>
+  </Style>
+  <Layer name="ways" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    <StyleName><![CDATA[ways]]></StyleName>
+    <Datasource>
+      <Parameter name="type"><![CDATA[postgis]]></Parameter>
+      <Parameter name="host"><![CDATA[db.openstreetmap.world]]></Parameter>
+      <Parameter name="user"><![CDATA[osmbr]]></Parameter>
+      <Parameter name="password"><![CDATA[m4d31nbr31zh]]></Parameter>
+      <Parameter name="dbname"><![CDATA[osm]]></Parameter>
+      <Parameter name="table"><![CDATA[( SELECT  a.osm_id, a.name, b.local_name, CASE WHEN b.local_name IS NULL THEN 'null' ELSE 'done' END AS check, a.way  FROM planet_osm_line a FULL JOIN  ( SELECT osm_id, tags -> 'name:br' AS local_name FROM planet_osm_line  WHERE (tags -> 'name:br'::text IS NOT NULL) ) AS b ON a.osm_id = b.osm_id WHERE name IS NOT NULL AND highway IS NOT NULL ) AS data]]></Parameter>
+      <Parameter name="key_field"><![CDATA[osm_id]]></Parameter>
+      <Parameter name="geometry_field"><![CDATA[way]]></Parameter>
+      <Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+      <Parameter name="max_async_connection"><![CDATA[4]]></Parameter>
+      <Parameter name="simplify_geometries"><![CDATA[true]]></Parameter>
+      <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
+      <Parameter name="extent"><![CDATA[-1363990,3994624,1824475,9411676]]></Parameter>
+    </Datasource>
+  </Layer>
+</Map>
+

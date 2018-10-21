@@ -132,7 +132,7 @@ WHERE name IS NOT NULL AND highway IS NOT NULL
   ],
   "scale": 1,
   "metatile": 4,
-  "name": "osmbr-mapstyle",
-  "description": "osmbr-mapstyle",
+  "name": "osmbr-control-map",
+  "description": "osmbr-control-map",
   "attribution": ""
 }
