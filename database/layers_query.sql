@@ -295,6 +295,45 @@ ORDER BY z_order ;
 SELECT osm_id, COALESCE(tags -> 'name:br'::text) as name, place as type, admin_level, COALESCE(tags->'is_capital'::text) as is_capital, z_order, way  FROM planet_osm_point  WHERE (tags -> 'name:br'::text IS NOT NULL) ORDER BY z_order
 
 
+
+-- check place localization
+SELECT 
+  a.osm_id, a.name, b.name_br,
+  CASE
+    WHEN b.name_br IS NULL THEN 'null'
+    ELSE 'done'
+  END AS check,
+  a.way 
+FROM planet_osm_point a
+FULL JOIN 
+(
+  SELECT osm_id, tags -> 'name:br' AS name_br
+  FROM planet_osm_point 
+  WHERE (tags -> 'name:br'::text IS NOT NULL)
+) AS b ON a.osm_id = b.osm_id
+WHERE name IS NOT NULL AND place IS NOT NULL
+
+-- check way localization
+SELECT 
+  a.osm_id, a.name, b.name_br,
+  CASE
+    WHEN b.name_br IS NULL THEN 'null'
+    ELSE 'done'
+  END AS check,
+  a.way 
+FROM planet_osm_line a
+FULL JOIN 
+(
+  SELECT osm_id, tags -> 'name:br' AS name_br
+  FROM planet_osm_line 
+  WHERE (tags -> 'name:br'::text IS NOT NULL)
+) AS b ON a.osm_id = b.osm_id
+WHERE name IS NOT NULL AND highway IS NOT NULL
+
+
+
+
+
 -- =======================================================================
 
 -- QGIS check for unique key
