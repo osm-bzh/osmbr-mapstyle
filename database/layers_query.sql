@@ -298,16 +298,16 @@ SELECT osm_id, COALESCE(tags -> 'name:br'::text) as name, place as type, admin_l
 
 -- check place localization
 SELECT 
-  a.osm_id, a.name, b.name_br,
+  a.osm_id, a.name, b.local_name,
   CASE
-    WHEN b.name_br IS NULL THEN 'null'
+    WHEN b.local_name IS NULL THEN 'null'
     ELSE 'done'
   END AS check,
   a.way 
 FROM planet_osm_point a
 FULL JOIN 
 (
-  SELECT osm_id, tags -> 'name:br' AS name_br
+  SELECT osm_id, tags -> 'name:br' AS local_name
   FROM planet_osm_point 
   WHERE (tags -> 'name:br'::text IS NOT NULL)
 ) AS b ON a.osm_id = b.osm_id
@@ -315,16 +315,16 @@ WHERE name IS NOT NULL AND place IS NOT NULL
 
 -- check way localization
 SELECT 
-  a.osm_id, a.name, b.name_br,
+  a.osm_id, a.name, b.local_name,
   CASE
-    WHEN b.name_br IS NULL THEN 'null'
+    WHEN b.local_name IS NULL THEN 'null'
     ELSE 'done'
   END AS check,
   a.way 
 FROM planet_osm_line a
 FULL JOIN 
 (
-  SELECT osm_id, tags -> 'name:br' AS name_br
+  SELECT osm_id, tags -> 'name:br' AS local_name
   FROM planet_osm_line 
   WHERE (tags -> 'name:br'::text IS NOT NULL)
 ) AS b ON a.osm_id = b.osm_id
