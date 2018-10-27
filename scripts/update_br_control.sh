@@ -11,17 +11,17 @@ echo "  deleting old tiles"
 date
 echo ""
 
-rm -rf /data/tiles/br/10/
-rm -rf /data/tiles/br/11/
-rm -rf /data/tiles/br/12/
-rm -rf /data/tiles/br/13/
-rm -rf /data/tiles/br/14/
-rm -rf /data/tiles/br/15/
-rm -rf /data/tiles/br/16/
-rm -rf /data/tiles/br/17/
-rm -rf /data/tiles/br/18/
-rm -rf /data/tiles/br/19/
-rm -rf /data/tiles/br/20/
+rm -rf /data/tiles/br_control/10/
+rm -rf /data/tiles/br_control/11/
+rm -rf /data/tiles/br_control/12/
+rm -rf /data/tiles/br_control/13/
+rm -rf /data/tiles/br_control/14/
+rm -rf /data/tiles/br_control/15/
+rm -rf /data/tiles/br_control/16/
+rm -rf /data/tiles/br_control/17/
+rm -rf /data/tiles/br_control/18/
+rm -rf /data/tiles/br_control/19/
+rm -rf /data/tiles/br_control/20/
 
 
 echo "--------------------------------"
