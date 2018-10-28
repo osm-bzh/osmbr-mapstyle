@@ -226,18 +226,6 @@ ORDER BY admin_level DESC
 SELECT  b.way::geometry(LineString,3857) AS way, admin_level::integer AS admin_level, coalesce(b.tags->'maritime','no') AS maritime, count(r.*)::integer AS nb, string_agg(id::text,',') AS rels  FROM planet_osm_roads b  LEFT JOIN planet_osm_rels r ON (r.parts @> ARRAY[osm_id] AND r.members @> ARRAY['w' || osm_id] AND regexp_replace(r.tags::text,'[{}]',',') ~ format('(,admin_level,%s.*,boundary,administrative|,boundary,administrative.*,admin_level,%s,)',admin_level,admin_level))  WHERE boundary='administrative' AND admin_level IS NOT NULL  GROUP BY 1,2,3  ORDER BY admin_level DESC
 
 
--- admin_places (vue matérialisée)
--- permet d'avoir le admin_level max d'une ville, sans doublon
-SELECT a.osm_id, a.name_br AS name, a.admin_level, a.admin_name, a.type, a.geometry
-FROM admin_places a 
-  JOIN (SELECT osm_id, name_br, MAX(admin_level) AS admin_level FROM admin_places GROUP BY osm_id, name_br) b 
-  ON a.osm_id = b.osm_id AND a.admin_level = b.admin_level 
-WHERE a.name_br IS NOT NULL
-ORDER BY a.admin_level DESC, a.name_br ASC 
-
-SELECT a.osm_id, a.name_br AS name, a.admin_level, a.admin_name, a.type, a.geometry  FROM admin_places a JOIN (SELECT osm_id, name_br, MAX(admin_level) AS admin_level FROM admin_places GROUP BY osm_id, name_br) b ON a.osm_id = b.osm_id AND a.admin_level = b.admin_level  WHERE a.name_br IS NOT NULL ORDER BY a.admin_level DESC, a.name_br ASC 
-
-
 -- motorway_label
 SELECT
   osm_id,
@@ -293,6 +281,100 @@ WHERE (tags -> 'name:br'::text IS NOT NULL)
 ORDER BY z_order ;
 
 SELECT osm_id, COALESCE(tags -> 'name:br'::text) as name, place as type, admin_level, COALESCE(tags->'is_capital'::text) as is_capital, z_order, way  FROM planet_osm_point  WHERE (tags -> 'name:br'::text IS NOT NULL) ORDER BY z_order
+
+
+
+
+-- admin_places
+-- on part de la table planet_osm_point qui contient la géométrie
+-- et on fait une jointure sur
+--   la jointure de la requête sans doublons
+--   avec la requête avec doublons MAIS admin_level
+SELECT
+    p.osm_id, p.way, COALESCE(p.tags -> 'name:br'::text,'???') as name, p.place as type,
+    sub_admin.admin_level, sub_admin.admin_name
+FROM planet_osm_point AS p
+JOIN
+(
+    SELECT sub_unique.admin_centre_id, sub_unique.admin_level, sub_duplicate.admin_name
+    FROM
+    (
+        -- table sans les niveaux dupliqués : on garde le plus élevé
+        SELECT
+          sub1.admin_centre_id, MAX(sub1.admin_level) AS admin_level
+        FROM
+        (
+        -- table avec tous les niveaux administratifs cumulés 
+            -- préfectures
+            SELECT
+              substring((regexp_matches(members::text, 'n[0-9]*')::text) from 3 for (char_length(regexp_matches(members::text, 'n[0-9]*')::text))-3)::bigint as admin_centre_id,
+              '4' as admin_level
+            FROM planet_osm_rels WHERE tags::text ~ 'admin_level,6'
+            UNION
+            -- sous-préfectures
+            SELECT
+              substring((regexp_matches(members::text, 'n[0-9]*')::text) from 3 for (char_length(regexp_matches(members::text, 'n[0-9]*')::text))-3)::bigint as admin_centre_id,
+              '3' as admin_level
+            FROM planet_osm_rels WHERE tags::text ~ 'admin_level,7'
+            UNION
+            -- chefs-lieux de canton
+            SELECT
+              substring((regexp_matches(members::text, 'n[0-9]*')::text) from 3 for (char_length(regexp_matches(members::text, 'n[0-9]*')::text))-3)::bigint as admin_centre_id,
+              '2' as admin_level
+            FROM planet_osm_rels WHERE tags::text ~ 'political_division,canton'
+            UNION
+            -- communes
+            SELECT
+              substring((regexp_matches(members::text, 'n[0-9]*')::text) from 3 for (char_length(regexp_matches(members::text, 'n[0-9]*')::text))-3)::bigint as admin_centre_id,
+              '1' as admin_level
+            FROM planet_osm_rels WHERE tags::text ~ 'admin_level,8'
+        ) AS sub1 
+        GROUP BY sub1.admin_centre_id
+    ) AS sub_unique
+    LEFT JOIN
+    (
+        SELECT 
+            sub2.admin_centre_id, sub2.admin_level, sub2.admin_name
+        FROM
+        (
+        -- table avec tous les niveaux administratifs cumulés 
+            -- préfectures
+            SELECT
+              substring((regexp_matches(members::text, 'n[0-9]*')::text) from 3 for (char_length(regexp_matches(members::text, 'n[0-9]*')::text))-3)::bigint as admin_centre_id,
+              '4' as admin_level,
+              'préfecture' as admin_name
+            FROM planet_osm_rels WHERE tags::text ~ 'admin_level,6'
+            UNION
+            -- sous-préfectures
+            SELECT
+              substring((regexp_matches(members::text, 'n[0-9]*')::text) from 3 for (char_length(regexp_matches(members::text, 'n[0-9]*')::text))-3)::bigint as admin_centre_id,
+              '3' as admin_level,
+              'sous-préfecture' as admin_name
+            FROM planet_osm_rels WHERE tags::text ~ 'admin_level,7'
+            UNION
+            -- chefs-lieux de canton
+            SELECT
+              substring((regexp_matches(members::text, 'n[0-9]*')::text) from 3 for (char_length(regexp_matches(members::text, 'n[0-9]*')::text))-3)::bigint as admin_centre_id,
+              '2' as admin_level,
+              'chef-lieu de canton' as admin_name
+            FROM planet_osm_rels WHERE tags::text ~ 'political_division,canton'
+            UNION
+            -- communes
+            SELECT
+              substring((regexp_matches(members::text, 'n[0-9]*')::text) from 3 for (char_length(regexp_matches(members::text, 'n[0-9]*')::text))-3)::bigint as admin_centre_id,
+              '1' as admin_level,
+              'commune' as admin_name
+            FROM planet_osm_rels WHERE tags::text ~ 'admin_level,8'
+        ) AS sub2
+    ) AS sub_duplicate
+    -- le critère de jointure
+    ON sub_unique.admin_centre_id = sub_duplicate.admin_centre_id AND sub_unique.admin_level = sub_duplicate.admin_level
+) AS sub_admin
+ON p.osm_id = sub_admin.admin_centre_id
+
+SELECT p.osm_id, p.way, COALESCE(p.tags -> 'name:br'::text,'???') as name, p.place as type, sub_admin.admin_level, sub_admin.admin_name FROM planet_osm_point AS p JOIN (SELECT sub_unique.admin_centre_id, sub_unique.admin_level, sub_duplicate.admin_name FROM (SELECT sub1.admin_centre_id, MAX(sub1.admin_level) AS admin_level FROM (SELECT substring((regexp_matches(members::text, 'n[0-9]*')::text) from 3 for (char_length(regexp_matches(members::text, 'n[0-9]*')::text))-3)::bigint as admin_centre_id, '4' as admin_level FROM planet_osm_rels WHERE tags::text ~ 'admin_level,6'UNION SELECT substring((regexp_matches(members::text, 'n[0-9]*')::text) from 3 for (char_length(regexp_matches(members::text, 'n[0-9]*')::text))-3)::bigint as admin_centre_id, '3' as admin_level FROM planet_osm_rels WHERE tags::text ~ 'admin_level,7'UNION SELECT substring((regexp_matches(members::text, 'n[0-9]*')::text) from 3 for (char_length(regexp_matches(members::text, 'n[0-9]*')::text))-3)::bigint as admin_centre_id, '2' as admin_level FROM planet_osm_rels WHERE tags::text ~ 'political_division,canton'UNION SELECT substring((regexp_matches(members::text, 'n[0-9]*')::text) from 3 for (char_length(regexp_matches(members::text, 'n[0-9]*')::text))-3)::bigint as admin_centre_id, '1' as admin_level FROM planet_osm_rels WHERE tags::text ~ 'admin_level,8') AS sub1 GROUP BY sub1.admin_centre_id ) AS sub_unique LEFT JOIN (SELECT sub2.admin_centre_id, sub2.admin_level, sub2.admin_name FROM (SELECT substring((regexp_matches(members::text, 'n[0-9]*')::text) from 3 for (char_length(regexp_matches(members::text, 'n[0-9]*')::text))-3)::bigint as admin_centre_id, '4' as admin_level, 'préfecture' as admin_name FROM planet_osm_rels WHERE tags::text ~ 'admin_level,6'UNION SELECT substring((regexp_matches(members::text, 'n[0-9]*')::text) from 3 for (char_length(regexp_matches(members::text, 'n[0-9]*')::text))-3)::bigint as admin_centre_id, '3' as admin_level, 'sous-préfecture' as admin_name FROM planet_osm_rels WHERE tags::text ~ 'admin_level,7'UNION SELECT substring((regexp_matches(members::text, 'n[0-9]*')::text) from 3 for (char_length(regexp_matches(members::text, 'n[0-9]*')::text))-3)::bigint as admin_centre_id, '2' as admin_level, 'chef-lieu de canton' as admin_name FROM planet_osm_rels WHERE tags::text ~ 'political_division,canton'UNION SELECT substring((regexp_matches(members::text, 'n[0-9]*')::text) from 3 for (char_length(regexp_matches(members::text, 'n[0-9]*')::text))-3)::bigint as admin_centre_id, '1' as admin_level, 'commune' as admin_name FROM planet_osm_rels WHERE tags::text ~ 'admin_level,8') AS sub2 ) AS sub_duplicate ON sub_unique.admin_centre_id = sub_duplicate.admin_centre_id AND sub_unique.admin_level = sub_duplicate.admin_level ) AS sub_admin ON p.osm_id = sub_admin.admin_centre_id
+
+
 
 
 

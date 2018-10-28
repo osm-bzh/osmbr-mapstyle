@@ -576,22 +576,24 @@
       "extent": [ -10, 34, 20, 70 ],
       "advanced": {}
     },
+
     {
       "id": "admin_place",
       "name": "admin_place",
       "class": "",
       "Datasource": {
         "type": "postgis",
-        "host": "db.openstreetmap.local",
+        "host": "db.openstreetmap.world",
         "user": "osmbr",
         "password": "m4d31nbr31zh",
         "dbname": "osm",
-        "table": "( SELECT a.osm_id, a.name_br AS name, a.admin_level, a.admin_name, a.type, a.geometry  FROM admin_places a JOIN (SELECT osm_id, name_br, MAX(admin_level) AS admin_level FROM admin_places GROUP BY osm_id, name_br) b ON a.osm_id = b.osm_id AND a.admin_level = b.admin_level  WHERE a.name_br IS NOT NULL ORDER BY a.admin_level DESC, a.name_br ASC ) AS data",
+        "table": "( SELECT p.osm_id, p.way, COALESCE(p.tags -> 'name:br'::text,'???') as name, p.place as type, sub_admin.admin_level, sub_admin.admin_name FROM planet_osm_point AS p JOIN (SELECT sub_unique.admin_centre_id, sub_unique.admin_level, sub_duplicate.admin_name FROM (SELECT sub1.admin_centre_id, MAX(sub1.admin_level) AS admin_level FROM (SELECT substring((regexp_matches(members::text, 'n[0-9]*')::text) from 3 for (char_length(regexp_matches(members::text, 'n[0-9]*')::text))-3)::bigint as admin_centre_id, '4' as admin_level FROM planet_osm_rels WHERE tags::text ~ 'admin_level,6'UNION SELECT substring((regexp_matches(members::text, 'n[0-9]*')::text) from 3 for (char_length(regexp_matches(members::text, 'n[0-9]*')::text))-3)::bigint as admin_centre_id, '3' as admin_level FROM planet_osm_rels WHERE tags::text ~ 'admin_level,7'UNION SELECT substring((regexp_matches(members::text, 'n[0-9]*')::text) from 3 for (char_length(regexp_matches(members::text, 'n[0-9]*')::text))-3)::bigint as admin_centre_id, '2' as admin_level FROM planet_osm_rels WHERE tags::text ~ 'political_division,canton'UNION SELECT substring((regexp_matches(members::text, 'n[0-9]*')::text) from 3 for (char_length(regexp_matches(members::text, 'n[0-9]*')::text))-3)::bigint as admin_centre_id, '1' as admin_level FROM planet_osm_rels WHERE tags::text ~ 'admin_level,8') AS sub1 GROUP BY sub1.admin_centre_id ) AS sub_unique LEFT JOIN (SELECT sub2.admin_centre_id, sub2.admin_level, sub2.admin_name FROM (SELECT substring((regexp_matches(members::text, 'n[0-9]*')::text) from 3 for (char_length(regexp_matches(members::text, 'n[0-9]*')::text))-3)::bigint as admin_centre_id, '4' as admin_level, 'préfecture' as admin_name FROM planet_osm_rels WHERE tags::text ~ 'admin_level,6'UNION SELECT substring((regexp_matches(members::text, 'n[0-9]*')::text) from 3 for (char_length(regexp_matches(members::text, 'n[0-9]*')::text))-3)::bigint as admin_centre_id, '3' as admin_level, 'sous-préfecture' as admin_name FROM planet_osm_rels WHERE tags::text ~ 'admin_level,7'UNION SELECT substring((regexp_matches(members::text, 'n[0-9]*')::text) from 3 for (char_length(regexp_matches(members::text, 'n[0-9]*')::text))-3)::bigint as admin_centre_id, '2' as admin_level, 'chef-lieu de canton' as admin_name FROM planet_osm_rels WHERE tags::text ~ 'political_division,canton'UNION SELECT substring((regexp_matches(members::text, 'n[0-9]*')::text) from 3 for (char_length(regexp_matches(members::text, 'n[0-9]*')::text))-3)::bigint as admin_centre_id, '1' as admin_level, 'commune' as admin_name FROM planet_osm_rels WHERE tags::text ~ 'admin_level,8') AS sub2 ) AS sub_duplicate ON sub_unique.admin_centre_id = sub_duplicate.admin_centre_id AND sub_unique.admin_level = sub_duplicate.admin_level ) AS sub_admin ON p.osm_id = sub_admin.admin_centre_id ) AS data",
         "key_field": "osm_id",
-        "geometry_field": "geometry",
+        "geometry_table": "planet_osm_point",
+        "geometry_field": "way",
         "asynchronous_request": "true",
         "max_async_connection": "4",
-        "simplify_geometries": "true",
+        "simplify_geometries": "false",
         "extent_cache": "auto",
         "extent": "-1363990,3994624,1824475,9411676"
       },
@@ -601,7 +603,7 @@
       "extent": [ -10, 34, 20, 70 ],
       "advanced": {}
     },
-
+    
     {
       "id": "motorway_label",
       "name": "motorway_label",
