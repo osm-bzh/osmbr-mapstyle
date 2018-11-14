@@ -51,8 +51,8 @@
 /* PLACE NAMES  for zoom < 13 -> admin_place
 /* ================================================================== */
 
-/* ---- Big cities ------------------------------------------------------ */
-#admin_place [type='city'] [zoom>=6][zoom<13] {
+/* ---- Big cities -------------------------------------------------- */
+#admin_place [type='city'][admin_level>=3][zoom>=6][zoom<13] {
     text-name: '[name]';
     text-face-name: @sans_bold;
     text-placement: point;
@@ -91,9 +91,9 @@
 }
 
 
-/* ---- Regional cities ------------------------------------------------------ */
+/* ---- Regional cities --------------------------------------------- */
 /* France = préfectures */
-#admin_place [admin_level='4'][type!='city'][zoom>=7][zoom<13] {
+#admin_place [admin_level=4][type!='city'][zoom>=7][zoom<13] {
     text-name: '[name]';
     text-face-name: @sans;
     text-placement: point;
@@ -105,32 +105,33 @@
     text-allow-overlap: true;
 
     [zoom=7] {
-        text-size: 12;
+        text-size: 10;
     }
     [zoom=8] {
-        text-size: 14;
+        text-size: 12;
     }
     [zoom=9] {
-        text-size: 16;
+        text-size: 14;
     }
     [zoom=10] {
-        text-size: 18;
+        text-size: 16;
         text-face-name: @sans_bold;
     }
     [zoom=11] {
-        text-size: 20;
+        text-size: 18;
         text-face-name: @sans_bold;
     }
     [zoom=12] {
-        text-size: 24;
+        text-size: 22;
         text-face-name: @sans_bold;
         text-character-spacing: 1.5;
     }
 }
 
-/* ---- Minor cities ------------------------------------------------------ */
+
+/* ---- Minor cities ------------------------------------------------ */
 /* France = sous-préfectures */
-#admin_place [admin_level='3'][type!='city'][zoom>=8][zoom<13] {
+#admin_place [admin_level=3][type!='city'][zoom>=8][zoom<13] {
     text-name: '[name]';
     text-face-name: @sans;
     text-placement: point;
@@ -163,14 +164,14 @@
 }
 
 /* France = chef-lieu de canton */
-#admin_place [admin_level='2'][type!='city'][zoom>=9][zoom<13] {
+#admin_place [admin_level=2][type!='city'][zoom>=9][zoom<13] {
     text-name: '[name]';
     text-face-name: @sans;
     text-placement: point;
     text-fill: @town_text;
     text-halo-fill: @town_halo;
     text-halo-radius: 1.5;
-    text-wrap-width: 50;
+    text-wrap-width: 25;
     text-placement-type: simple;
     text-placements: "N,S,E,W,NE,SE,NW,SW,16,14,12";
     text-dy: 3;
@@ -186,18 +187,20 @@
     [zoom=11] {
         text-size: 14;
         text-face-name: @sans_bold;
+        text-wrap-width: 50;
     }
     [zoom=12] {
         text-size: 17;
         text-face-name: @sans;
         text-line-spacing: 1;
+        text-wrap-width: 50;
     }
 }
 
 
-/* ---- Town / village / municipality ------------------------------------------------------ */
+/* ---- Town / village / municipality ------------------------------- */
 /* France = commune */
-#admin_place [admin_level='1'][type!='city'][zoom>=10][zoom<13] {
+#admin_place [admin_level=1][type!='city'][zoom>=10][zoom<13] {
     text-name: '[name]';
     text-face-name: @sans;
     text-placement: point;
