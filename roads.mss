@@ -34,7 +34,6 @@ and trunks. */
 
 	[zoom=5] {
 		[type='motorway'] { line-width: 0.4; }
-		[type='trunk'] { line-width: 0.2; }
 	}
 	[zoom=6] {
 		[type='motorway'] { line-width: 0.5; }
@@ -43,7 +42,6 @@ and trunks. */
 	[zoom=7] {
 		[type='motorway'] { line-width: 0.9; }
 		[type='trunk'] { line-width: 0.6; }
-		[type='primary'] { line-width: 0.3; line-color: @primary_line }
 	}
 	[zoom=8] {
 		[type='motorway'] { line-width: 1.4; }
