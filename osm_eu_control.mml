@@ -1,0 +1,134 @@
+{
+  "bounds": [
+    -180,
+    -85.0511,
+    180,
+    85.0511
+  ],
+  "center": [
+    -2.96,
+    48.03,
+    8
+  ],
+  "format": "png",
+  "interactivity": false,
+  "minzoom": 10,
+  "maxzoom": 18,
+  "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+  "Stylesheet": [
+    "control_map.mss"
+  ],
+  "Layer": [
+
+
+    {
+      "id": "land_high",
+      "name": "land_high",
+      "class": "shp",
+      "Datasource": {
+        "file": "/data/styles/data/land-polygons-split-3857/land_polygons.shp",
+        "type": "shape",
+        "srid": "3857"
+      },
+      "geometry": "polygon",
+      "srs-name": "3857",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "extent": [
+        -180,
+        -85.051,
+        180,
+        83.6664731
+      ],
+      "advanced": {}
+    },
+
+    {
+      "id": "places",
+      "class": "",
+      "Datasource": {
+        "type": "postgis",
+        "host": "db.openstreetmap.world",
+        "user": "osmbr",
+        "password": "m4d31nbr31zh",
+        "dbname": "osm",
+        "table": "(
+SELECT 
+  a.osm_id, a.name, b.local_name,
+  CASE
+    WHEN b.local_name IS NULL THEN 'null'
+    ELSE 'done'
+  END AS check,
+  a.way 
+FROM planet_osm_point a
+FULL JOIN 
+(
+  SELECT osm_id, tags -> 'name:eu' AS local_name
+  FROM planet_osm_point 
+  WHERE (tags -> 'name:eu'::text IS NOT NULL)
+) AS b ON a.osm_id = b.osm_id
+WHERE name IS NOT NULL AND place IS NOT NULL
+        ) AS data",
+        "key_field": "osm_id",
+        "geometry_field": "way",
+        "asynchronous_request": "true",
+        "max_async_connection": "4",
+        "simplify_geometries": "true",
+        "extent_cache": "auto",
+        "extent": "-1363990,3994624,1824475,9411676"
+      },
+      "geometry": "point",
+      "srs-name": "3857",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "extent": [ -10, 34, 20, 70 ],
+      "advanced": {}
+    },
+
+    {
+      "id": "ways",
+      "class": "",
+      "Datasource": {
+        "type": "postgis",
+        "host": "db.openstreetmap.world",
+        "user": "osmbr",
+        "password": "m4d31nbr31zh",
+        "dbname": "osm",
+        "table": "(
+SELECT 
+    a.osm_id, a.name, b.local_name,
+    CASE
+        WHEN b.local_name IS NULL THEN 'null'
+        ELSE 'done'
+    END AS check,
+    a.way 
+FROM planet_osm_line a
+FULL JOIN 
+(
+    SELECT osm_id, tags -> 'name:eu' AS local_name
+    FROM planet_osm_line 
+    WHERE (tags -> 'name:eu'::text IS NOT NULL)
+) AS b ON a.osm_id = b.osm_id
+WHERE name IS NOT NULL AND highway IS NOT NULL
+        ) AS data",
+        "key_field": "osm_id",
+        "geometry_field": "way",
+        "asynchronous_request": "true",
+        "max_async_connection": "4",
+        "simplify_geometries": "true",
+        "extent_cache": "auto",
+        "extent": "-1363990,3994624,1824475,9411676"
+      },
+      "geometry": "linestring",
+      "srs-name": "3857",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "extent": [ -10, 34, 20, 70 ],
+      "advanced": {}
+    }
+
+
+  ],
+  "scale": 1,
+  "metatile": 4,
+  "name": "osm-eu-control-map",
+  "description": "osm-eu-control-map",
+  "attribution": ""
+}

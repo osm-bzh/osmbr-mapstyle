@@ -51,167 +51,180 @@
 /* PLACE NAMES  for zoom < 13 -> admin_place
 /* ================================================================== */
 
-/* ---- Big cities ------------------------------------------------------ */
-#admin_place [type='city'][zoom>=5][zoom<13] {
-	text-name: '[name]';
-	text-face-name: @sans;
-	text-placement: point;
-	text-fill: @city_text;
-	text-halo-fill: @city_halo;
-	text-halo-radius: 2;
-	text-label-position-tolerance: 20;
+/* ---- Big cities -------------------------------------------------- */
+#admin_place [type='city'][admin_level>=3][zoom>=6][zoom<13] {
+    text-name: '[name]';
+    text-face-name: @sans_bold;
+    text-placement: point;
+    text-fill: @city_text;
+    text-halo-fill: @city_halo;
+    text-halo-radius: 2;
+    text-label-position-tolerance: 20;
     text-allow-overlap: true;
 
-	[zoom=5] {
-		text-min-distance: 20;
-		text-size: 13;
-		text-halo-radius: 1.3;
-	}
-	[zoom=6] {
-		text-min-distance: 20;
-		text-size: 13;
-		text-halo-radius: 1.3;
-	}
-	[zoom=7] {
-		text-min-distance: 20;
-		text-size: 14;
-		text-halo-radius: 1.5;
-	}
-	[zoom=8] {
-		text-min-distance: 5;
-		text-size: 15;
-		text-halo-radius: 2;
-	}
-	[zoom=9] {
-		text-size: 16;
-		text-wrap-width: 60;
-	}
-	[zoom=10] {
-		text-size: 17;
-    	text-halo-radius: 2.5;
-		text-wrap-width: 70;
-	}
-	[zoom=11] {
-		text-size: 20;
-		text-character-spacing: 1;
-		text-wrap-width: 80;
-    	text-transform: uppercase;
-	}
-	[zoom=12] {
-		text-size: 22;
-		text-character-spacing: 1;
-		text-wrap-width: 100;
-    	text-transform: uppercase;
-	}
+    [zoom=6] {
+        text-size: 12;
+    }
+    [zoom=7] {
+        text-size: 14;
+    }
+    [zoom=8] {
+        text-size: 16;
+    }
+    [zoom=9] {
+        text-size: 18;
+    }
+    [zoom=10] {
+        text-size: 20;
+        text-character-spacing: 1.5;
+    }
+    [zoom=11] {
+        text-size: 22;
+        text-face-name: @sans;
+        text-character-spacing: 1.5;
+    }
+    [zoom=12] {
+        text-size: 26;
+        text-face-name: @sans;
+        text-character-spacing: 1;
+    }
 }
 
 
-/* ---- Regional cities ------------------------------------------------------ */
+/* ---- Regional cities --------------------------------------------- */
 /* France = préfectures */
-#admin_place [admin_level='3'][type!='city'][zoom>=7][zoom<13] {
-	text-name: '[name]';
-	text-face-name: @sans;
-	text-placement: point;
-	text-fill: @town_text;
-	text-size: 11;
-	text-halo-fill: @town_halo;
-	text-halo-radius: 1.5;
-	text-wrap-width: 50;
-	text-label-position-tolerance: 20;
+#admin_place [admin_level=4][type!='city'][zoom>=7][zoom<13] {
+    text-name: '[name]';
+    text-face-name: @sans;
+    text-placement: point;
+    text-fill: @town_text;
+    text-halo-fill: @town_halo;
+    text-halo-radius: 1.5;
+    text-wrap-width: 50;
+    text-label-position-tolerance: 20;
     text-allow-overlap: true;
 
-	[zoom=7] {
-		text-min-distance: 15;
-		text-size: 10.5;
-	}
-	[zoom=8] {
-		text-min-distance: 15;
-		text-size: 12;
-	}
-	[zoom=9] {
-		text-min-distance: 15;
-		text-size: 13;
-	}
-	[zoom>=10] {
-		text-size: 16;
-    	text-halo-radius:1.5 ;
-	}
-	[zoom>=11] {
-    	text-size:17;
-    	text-halo-radius: 2.0;
-  	}
-	[zoom>=12] {
-		text-size: 18;
-		text-line-spacing: 1;
-	}
+    [zoom=7] {
+        text-size: 10;
+    }
+    [zoom=8] {
+        text-size: 12;
+    }
+    [zoom=9] {
+        text-size: 14;
+    }
+    [zoom=10] {
+        text-size: 16;
+        text-face-name: @sans_bold;
+    }
+    [zoom=11] {
+        text-size: 18;
+        text-face-name: @sans_bold;
+    }
+    [zoom=12] {
+        text-size: 22;
+        text-face-name: @sans_bold;
+        text-character-spacing: 1.5;
+    }
 }
 
 
-/* ---- Minor cities ------------------------------------------------------ */
+/* ---- Minor cities ------------------------------------------------ */
+/* France = sous-préfectures */
+#admin_place [admin_level=3][type!='city'][zoom>=8][zoom<13] {
+    text-name: '[name]';
+    text-face-name: @sans;
+    text-placement: point;
+    text-fill: @town_text;
+    text-halo-fill: @town_halo;
+    text-halo-radius: 1.5;
+    text-wrap-width: 50;
+    text-label-position-tolerance: 20;
+    text-allow-overlap: true;
+
+    [zoom=8] {
+        text-size: 9;
+    }
+    [zoom=9] {
+        text-size: 11;
+        text-face-name: @sans_bold;
+    }
+    [zoom=10] {
+        text-size: 13;
+        text-face-name: @sans_bold;
+    }
+    [zoom=11] {
+        text-size: 15;
+        text-face-name: @sans_bold;
+    }
+    [zoom=12] {
+        text-size: 17;
+        text-face-name: @sans_bold;
+    }
+}
+
 /* France = chef-lieu de canton */
-#admin_place [admin_level='2'][type!='city'][zoom>=8][zoom<13] {
-	text-name: '[name]';
-	text-face-name: @sans;
-	text-placement: point;
-	text-fill: @town_text;
-	text-size: 11;
-	text-halo-fill: @town_halo;
-	text-halo-radius: 1.5;
-	text-wrap-width: 50;
-	text-label-position-tolerance: 20;
-    text-allow-overlap: false;
+#admin_place [admin_level=2][type!='city'][zoom>=9][zoom<13] {
+    text-name: '[name]';
+    text-face-name: @sans;
+    text-placement: point;
+    text-fill: @town_text;
+    text-halo-fill: @town_halo;
+    text-halo-radius: 1.5;
+    text-wrap-width: 25;
+    text-placement-type: simple;
+    text-placements: "N,S,E,W,NE,SE,NW,SW,16,14,12";
+    text-dy: 3;
+    text-dx: 3;
 
-	[zoom=8] {
-		text-min-distance: 15;
-		text-size: 9;
-	}
-	[zoom=9] {
-		text-min-distance: 15;
-		text-size: 10;
-	}
-	[zoom>=10] {
-		text-fill: #333;
-    	text-halo-radius:1.5 ;
-		text-size: 14;
-	}
-	[zoom>=11] {
-    	text-fill: #333;
-    	text-size:16;
-    	text-halo-radius: 2.0;
-  	}
-	[zoom>=12] {
-		text-size: 17;
-		text-line-spacing: 1;
-	}
+    [zoom=9] {
+        text-size: 9;
+    }
+    [zoom=10] {
+        text-size: 11;
+        text-face-name: @sans_bold;
+    }
+    [zoom=11] {
+        text-size: 14;
+        text-face-name: @sans_bold;
+        text-wrap-width: 50;
+    }
+    [zoom=12] {
+        text-size: 17;
+        text-face-name: @sans;
+        text-line-spacing: 1;
+        text-wrap-width: 50;
+    }
 }
 
 
-/* ---- Town / village / municipality ------------------------------------------------------ */
+/* ---- Town / village / municipality ------------------------------- */
 /* France = commune */
-#admin_place [admin_level='1'][type!='city'][zoom>=10][zoom<13] {
-	text-name: '[name]';
-	text-face-name: @sans;
-	text-placement: point;
-	text-fill: @town_text;
-	text-size: 9;
-	text-halo-fill: @town_halo;
-	text-halo-radius: 1.5;
-	text-wrap-width: 50;
-	text-label-position-tolerance: 20;
-    text-allow-overlap: false;
+#admin_place [admin_level=1][type!='city'][zoom>=10][zoom<13] {
+    text-name: '[name]';
+    text-face-name: @sans;
+    text-placement: point;
+    text-fill: @town_text;
+    text-halo-fill: @town_halo;
+    text-halo-radius: 1.5;
+    text-placement-type: simple;
+    text-placements: "N,S,E,W,NE,SE,NW,SW,16,14,12";
+    text-dy: 3;
+    text-dx: 3;
 
-	[zoom>=10] {
-    	text-size:9;
-  	}
-	[zoom>=11] {
-    	text-size:11;
-    	text-halo-radius: 2.0;
-  	}
-	[zoom>=12] {
-		text-fill: #333;
-    	text-size: 13;
-		text-line-spacing: 1;
-	}
+    [zoom=10] {
+        text-size: 7;
+        text-wrap-width: 30;
+    }
+    [zoom=11] {
+        text-size: 10;
+        text-wrap-width: 30;
+    }
+    [zoom=12] {
+        text-size: 13;
+        text-line-spacing: 1;
+        text-wrap-width: 50;
+    }
 }
 
 

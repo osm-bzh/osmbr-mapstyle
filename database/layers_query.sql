@@ -226,18 +226,6 @@ ORDER BY admin_level DESC
 SELECT  b.way::geometry(LineString,3857) AS way, admin_level::integer AS admin_level, coalesce(b.tags->'maritime','no') AS maritime, count(r.*)::integer AS nb, string_agg(id::text,',') AS rels  FROM planet_osm_roads b  LEFT JOIN planet_osm_rels r ON (r.parts @> ARRAY[osm_id] AND r.members @> ARRAY['w' || osm_id] AND regexp_replace(r.tags::text,'[{}]',',') ~ format('(,admin_level,%s.*,boundary,administrative|,boundary,administrative.*,admin_level,%s,)',admin_level,admin_level))  WHERE boundary='administrative' AND admin_level IS NOT NULL  GROUP BY 1,2,3  ORDER BY admin_level DESC
 
 
--- admin_places (vue matérialisée)
--- permet d'avoir le admin_level max d'une ville, sans doublon
-SELECT a.osm_id, a.name_br AS name, a.admin_level, a.admin_name, a.type, a.geometry
-FROM admin_places a 
-  JOIN (SELECT osm_id, name_br, MAX(admin_level) AS admin_level FROM admin_places GROUP BY osm_id, name_br) b 
-  ON a.osm_id = b.osm_id AND a.admin_level = b.admin_level 
-WHERE a.name_br IS NOT NULL
-ORDER BY a.admin_level DESC, a.name_br ASC 
-
-SELECT a.osm_id, a.name_br AS name, a.admin_level, a.admin_name, a.type, a.geometry  FROM admin_places a JOIN (SELECT osm_id, name_br, MAX(admin_level) AS admin_level FROM admin_places GROUP BY osm_id, name_br) b ON a.osm_id = b.osm_id AND a.admin_level = b.admin_level  WHERE a.name_br IS NOT NULL ORDER BY a.admin_level DESC, a.name_br ASC 
-
-
 -- motorway_label
 SELECT
   osm_id,
@@ -296,18 +284,101 @@ SELECT osm_id, COALESCE(tags -> 'name:br'::text) as name, place as type, admin_l
 
 
 
+
+-- admin_places
+-- on part de la table planet_osm_point qui contient la géométrie
+SELECT osm_id, place as type, MAX(admin_level) as admin_level, name, way
+FROM
+(
+    -- communes
+    (WITH
+        p AS (
+            SELECT osm_id, CONCAT('n',osm_id) as admin_centre_id, place, COALESCE(tags -> 'name:br'::text,'') as name, way
+            FROM planet_osm_point 
+            WHERE place IN ('village','town')
+            AND way && !bbox!
+        )
+        SELECT p.osm_id, p.place, 1 as admin_level, p.name, p.way
+        FROM planet_osm_rels AS r, p
+        WHERE
+            r.members::text ~ 'admin_centre' AND r.tags::text ~ 'admin_level,8' 
+            AND p.admin_centre_id = ANY(members)
+            -- ceci pour forcer l'utilisation des indexes
+            AND ARRAY[p.osm_id] && parts
+    )
+    -- chefs-lieux de canton
+    UNION
+    (WITH
+        p AS (
+            SELECT osm_id, CONCAT('n',osm_id) as admin_centre_id, place, COALESCE(tags -> 'name:br'::text,'') as name, way
+            FROM planet_osm_point 
+            WHERE place IN ('village','town')
+            AND way && !bbox!
+        )
+        SELECT p.osm_id, p.place, 2 as admin_level, p.name, p.way
+        FROM planet_osm_rels AS r, p
+        WHERE
+            r.members::text ~ 'admin_centre' AND r.tags::text ~ 'political_division,canton'
+            AND p.admin_centre_id = ANY(members)
+            AND ARRAY[p.osm_id] && parts
+    )
+    -- sous-préfecture
+    UNION
+    (WITH
+        p AS (
+            SELECT osm_id, CONCAT('n',osm_id) as admin_centre_id, place, COALESCE(tags -> 'name:br'::text,'') as name, way
+            FROM planet_osm_point 
+            WHERE place IN ('town','city')
+            AND way && !bbox!
+        )
+        SELECT p.osm_id, p.place, 3 as admin_level, p.name, p.way
+        FROM planet_osm_rels AS r, p
+        WHERE
+            r.members::text ~ 'admin_centre' AND r.tags::text ~ 'admin_level,7' 
+            AND p.admin_centre_id = ANY(members)
+            AND ARRAY[p.osm_id] && parts
+    )
+    -- préfecture
+    UNION
+    (WITH
+        p AS (
+            SELECT osm_id, CONCAT('n',osm_id) as admin_centre_id, place, COALESCE(tags -> 'name:br'::text,'') as name, way
+            FROM planet_osm_point 
+            WHERE place IN ('town','city')
+            AND way && !bbox!
+        )
+        SELECT p.osm_id, p.place, 4 as admin_level, p.name, p.way
+        FROM planet_osm_rels AS r, p
+        WHERE
+            r.members::text ~ 'admin_centre' AND r.tags::text ~ 'admin_level,6' 
+            AND p.admin_centre_id = ANY(members)
+            AND ARRAY[p.osm_id] && parts
+    )
+) AS query
+GROUP BY osm_id, place, name, way
+ORDER BY admin_level DESC, name ASC
+
+
+
+
+SELECT osm_id, place as type, MAX(admin_level) as admin_level, name, way FROM ((WITH p AS (SELECT osm_id, CONCAT('n',osm_id) as admin_centre_id, place, COALESCE(tags -> 'name:br'::text,'') as name, way FROM planet_osm_point WHERE place IN ('village','town') AND way && !bbox! ) SELECT p.osm_id, p.place, 1 as admin_level, p.name, p.way FROM planet_osm_rels AS r, p WHERE r.members::text ~ 'admin_centre' AND r.tags::text ~ 'admin_level,8'AND p.admin_centre_id = ANY(members) AND ARRAY[p.osm_id] && parts ) UNION (WITH p AS (SELECT osm_id, CONCAT('n',osm_id) as admin_centre_id, place, COALESCE(tags -> 'name:br'::text,'') as name, way FROM planet_osm_point WHERE place IN ('village','town') AND way && !bbox! ) SELECT p.osm_id, p.place, 2 as admin_level, p.name, p.way FROM planet_osm_rels AS r, p WHERE r.members::text ~ 'admin_centre' AND r.tags::text ~ 'political_division,canton'AND p.admin_centre_id = ANY(members) AND ARRAY[p.osm_id] && parts ) UNION (WITH p AS (SELECT osm_id, CONCAT('n',osm_id) as admin_centre_id, place, COALESCE(tags -> 'name:br'::text,'') as name, way FROM planet_osm_point WHERE place IN ('town','city') AND way && !bbox! ) SELECT p.osm_id, p.place, 3 as admin_level, p.name, p.way FROM planet_osm_rels AS r, p WHERE r.members::text ~ 'admin_centre' AND r.tags::text ~ 'admin_level,7'AND p.admin_centre_id = ANY(members) AND ARRAY[p.osm_id] && parts ) UNION (WITH p AS (SELECT osm_id, CONCAT('n',osm_id) as admin_centre_id, place, COALESCE(tags -> 'name:br'::text,'') as name, way FROM planet_osm_point WHERE place IN ('town','city') AND way && !bbox! ) SELECT p.osm_id, p.place, 4 as admin_level, p.name, p.way FROM planet_osm_rels AS r, p WHERE r.members::text ~ 'admin_centre' AND r.tags::text ~ 'admin_level,6'AND p.admin_centre_id = ANY(members) AND ARRAY[p.osm_id] && parts ) ) AS query GROUP BY osm_id, place, name, way
+
+
+
+
+
 -- check place localization
 SELECT 
-  a.osm_id, a.name, b.name_br,
+  a.osm_id, a.name, b.local_name,
   CASE
-    WHEN b.name_br IS NULL THEN 'null'
+    WHEN b.local_name IS NULL THEN 'null'
     ELSE 'done'
   END AS check,
   a.way 
 FROM planet_osm_point a
 FULL JOIN 
 (
-  SELECT osm_id, tags -> 'name:br' AS name_br
+  SELECT osm_id, tags -> 'name:br' AS local_name
   FROM planet_osm_point 
   WHERE (tags -> 'name:br'::text IS NOT NULL)
 ) AS b ON a.osm_id = b.osm_id
@@ -315,16 +386,16 @@ WHERE name IS NOT NULL AND place IS NOT NULL
 
 -- check way localization
 SELECT 
-  a.osm_id, a.name, b.name_br,
+  a.osm_id, a.name, b.local_name,
   CASE
-    WHEN b.name_br IS NULL THEN 'null'
+    WHEN b.local_name IS NULL THEN 'null'
     ELSE 'done'
   END AS check,
   a.way 
 FROM planet_osm_line a
 FULL JOIN 
 (
-  SELECT osm_id, tags -> 'name:br' AS name_br
+  SELECT osm_id, tags -> 'name:br' AS local_name
   FROM planet_osm_line 
   WHERE (tags -> 'name:br'::text IS NOT NULL)
 ) AS b ON a.osm_id = b.osm_id
