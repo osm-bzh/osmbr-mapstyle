@@ -52,36 +52,72 @@ render_list -a -m br_control -s /var/run/renderd/renderd.sock -n 3 -t /data/tile
 date
 echo ""
 
-# echo "--------------------------------"
-# echo "  level 14"
-# echo ""
-# render_list -a -m br_control -s /var/run/renderd/renderd.sock -n 3 -t /data/tiles/ -z 14 -Z 14 -x 7958 -X 8135 -y 5636 -Y 5759
-# date
-# echo ""
+echo "--------------------------------"
+echo "  F I N I"
+date
+echo ""
 
-# echo "--------------------------------"
-# echo "  level 15"
-# echo ""
-# render_list -a -m br_control -s /var/run/renderd/renderd.sock -n 3 -t /data/tiles/ -z 15 -Z 15 -x 15916 -X 16270 -y 11272 -Y 11518
-# date
-# echo ""
 
-# echo "--------------------------------"
-# echo "  level 16"
-# echo ""
-# render_list -a -m br_control -s /var/run/renderd/renderd.sock -n 3 -t /data/tiles/ -z 16 -Z 16 -x 31832 -X 32541 -y 22544 -Y 23036
-# date
-# echo ""
+echo ""
+echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+echo ""
+echo "      rendering tiles for OSM eu control tiles "
+echo ""
+echo ""
 
-# echo "--------------------------------"
-# echo "  level 17"
-# echo ""
-# render_list -a -m br_control -s /var/run/renderd/renderd.sock -n 3 -t /data/tiles/ -z 17 -Z 17 -x 63664 -X 65081 -y 45087 -Y 46071
-# date
-# echo ""
+echo "--------------------------------"
+echo "  deleting old tiles"
+date
+echo ""
+
+rm -rf /data/tiles/eu_control/10/
+rm -rf /data/tiles/eu_control/11/
+rm -rf /data/tiles/eu_control/12/
+rm -rf /data/tiles/eu_control/13/
+rm -rf /data/tiles/eu_control/14/
+rm -rf /data/tiles/eu_control/15/
+rm -rf /data/tiles/eu_control/16/
+rm -rf /data/tiles/eu_control/17/
+rm -rf /data/tiles/eu_control/18/
+rm -rf /data/tiles/eu_control/19/
+rm -rf /data/tiles/eu_control/20/
 
 
 echo "--------------------------------"
 echo "  F I N I"
 date
 echo ""
+
+
+
+
+echo ""
+echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+echo ""
+echo "      rendering tiles for OSM oc control tiles "
+echo ""
+echo ""
+
+echo "--------------------------------"
+echo "  deleting old tiles"
+date
+echo ""
+
+rm -rf /data/tiles/oc_control/10/
+rm -rf /data/tiles/oc_control/11/
+rm -rf /data/tiles/oc_control/12/
+rm -rf /data/tiles/oc_control/13/
+rm -rf /data/tiles/oc_control/14/
+rm -rf /data/tiles/oc_control/15/
+rm -rf /data/tiles/oc_control/16/
+rm -rf /data/tiles/oc_control/17/
+rm -rf /data/tiles/oc_control/18/
+rm -rf /data/tiles/oc_control/19/
+rm -rf /data/tiles/oc_control/20/
+
+
+echo "--------------------------------"
+echo "  F I N I"
+date
+echo ""
+
