@@ -18,6 +18,7 @@
   "Stylesheet": [
     "palette.mss",
     "base.mss",
+    "landcover.mss",
     "labels.mss",
     "roads.mss",
     "admin.mss"
@@ -92,8 +93,8 @@
     },
 
     {
-      "id": "landuse_gen0",
-      "name": "landuse_gen0",
+      "id": "landcover_gen0",
+      "name": "landcover_gen0",
       "class": "",
       "Datasource": {
         "type": "postgis",
@@ -117,8 +118,8 @@
       "advanced": {}
     },
     {
-      "id": "landuse_gen1",
-      "name": "landuse_gen1",
+      "id": "landcover_gen1",
+      "name": "landcover_gen1",
       "class": "",
       "Datasource": {
         "type": "postgis",
@@ -142,8 +143,8 @@
       "advanced": {}
     },
     {
-      "id": "landuse",
-      "name": "landuse",
+      "id": "landcover",
+      "name": "landcover",
       "class": "",
       "Datasource": {
         "type": "postgis",
