@@ -28,7 +28,7 @@
 	[type='golf_course']       { polygon-fill: @sports; line-color: @standard_case*0.95; line-width: 1; }
 	[type='grass']             { polygon-fill: @grass; polygon-opacity: 0.6; }
 	[type='recreation_ground'] { polygon-fill: @grass; }
-	[type='meadow']            { polygon-fill: @grass; polygon-opacity: 0.5;}
+	[type='meadow']            { polygon-fill: @meadow; }
 	[type='heath']             { polygon-fill: @grass; polygon-opacity: 0.5;}
 	[type='farm']              { polygon-fill: @grass; polygon-opacity: 0.4;}
 	[type='scrub']             { polygon-fill: @grass; }

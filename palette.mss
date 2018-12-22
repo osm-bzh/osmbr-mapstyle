@@ -43,7 +43,7 @@ Map { font-directory: url('./fonts'); }
 @water7:      #6987AD;
 
 @grass:       #E6F2C1;
-@meadow:      @grass*1.05;
+@meadow:      #CFECA8;
 @beach:       #FFEEC7;
 @park:        #DAF2C1;
 @cemetery:    #D6DED2;
