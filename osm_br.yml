@@ -89,6 +89,7 @@ Layer:
           planet_osm_polygon
         WHERE
           landuse IN ('forest')
+          AND way && !bbox!
           AND way_area > 0.01*!pixel_width!::real*!pixel_height!::real
         ) AS landcover_low
     simplify_geometries: 'true'
@@ -107,6 +108,10 @@ Layer:
           osm_id, way, way_area AS area, COALESCE(landuse, leisure, "natural", highway, amenity, tourism) AS type
         FROM
           planet_osm_polygon
+        WHERE
+          way && !bbox!
+          AND way_area > 1*!pixel_width!::real*!pixel_height!::real
+        ORDER BY z_order, way_area DESC
         ) AS landcover
     simplify_geometries: 'true'
     properties:
