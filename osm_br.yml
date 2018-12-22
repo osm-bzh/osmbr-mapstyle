@@ -77,65 +77,24 @@ Layer:
       type: shape
 
 
-  - id: big_forest
+  - id: landcover_low
     geometry: polygon
     <<: *extents
     Datasource:
       <<: *osm2pgsql
       table: |-
         (SELECT
-          osm_id, way, way_area AS area
+          osm_id, way, way_area AS area, COALESCE(landuse, leisure, "natural", highway, amenity, tourism) AS type
         FROM
           planet_osm_polygon
         WHERE
-          landuse = 'forest' AND way_area > 5000000
-        ) AS big_forest
+          landuse IN ('forest')
+          AND way_area > 0.01*!pixel_width!::real*!pixel_height!::real
+        ) AS landcover_low
     simplify_geometries: 'true'
     properties:
-      #polygon-simplify: 10
-      #polygon-simplify-algorithm: douglas-peucker
       minzoom: 6
       maxzoom: 9
-
-
-  - id: landcover_gen0
-    geometry: polygon
-    <<: *extents
-    Datasource:
-      <<: *osm2pgsql
-      table: |-
-        (SELECT
-          osm_id, way, way_area AS area, COALESCE(landuse, leisure, "natural", highway, amenity, tourism) AS type
-        FROM
-          planet_osm_polygon
-        WHERE
-          way_area > 100000
-        ) AS landcover_gen0
-    simplify_geometries: 'true'
-    properties:
-      #polygon-simplify: 10
-      #polygon-simplify-algorithm: douglas-peucker
-      minzoom: 8
-      maxzoom: 10
-
-
-  - id: landcover_gen1
-    geometry: polygon
-    <<: *extents
-    Datasource:
-      <<: *osm2pgsql
-      table: |-
-        (SELECT
-          osm_id, way, way_area AS area, COALESCE(landuse, leisure, "natural", highway, amenity, tourism) AS type
-        FROM
-          planet_osm_polygon
-        WHERE
-          way_area > 10000
-        ) AS landcover_gen1
-    simplify_geometries: 'true'
-    properties:
-      minzoom: 11
-      maxzoom: 12
 
 
   - id: landcover
@@ -151,7 +110,7 @@ Layer:
         ) AS landcover
     simplify_geometries: 'true'
     properties:
-      minzoom: 12
+      minzoom: 10
 
 
   - id: aeroway
