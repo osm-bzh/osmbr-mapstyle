@@ -1,20 +1,12 @@
-/* BASE.MSS CONTENTS
- * - Water areas
- * - Water ways
- */
-
 
 /* ================================================================== */
 /* WATER AREAS
 /* ================================================================== */
 
-Map{ 
-	background-color:@water;
-}
 
-#waterarea_low[zoom>=7][zoom<=9],
-#waterarea_med[zoom>=10][zoom<=11],
-#waterarea[zoom>=12] {
+#waterarea_low[zoom>=8][zoom<=10],
+#waterarea_med[zoom>=11][zoom<=12],
+#waterarea[zoom>=13] {
 	polygon-fill: @water;
 	polygon-smooth: 0.6;
 	polygon-clip: false;
@@ -81,30 +73,4 @@ Map{
 		[zoom>19]{ line-width: 1.5; }
 	}
 }
-
-
-
-/* ================================================================== */
-/* BUILDINGS
-/* ================================================================== */
-
-#buildings[zoom>=13] {
-	polygon-fill:@building;
-	[type='church'] {
-		polygon-fill: @building*0.85;
-	}
-	[zoom>=14] {
-		line-color:darken(@building, 10%);
-		line-width: 0.2;
-	}
-	[zoom>=16] {
-		line-color:darken(@building, 20%);
-		line-width: 0.4;
-	}
-	[zoom>=18] {
-		line-color:darken(@building, 40%);
-		line-width: 0.6;
-	}
-}
-
 
