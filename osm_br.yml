@@ -115,7 +115,7 @@ Layer:
     properties:
       #polygon-simplify: 10
       #polygon-simplify-algorithm: douglas-peucker
-      minzoom: 9
+      minzoom: 8
       maxzoom: 10
 
 

@@ -17,8 +17,8 @@
 	polygon-fill: @wooded;
 }
 
-#landcover_gen0[zoom>8][zoom<=10],
-#landcover_gen1[zoom>10][zoom<=12],
+#landcover_gen0[zoom>=8][zoom<=10],
+#landcover_gen1[zoom>=9][zoom<=12],
 #landcover[zoom>12] {
 	[type='cemetery']          { polygon-fill: @cemetery; }
 	[type='college']           { polygon-fill: @school; }
@@ -29,6 +29,7 @@
 	[type='grass']             { polygon-fill: @grass; polygon-opacity: 0.6; }
 	[type='recreation_ground'] { polygon-fill: @grass; }
 	[type='meadow']            { polygon-fill: @meadow; }
+	[type='farmland']          { polygon-fill: @farmland; }
 	[type='heath']             { polygon-fill: @grass; polygon-opacity: 0.5;}
 	[type='farm']              { polygon-fill: @grass; polygon-opacity: 0.4;}
 	[type='scrub']             { polygon-fill: @grass; }
