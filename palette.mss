@@ -56,9 +56,9 @@ Map { font-directory: url('./fonts'); }
 @school:      #FFFAE6;
 @sports:      #DAF1C1;
 
-@residential: @land * 0.975;
-@commercial:  @land * 0.975;
-@industrial:  @land * 0.96;
+@residential: #f2f2f2;
+@commercial:  @residential * 0.975;
+@industrial:  @residential * 0.96;
 @parking:     #EEE;
 
 /* ================================================================== */
