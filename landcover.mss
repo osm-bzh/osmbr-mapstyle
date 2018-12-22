@@ -13,13 +13,22 @@
 	polygon-gamma: 0.75;
 }
 
-#big_forest[zoom>=6][zoom<=9] {
-	polygon-fill: @wooded;
+
+#landcover_low[zoom>=6][zoom<=7] {
+	[type='forest']            { polygon-fill: @wooded; polygon-opacity: 0.6; }
+}
+#landcover_low[zoom>=8][zoom<=9] {
+	[type='forest']            { polygon-fill: @wooded; polygon-opacity: 0.8; }
 }
 
-#landcover_gen0[zoom>=8][zoom<=10],
-#landcover_gen1[zoom>=9][zoom<=12],
-#landcover[zoom>12] {
+
+#landcover[zoom>=10][zoom<=11] {
+	[type='forest']            { polygon-fill: @wooded; }
+	[type='farmland']          { polygon-fill: @farmland; polygon-opacity: 0.5; }
+	[type='meadow']            { polygon-fill: @meadow; polygon-opacity: 0.5; }
+}
+
+#landcover[zoom>=12] {
 	[type='cemetery']          { polygon-fill: @cemetery; }
 	[type='college']           { polygon-fill: @school; }
 	[type='commercial']        { polygon-fill: @industrial; }
