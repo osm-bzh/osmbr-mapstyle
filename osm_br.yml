@@ -679,6 +679,45 @@ Layer:
       minzoom: 14
 
 
+  - id: building-text
+    geometry: polygon
+    <<: *extents
+    Datasource:
+      <<: *osm2pgsql
+      table: |-
+        (SELECT
+            COALESCE(tags -> 'name:br'::text) as name,
+            way,
+            way_area/NULLIF(!pixel_width!::real*!pixel_height!::real,0) AS way_pixels
+          FROM planet_osm_polygon
+          WHERE building IS NOT NULL
+            AND building NOT IN ('no')
+            AND name IS NOT NULL
+          ORDER BY way_area DESC
+        ) AS building_text
+    properties:
+      minzoom: 14
+
+
+  - id: leisure-text
+    geometry: polygon
+    <<: *extents
+    Datasource:
+      <<: *osm2pgsql
+      table: |-
+        (SELECT
+            COALESCE(tags -> 'name:br'::text) as name,
+            way,
+            way_area/NULLIF(!pixel_width!::real*!pixel_height!::real,0) AS way_pixels
+          FROM planet_osm_polygon
+          WHERE leisure IN ('park', 'sports_centre')
+            AND name IS NOT NULL
+          ORDER BY way_area DESC
+        ) AS leisure_text
+    properties:
+      minzoom: 14
+
+
 
 
 

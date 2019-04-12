@@ -568,3 +568,36 @@
 	text-transform: uppercase;
 	text-halo-radius: 1;
 }
+
+/* ================================================================== */
+/* BUILDING LABELS
+/* ================================================================== */
+
+#building-text [zoom>=16] {
+    text-name: '[name]';
+    text-face-name: @sans;
+    text-placement: point;
+    text-fill: @poi_text;
+    text-halo-fill: @town_halo;
+    text-halo-radius: 1.5;
+    text-wrap-width: 50;
+    text-label-position-tolerance: 20;
+    text-allow-overlap: true;
+}
+
+/* ================================================================== */
+/* LEISURE LABELS
+/* ================================================================== */
+
+#leisure-text [zoom>=16] {
+    text-name: '[name]';
+    text-face-name: @sans;
+    text-placement: point;
+    text-fill: @poi_text;
+    text-halo-fill: @town_halo;
+    text-halo-radius: 1.5;
+    text-wrap-width: 50;
+    text-label-position-tolerance: 20;
+    text-allow-overlap: true;
+}
+
