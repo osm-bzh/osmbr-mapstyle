@@ -679,7 +679,7 @@ Layer:
       minzoom: 14
 
 
-  - id: building-text
+  - id: building_label
     geometry: polygon
     <<: *extents
     Datasource:
@@ -699,7 +699,7 @@ Layer:
       minzoom: 14
 
 
-  - id: leisure-text
+  - id: leisure_label
     geometry: polygon
     <<: *extents
     Datasource:
@@ -717,7 +717,7 @@ Layer:
     properties:
       minzoom: 14
 
-  - id: townhall_text
+  - id: townhall_label
     geometry: polygon
     <<: *extents
     Datasource:
@@ -735,7 +735,7 @@ Layer:
     properties:
       minzoom: 14
 
-  - id: train_station_text
+  - id: train_station_label
     geometry: polygon
     <<: *extents
     Datasource:

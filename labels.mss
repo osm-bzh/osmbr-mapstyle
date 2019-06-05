@@ -573,7 +573,7 @@
 /* BUILDING LABELS
 /* ================================================================== */
 
-#building-text [zoom>=16] {
+#building_label [zoom>=16] {
     text-name: '[name]';
     text-face-name: @sans;
     text-placement: point;
@@ -589,7 +589,7 @@
 /* LEISURE LABELS
 /* ================================================================== */
 
-#leisure-text [zoom>=16] {
+#leisure_label [zoom>=16] {
     text-name: '[name]';
     text-face-name: @sans;
     text-placement: point;
@@ -606,7 +606,7 @@
 /* AMENITY LABELS
 /* ================================================================== */
 
-#townhall_text [zoom>=16] {
+#townhall_label [zoom>=16] {
     text-name: '[name]';
     text-face-name: @sans;
     text-placement: point;
@@ -622,7 +622,7 @@
 /* TRAIN STATION LABELS
 /* ================================================================== */
 
-#train_station_text [zoom>=16] {
+#train_station_label [zoom>=16] {
     text-name: '[name]';
     text-face-name: @sans;
     text-placement: point;
