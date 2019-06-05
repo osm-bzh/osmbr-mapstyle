@@ -710,12 +710,51 @@ Layer:
             way,
             way_area/NULLIF(!pixel_width!::real*!pixel_height!::real,0) AS way_pixels
           FROM planet_osm_polygon
-          WHERE leisure IN ('park', 'sports_centre')
+          WHERE leisure IN ('park', 'sports_centre', 'stadium', 'pitch')
             AND name IS NOT NULL
           ORDER BY way_area DESC
         ) AS leisure_text
     properties:
       minzoom: 14
+
+  - id: townhall_text
+    geometry: polygon
+    <<: *extents
+    Datasource:
+      <<: *osm2pgsql
+      table: |-
+        (SELECT
+            'Ti-Ker' as name,
+            way,
+            way_area/NULLIF(!pixel_width!::real*!pixel_height!::real,0) AS way_pixels
+          FROM planet_osm_polygon
+          WHERE amenity IN ('townhall')
+            AND name IS NOT NULL
+          ORDER BY way_area DESC
+        ) AS townhall_text
+    properties:
+      minzoom: 14
+
+  - id: train_station_text
+    geometry: polygon
+    <<: *extents
+    Datasource:
+      <<: *osm2pgsql
+      table: |-
+        (SELECT
+            'Porzh-houarn' as name,
+            way,
+            way_area/NULLIF(!pixel_width!::real*!pixel_height!::real,0) AS way_pixels
+          FROM planet_osm_polygon
+          WHERE building IN ('train_station')
+            AND name IS NOT NULL
+          ORDER BY way_area DESC
+        ) AS train_station_text
+    properties:
+      minzoom: 14
+
+
+
 
 
 

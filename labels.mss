@@ -601,3 +601,39 @@
     text-allow-overlap: true;
 }
 
+
+/* ================================================================== */
+/* AMENITY LABELS
+/* ================================================================== */
+
+#townhall_text [zoom>=16] {
+    text-name: '[name]';
+    text-face-name: @sans;
+    text-placement: point;
+    text-fill: @poi_text;	
+    text-halo-fill: @town_halo;
+    text-halo-radius: 1.5;
+    text-wrap-width: 50;
+    text-label-position-tolerance: 20;
+    text-allow-overlap: true;
+}
+
+/* ================================================================== */
+/* TRAIN STATION LABELS
+/* ================================================================== */
+
+#train_station_text [zoom>=16] {
+    text-name: '[name]';
+    text-face-name: @sans;
+    text-placement: point;
+    text-fill: @poi_text;	
+    text-halo-fill: @town_halo;
+    text-halo-radius: 1.5;
+    text-wrap-width: 50;
+    text-label-position-tolerance: 20;
+    text-allow-overlap: true;
+}
+
+
+
+
