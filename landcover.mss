@@ -24,8 +24,6 @@
 
 #landcover[zoom>=10][zoom<=11] {
 	[type='forest']            { polygon-fill: @wooded; }
-	[type='farmland']          { polygon-fill: @farmland; polygon-opacity: 0.5; }
-	[type='meadow']            { polygon-fill: @meadow; polygon-opacity: 0.5; }
 	[type='residential']       { polygon-fill: @residential * 0.975; }
 }
 
