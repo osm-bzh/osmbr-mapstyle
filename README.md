@@ -5,9 +5,9 @@ It is derived from the Lyrk mapstyle you can found at [https://github.com/lyrk/l
 
 **This style has been created to set up tile map services for minorred langages in France** :
 
-* [breton](http://tile.openstreetmap.bzh/br/)
-* [occitan](tile.openstreetmap.bzh/oc/)
-* [basque](http://tile.openstreetmap.bzh/eu/)
+* [breton](https://tile.openstreetmap.bzh/br/)
+* [occitan](https://tile.openstreetmap.bzh/oc/)
+* [basque](https://tile.openstreetmap.bzh/eu/)
 * ...
  
 
