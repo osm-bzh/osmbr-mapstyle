@@ -1,0 +1,727 @@
+name: OpenStreetMap euskara da
+description: 'A general-purpose OpenStreetMap mapnik style, focused on minored langages, in CartoCSS'
+attribution: 'CC-BY-SA OSM-BZH'
+scale: 1
+metatile: 2
+bounds: &world
+  - -180
+  - -85
+  - 180
+  - 85
+center:
+  - -2.96
+  - 48.03
+  - 8
+format: 'png'
+interactivity: false
+minzoom: 4
+maxzoom: 18
+srs: "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+
+
+_parts:
+  # default values used by layers
+  extents: &extents
+    extent: *world
+    srs-name: "3857"
+    srs: "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+    class: ''
+    status: 'on'
+
+  extents84: &extents84
+    extent: *world
+    srs-name: "WGS84"
+    srs: "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"
+
+  osm2pgsql: &osm2pgsql
+    type: "postgis"
+    dbname: "osm"
+    key_field: ""
+    geometry_field: "way"
+    extent: "-20037508,-20037508,20037508,20037508"
+    host: db.openstreetmap.world
+    user: osmbr
+    password: m4d31nbr31zh
+    asynchronous_request: 'true'
+    max_async_connection: '4'
+
+
+# stylesheets
+Stylesheet:
+  - palette.mss
+  - base.mss
+  - landcover.mss
+  - admin.mss
+  - roads.mss
+  - labels.mss
+
+
+# the layers
+Layer:
+
+  - id: land_low
+    geometry: polygon
+    <<: *extents
+    Datasource:
+      file: /data/styles/data/simplified-land-polygons-complete-3857/simplified_land_polygons.shp
+      type: shape
+    properties:
+      maxzoom: 10
+
+
+  - id: land_high
+    geometry: polygon
+    <<: *extents
+    Datasource:
+      file: /data/styles/data/land-polygons-split-3857/land_polygons.shp
+      type: shape
+
+
+  - id: landcover_low
+    geometry: polygon
+    <<: *extents
+    Datasource:
+      <<: *osm2pgsql
+      table: |-
+        (SELECT
+          osm_id, way, way_area AS area, COALESCE(landuse, leisure, "natural", highway, amenity, tourism) AS type
+        FROM
+          planet_osm_polygon
+        WHERE
+          landuse IN ('forest')
+          AND way && !bbox!
+          AND way_area > 0.01*!pixel_width!::real*!pixel_height!::real
+        ) AS landcover_low
+    simplify_geometries: 'true'
+    properties:
+      minzoom: 6
+      maxzoom: 9
+
+
+  - id: landcover
+    geometry: polygon
+    <<: *extents
+    Datasource:
+      <<: *osm2pgsql
+      table: |-
+        (SELECT
+          osm_id, way, way_area AS area, COALESCE(landuse, leisure, "natural", highway, amenity, tourism) AS type
+        FROM
+          planet_osm_polygon
+        WHERE
+          way && !bbox!
+          AND way_area > 1*!pixel_width!::real*!pixel_height!::real
+        ORDER BY z_order, way_area DESC
+        ) AS landcover
+    simplify_geometries: 'true'
+    properties:
+      minzoom: 10
+
+
+  - id: aeroway
+    geometry: polygon
+    <<: *extents
+    Datasource:
+      <<: *osm2pgsql
+      table: |-
+        (SELECT
+          osm_id, way, aeroway AS type
+        FROM
+          planet_osm_line
+        WHERE
+          aeroway IN ('apron', 'runway', 'taxiway')
+        ) AS aeroway
+    properties:
+      minzoom: 10
+
+
+  - id: waterarea_low
+    geometry: polygon
+    <<: *extents
+    Datasource:
+      <<: *osm2pgsql
+      table: |-
+        (SELECT
+          osm_id, way, "natural" AS type, way_area AS area
+        FROM
+          planet_osm_polygon 
+        WHERE
+          ("natural" IN ('water', 'pond')
+          OR waterway IN ('basin', 'canal', 'mill_pond', 'pond', 'riverbank', 'stream'))
+          AND way_area > 75000
+        ) AS waterarea_low
+    simplify_geometries: 'true'
+    properties:
+      minzoom: 7
+      maxzoom: 10
+
+  - id: waterarea_med
+    geometry: polygon
+    <<: *extents
+    Datasource:
+      <<: *osm2pgsql
+      table: |-
+        (SELECT
+          osm_id, way, "natural" AS type, way_area AS area
+        FROM
+          planet_osm_polygon 
+        WHERE
+          ("natural" IN ('water', 'pond')
+          OR waterway IN ('basin', 'canal', 'mill_pond', 'pond', 'riverbank', 'stream'))
+          AND way_area > 50000
+        ) AS waterarea_med
+    simplify_geometries: 'true'
+    properties:
+      minzoom: 10
+      maxzoom: 12
+
+  - id: waterarea
+    geometry: polygon
+    <<: *extents
+    Datasource:
+      <<: *osm2pgsql
+      table: |-
+        (SELECT 
+          osm_id,
+          way,
+          way_area AS area,
+          COALESCE(tags -> 'name:eu'::text) as name,
+          COALESCE(waterway, '') || COALESCE(landuse, '') || COALESCE("natural", '') as type
+        FROM
+          planet_osm_polygon
+        WHERE 
+          waterway IN ('riverbank')
+          OR (landuse = ANY (ARRAY['reservoir'::text, 'water'::text, 'basin'::text, 'salt_pond'::text]))
+          OR ("natural" = ANY (ARRAY['lake'::text, 'water'::text])) OR amenity = 'swimming_pool'::text
+          OR leisure = 'swimming_pool'::text
+        ) AS waterarea
+    properties:
+      minzoom: 12
+
+
+  - id: waterway_low
+    geometry: linestring
+    <<: *extents
+    Datasource:
+      <<: *osm2pgsql
+      table: |-
+        (SELECT
+          osm_id, COALESCE(tags -> 'name:eu'::text) as name, COALESCE(waterway, '') as type, way
+        FROM
+          planet_osm_line
+        WHERE
+          waterway in ('river','canal')
+        ORDER BY z_order
+        ) AS waterway_low
+    simplify_geometries: 'true'
+    properties:
+      minzoom: 8
+      maxzoom: 12
+
+
+  - id: waterway_med
+    geometry: linestring
+    <<: *extents
+    Datasource:
+      <<: *osm2pgsql
+      table: |-
+        (SELECT
+          osm_id, COALESCE(tags -> 'name:eu'::text) as name, COALESCE(waterway, '') as type, way
+        FROM
+          planet_osm_line
+        WHERE
+          waterway in ('stream','river','canal')
+        ORDER BY z_order
+        ) AS waterway_med
+    simplify_geometries: 'true'
+    properties:
+      minzoom: 13
+      maxzoom: 14
+
+  - id: waterway_high
+    geometry: linestring
+    <<: *extents
+    Datasource:
+      <<: *osm2pgsql
+      table: |-
+        (SELECT
+          osm_id, COALESCE(tags -> 'name:eu'::text) as name, COALESCE(waterway, '') as type, way
+        FROM
+          planet_osm_line
+        WHERE
+          waterway in ('weir','river','canal','derelict_canal','stream','drain','ditch','wadi')
+        ORDER BY z_order
+        ) AS waterway_high
+    properties:
+      minzoom: 15
+
+
+  - id: buildings
+    geometry: polygon
+    <<: *extents
+    Datasource:
+      <<: *osm2pgsql
+      table: |-
+        (SELECT
+          osm_id, way, 'building' AS type
+        FROM
+          planet_osm_polygon
+        WHERE
+          building NOT IN ('', '0','false', 'no')
+        ORDER BY z_order, way_area DESC
+        ) AS buildings
+    properties:
+      minzoom: 13
+
+
+  - id: rail_low
+    geometry: linestring
+    <<: *extents
+    Datasource:
+      <<: *osm2pgsql
+      table: |-
+        (SELECT
+          osm_id,
+          way,
+          COALESCE(railway) AS type,
+          tags->'usage'::text AS usage,
+          tunnel,
+          bridge
+        FROM
+          planet_osm_line 
+        WHERE
+          railway IN ('rail') AND tags->'usage'::text IN ('main', 'branch')
+        ) AS rail_low
+    simplify_geometries: 'true'
+    properties:
+      minzoom: 6
+      maxzoom: 8
+
+
+  - id: tunnel
+    geometry: linestring
+    <<: *extents
+    Datasource:
+      <<: *osm2pgsql
+      table: |-
+        (SELECT
+          osm_id,
+          way,
+          COALESCE(highway, railway) AS type,
+          0 AS bridge,
+          access,
+          render,
+          layer,
+          1 as tunnel,
+          CASE
+            WHEN highway IN ('motorway', 'trunk') THEN 'motorway'
+            WHEN highway IN ('primary', 'secondary') THEN 'mainroad'
+            WHEN highway IN ('motorway_link', 'trunk_link', 'primary_link', 'secondary_link', 'tertiary', 'tertiary_link', 'residential', 'unclassified', 'road', 'living_street') THEN 'minorroad'
+            WHEN highway IN ('service', 'track') THEN 'service'
+            WHEN highway IN ('path', 'cycleway', 'footway', 'pedestrian', 'steps', 'bridleway') THEN 'noauto'
+            WHEN railway IN ('light_rail', 'subway', 'narrow_gauge', 'rail', 'tram') THEN 'railway'
+          ELSE
+            'other'
+          END AS stylegroup
+        FROM
+          (
+              SELECT *, '1_outline' AS render
+              FROM planet_osm_line 
+              WHERE tunnel NOT IN ('', '0', 'no')
+            UNION ALL
+              SELECT *, '2_line' AS render
+              FROM planet_osm_line
+              WHERE tunnel NOT IN ('', '0', 'no')
+            UNION ALL
+              SELECT *, '3_inline' AS render
+              FROM planet_osm_line
+              WHERE tunnel NOT IN ('', '0', 'no')
+          ) AS tunnels
+        ORDER BY layer ASC, render ASC ) AS tunnel
+    simplify_geometries: 'true'
+    properties:
+      minzoom: 11
+
+
+  - id: roads_low
+    geometry: linestring
+    <<: *extents
+    Datasource:
+      <<: *osm2pgsql
+      table: |-
+        (SELECT
+          osm_id,
+          way,
+          COALESCE(highway, railway) AS type, 
+          0 AS tunnel,
+          0 AS bridge,
+          access,
+          'fill' AS render, 
+          CASE 
+              WHEN highway IN ('motorway', 'trunk') THEN 'motorway' 
+              WHEN highway IN ('primary') THEN 'mainroad'  
+              WHEN railway IN ('rail') THEN 'railway'
+          ELSE 'other'
+          END AS stylegroup 
+        FROM planet_osm_line 
+        WHERE
+          highway IN ('motorway', 'trunk', 'primary')
+          OR railway IN ('rail')
+          AND (tunnel IS NULL OR tunnel = 'no') 
+          AND (bridge IS NULL OR bridge = 'no') 
+        ORDER BY z_order  ) AS roads_low
+    simplify_geometries: 'true'
+    properties:
+      minzoom: 6
+      maxzoom: 8
+
+
+  - id: roads_med
+    geometry: linestring
+    <<: *extents
+    Datasource:
+      <<: *osm2pgsql
+      table: |-
+        (SELECT
+          osm_id,
+          way,
+          COALESCE(highway, railway) AS type, 
+          0 AS tunnel, 0 AS bridge, access, 'fill' AS render, 
+          CASE 
+          WHEN highway IN ('motorway', 'trunk') THEN 'motorway' 
+          WHEN highway IN ('primary', 'secondary') THEN 'mainroad' 
+          WHEN highway IN ('motorway_link', 'trunk_link', 'primary_link', 'secondary_link', 'tertiary', 'tertiary_link') THEN 'minorroad'  
+          WHEN railway IN ('light_rail', 'subway', 'narrow_gauge', 'rail', 'tram') THEN 'railway'
+          ELSE 'other'
+          END AS stylegroup 
+        FROM planet_osm_line 
+        WHERE
+          highway IN ('motorway', 'trunk', 'primary', 'secondary', 'motorway_link', 'trunk_link', 'primary_link', 'secondary_link', 'tertiary', 'tertiary_link')
+          OR railway IN ('light_rail', 'subway', 'narrow_gauge', 'rail', 'tram')
+          AND (tunnel IS NULL OR tunnel = 'no') AND (bridge IS NULL OR bridge = 'no')
+        ORDER BY z_order  ) AS roads_med
+    simplify_geometries: 'true'
+    properties:
+      minzoom: 9
+      maxzoom: 10
+
+
+  - id: roads_high
+    geometry: linestring
+    <<: *extents
+    Datasource:
+      <<: *osm2pgsql
+      table: |-
+        (SELECT
+          osm_id,
+          way,
+          COALESCE(highway, railway) AS type, 
+          0 AS tunnel,
+          0 AS bridge,
+          access,
+          'fill' AS render, 
+          CASE 
+              WHEN highway IN ('motorway', 'trunk') THEN 'motorway' 
+              WHEN highway IN ('primary', 'secondary') THEN 'mainroad' 
+              WHEN highway IN ('motorway_link', 'trunk_link', 'primary_link', 'secondary_link', 'tertiary', 'tertiary_link', 'residential', 'unclassified', 'road', 'living_street') THEN 'minorroad' 
+              WHEN highway IN ('service', 'track') THEN 'service' 
+              WHEN highway IN ('path', 'cycleway', 'footway', 'pedestrian', 'steps', 'bridleway') THEN 'noauto' 
+              WHEN railway IN ('light_rail', 'subway', 'narrow_gauge', 'rail', 'tram') THEN 'railway' 
+              ELSE 'other' 
+          END AS stylegroup 
+        FROM planet_osm_line 
+        WHERE
+          (highway IS NOT NULL OR railway IS NOT NULL)
+          AND (tunnel IS NULL OR tunnel = 'no')
+          AND (bridge IS NULL OR bridge = 'no')
+        ORDER BY z_order   ) AS roads_high
+    simplify_geometries: 'true'
+    properties:
+      minzoom: 11
+
+
+  - id: bridge
+    geometry: linestring
+    <<: *extents
+    Datasource:
+      <<: *osm2pgsql
+      table: |-
+        (SELECT
+          way,
+          COALESCE(highway, railway) AS type,
+          1 AS bridge, access, render, layer,
+          0 as tunnel,
+          CASE
+            WHEN highway IN ('motorway', 'trunk') THEN 'motorway'  
+            WHEN highway IN ('primary', 'secondary') THEN 'mainroad'  
+            WHEN highway IN ('motorway_link', 'trunk_link', 'primary_link', 'secondary_link', 'tertiary', 'tertiary_link', 'residential', 'unclassified', 'road', 'living_street') THEN 'minorroad'  
+            WHEN highway IN ('service', 'track') THEN 'service'  
+            WHEN highway IN ('path', 'cycleway', 'footway', 'pedestrian', 'steps', 'bridleway') THEN 'noauto'  
+            WHEN railway IN ('light_rail', 'subway', 'narrow_gauge', 'rail', 'tram') THEN 'railway'  
+          ELSE 'other'
+          END AS stylegroup
+          FROM 
+          (
+              SELECT *, '1_outline' AS render
+              FROM planet_osm_line 
+              WHERE bridge NOT IN ('', '0', 'no')
+            UNION ALL
+              SELECT *, '2_line' AS render
+              FROM planet_osm_line
+              WHERE bridge NOT IN ('', '0', 'no')
+            UNION ALL
+              SELECT *, '3_inline' AS render
+              FROM planet_osm_line
+              WHERE bridge NOT IN ('', '0', 'no')
+          ) AS bridges
+        ORDER BY layer ASC, render ASC   ) AS bridge
+    simplify_geometries: 'true'
+    properties:
+      minzoom: 11
+
+
+  - id: admin_boundaries
+    geometry: linestring
+    <<: *extents
+    Datasource:
+      <<: *osm2pgsql
+      table: |-
+        (SELECT
+          ST_Simplify(b.way,!pixel_width!/4) as way,
+          admin_level::integer AS admin_level,
+          coalesce(b.tags->'maritime','no') AS maritime,
+          count(r.*)::integer AS nb,
+          string_agg(id::text,',') AS rels
+        FROM planet_osm_roads b
+        LEFT JOIN planet_osm_rels r ON (r.parts @> ARRAY[osm_id]
+          AND r.members @> ARRAY['w' || osm_id]
+          AND regexp_replace(r.tags::text,'[{}]',',') ~ format('(,admin_level,%s.*,boundary,administrative|,boundary,administrative.*,admin_level,%s,)',admin_level,admin_level)) 
+        WHERE
+          way && !bbox!
+          AND boundary='administrative'
+          AND admin_level IS NOT NULL
+        GROUP BY 1,2,3
+        ORDER BY admin_level DESC   ) AS admin_boundaries
+    simplify_geometries: 'true'
+    properties:
+      minzoom: 11
+
+
+  - id: place
+    geometry: linestring
+    <<: *extents
+    Datasource:
+      <<: *osm2pgsql
+      table: |-
+        (SELECT
+          osm_id,
+          COALESCE(tags -> 'name:eu'::text) as name,
+          place as type,
+          admin_level,
+          COALESCE(tags->'is_capital'::text) as is_capital,
+          z_order,
+          way
+        FROM planet_osm_point
+        WHERE (tags -> 'name:eu'::text IS NOT NULL)
+        ORDER BY z_order   ) AS place
+    simplify_geometries: 'false'
+    properties:
+      minzoom: 13
+
+
+  - id: admin_place
+    geometry: linestring
+    <<: *extents
+    Datasource:
+      <<: *osm2pgsql
+      table: |-
+        (SELECT
+          osm_id, place as type, MAX(admin_level) as admin_level, name, way
+        FROM
+        (
+            -- communes
+            (WITH
+                p AS (
+                    SELECT osm_id, CONCAT('n',osm_id) as admin_centre_id, place, COALESCE(tags -> 'name:eu'::text,'') as name, way
+                    FROM planet_osm_point 
+                    WHERE place IN ('village','town')
+                    AND way && !bbox!
+                )
+                SELECT p.osm_id, p.place, 1 as admin_level, p.name, p.way
+                FROM planet_osm_rels AS r, p
+                WHERE
+                    r.members::text ~ 'admin_centre' AND r.tags::text ~ 'admin_level,8' 
+                    AND p.admin_centre_id = ANY(members)
+                    -- ceci pour forcer l'utilisation des indexes
+                    AND ARRAY[p.osm_id] && parts
+            )
+            -- chefs-lieux de canton
+            UNION
+            (WITH
+                p AS (
+                    SELECT osm_id, CONCAT('n',osm_id) as admin_centre_id, place, COALESCE(tags -> 'name:eu'::text,'') as name, way
+                    FROM planet_osm_point 
+                    WHERE place IN ('village','town')
+                    AND way && !bbox!
+                )
+                SELECT p.osm_id, p.place, 2 as admin_level, p.name, p.way
+                FROM planet_osm_rels AS r, p
+                WHERE
+                    r.members::text ~ 'admin_centre' AND r.tags::text ~ 'political_division,canton'
+                    AND p.admin_centre_id = ANY(members)
+                    AND ARRAY[p.osm_id] && parts
+            )
+            -- sous-préfecture
+            UNION
+            (WITH
+                p AS (
+                    SELECT osm_id, CONCAT('n',osm_id) as admin_centre_id, place, COALESCE(tags -> 'name:eu'::text,'') as name, way
+                    FROM planet_osm_point 
+                    WHERE place IN ('town','city')
+                    AND way && !bbox!
+                )
+                SELECT p.osm_id, p.place, 3 as admin_level, p.name, p.way
+                FROM planet_osm_rels AS r, p
+                WHERE
+                    r.members::text ~ 'admin_centre' AND r.tags::text ~ 'admin_level,7' 
+                    AND p.admin_centre_id = ANY(members)
+                    AND ARRAY[p.osm_id] && parts
+            )
+            -- préfecture
+            UNION
+            (WITH
+                p AS (
+                    SELECT osm_id, CONCAT('n',osm_id) as admin_centre_id, place, COALESCE(tags -> 'name:eu'::text,'') as name, way
+                    FROM planet_osm_point 
+                    WHERE place IN ('town','city')
+                    AND way && !bbox!
+                )
+                SELECT p.osm_id, p.place, 4 as admin_level, p.name, p.way
+                FROM planet_osm_rels AS r, p
+                WHERE
+                    r.members::text ~ 'admin_centre' AND r.tags::text ~ 'admin_level,6' 
+                    AND p.admin_centre_id = ANY(members)
+                    AND ARRAY[p.osm_id] && parts
+            )
+        ) AS query
+        GROUP BY osm_id, place, name, way
+          ORDER BY admin_level DESC, name ASC   ) AS admin_place
+      srid: 3857
+      geometry_table: 'planet_osm_point'
+      geometry_field: 'way'
+      key_field: 'osm_id'
+      simplify_geometries: 'false'
+    properties:
+      minzoom: 5
+
+
+  - id: motorway_label
+    geometry: linestring
+    <<: *extents
+    Datasource:
+      <<: *osm2pgsql
+      table: |-
+        (SELECT
+          osm_id,
+          COALESCE(highway, '') as type,
+          COALESCE(tags -> 'name:eu'::text,'') as name,
+          ref,
+          oneway,
+          CHAR_LENGTH(ref) AS reflen,
+          way
+        FROM
+          planet_osm_line
+        WHERE
+          highway IN ('motorway', 'trunk')
+          AND (COALESCE(tags -> 'name:eu'::text,'') IS NOT NULL OR ref IS NOT NULL)   ) AS motorway_label
+    simplify_geometries: 'true'
+    properties:
+      minzoom: 9
+
+
+  - id: mainroad_label
+    geometry: linestring
+    <<: *extents
+    Datasource:
+      <<: *osm2pgsql
+      table: |-
+        (SELECT
+          osm_id,
+          COALESCE(highway, '') as type,
+          COALESCE(tags -> 'name:eu'::text,'') as name,
+          way
+        FROM
+          planet_osm_line
+        WHERE
+          highway IN ('primary', 'secondary', 'tertiary')   ) AS mainroad_label
+    simplify_geometries: 'true'
+    properties:
+      minzoom: 12
+
+
+  - id: minorroad_label
+    geometry: linestring
+    <<: *extents
+    Datasource:
+      <<: *osm2pgsql
+      table: |-
+        (SELECT
+          osm_id,
+          COALESCE(highway, '') as type,
+          COALESCE(tags -> 'name:eu'::text,'') as name,
+          way
+        FROM
+          planet_osm_line
+        WHERE
+          highway IN ('motorway','motorway_link','trunk','trunk_link','primary','primary_link','secondary','secondary_link','tertiary','tertiary_link','road','path','track','service','footway','bridleway','cycleway','steps','pedestrian','living_street','unclassified','residential','raceway')   ) AS minorroad_label
+    simplify_geometries: 'true'
+    properties:
+      minzoom: 14
+
+
+  - id: building_label
+    geometry: polygon
+    <<: *extents
+    Datasource:
+      <<: *osm2pgsql
+      table: |-
+        (SELECT
+            COALESCE(tags -> 'name:eu'::text) as name,
+            way,
+            way_area/NULLIF(!pixel_width!::real*!pixel_height!::real,0) AS way_pixels
+          FROM planet_osm_polygon
+          WHERE building IS NOT NULL
+            AND building NOT IN ('no')
+            AND name IS NOT NULL
+          ORDER BY way_area DESC
+        ) AS building_text
+    properties:
+      minzoom: 14
+
+
+  - id: leisure_label
+    geometry: polygon
+    <<: *extents
+    Datasource:
+      <<: *osm2pgsql
+      table: |-
+        (SELECT
+            COALESCE(tags -> 'name:eu'::text) as name,
+            way,
+            way_area/NULLIF(!pixel_width!::real*!pixel_height!::real,0) AS way_pixels
+          FROM planet_osm_polygon
+          WHERE leisure IN ('park', 'sports_centre', 'stadium', 'pitch')
+            AND name IS NOT NULL
+          ORDER BY way_area DESC
+        ) AS leisure_text
+    properties:
+      minzoom: 14
+
+
+
+
+
+
+
+
+
