@@ -2,31 +2,24 @@
 <!DOCTYPE Map[]>
 <Map srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
   <Parameters>
-    <Parameter name="bounds">-180,-85.0511,180,85.0511</Parameter>
+    <Parameter name="name"><![CDATA[OpenStreetMap en occitan - control layer]]></Parameter>
+    <Parameter name="description"><![CDATA[A general-purpose OpenStreetMap mapnik style, focused on minored langages, in CartoCSS]]></Parameter>
+    <Parameter name="attribution"><![CDATA[CC-BY-SA OSM-BZH]]></Parameter>
+    <Parameter name="scale">1</Parameter>
+    <Parameter name="metatile">2</Parameter>
+    <Parameter name="bounds">-180,-85,180,85</Parameter>
     <Parameter name="center">-2.96,48.03,8</Parameter>
     <Parameter name="format"><![CDATA[png]]></Parameter>
-    <Parameter name="minzoom">10</Parameter>
+    <Parameter name="minzoom">4</Parameter>
     <Parameter name="maxzoom">18</Parameter>
-    <Parameter name="scale">1</Parameter>
-    <Parameter name="metatile">4</Parameter>
-    <Parameter name="name"><![CDATA[osm-oc-control-map]]></Parameter>
-    <Parameter name="description"><![CDATA[osm-oc-control-map]]></Parameter>
   </Parameters>
-  <Style filter-mode="first" name="land_high">
-    <Rule>
-      <MaxScaleDenominator>750000</MaxScaleDenominator>
-      <PolygonSymbolizer fill="#ffffff" fill-opacity="0.25" />
-    </Rule>
-  </Style>
-  <Layer name="land_high" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
-    <StyleName><![CDATA[land_high]]></StyleName>
+  <Layer name="land_high" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over" status="on">
     <Datasource>
       <Parameter name="file"><![CDATA[/data/styles/data/land-polygons-split-3857/land_polygons.shp]]></Parameter>
       <Parameter name="type"><![CDATA[shape]]></Parameter>
-      <Parameter name="srid"><![CDATA[3857]]></Parameter>
     </Datasource>
   </Layer>
-  <Style filter-mode="first" name="places" opacity="0.5">
+  <Style filter-mode="first" name="places">
     <Rule>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <Filter><![CDATA[([check] = 'null')]]></Filter>
@@ -55,6 +48,11 @@
       <MinScaleDenominator>400000</MinScaleDenominator>
       <Filter><![CDATA[([check] = 'null')]]></Filter>
       <MarkersSymbolizer fill="#a90825" stroke-opacity="0" width="2" />
+    </Rule>
+    <Rule>
+      <MinScaleDenominator>750000</MinScaleDenominator>
+      <Filter><![CDATA[([check] = 'null')]]></Filter>
+      <MarkersSymbolizer fill="#a90825" />
     </Rule>
     <Rule>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
@@ -86,6 +84,11 @@
       <MarkersSymbolizer fill="#3d9733" stroke-opacity="0" width="2" />
     </Rule>
     <Rule>
+      <MinScaleDenominator>750000</MinScaleDenominator>
+      <Filter><![CDATA[([check] = 'done')]]></Filter>
+      <MarkersSymbolizer fill="#3d9733" />
+    </Rule>
+    <Rule>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <MarkersSymbolizer stroke-opacity="0.75" width="10" />
     </Rule>
@@ -110,25 +113,38 @@
       <MarkersSymbolizer stroke-opacity="0" width="2" />
     </Rule>
   </Style>
-  <Layer name="places" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+  <Layer maximum-scale-denominator="750000" name="places" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over" status="on">
     <StyleName><![CDATA[places]]></StyleName>
     <Datasource>
       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+      <Parameter name="dbname"><![CDATA[osm]]></Parameter>
+      <Parameter name="key_field"><![CDATA[]]></Parameter>
+      <Parameter name="geometry_field"><![CDATA[way]]></Parameter>
+      <Parameter name="extent"><![CDATA[-20037508,-20037508,20037508,20037508]]></Parameter>
       <Parameter name="host"><![CDATA[db.openstreetmap.world]]></Parameter>
       <Parameter name="user"><![CDATA[osmbr]]></Parameter>
       <Parameter name="password"><![CDATA[m4d31nbr31zh]]></Parameter>
-      <Parameter name="dbname"><![CDATA[osm]]></Parameter>
-      <Parameter name="table"><![CDATA[( SELECT  a.osm_id, a.name, b.local_name, CASE WHEN b.local_name IS NULL THEN 'null' ELSE 'done' END AS check, a.way  FROM planet_osm_point a FULL JOIN  ( SELECT osm_id, tags -> 'name:oc' AS local_name FROM planet_osm_point  WHERE (tags -> 'name:oc'::text IS NOT NULL) ) AS b ON a.osm_id = b.osm_id WHERE name IS NOT NULL AND place IS NOT NULL ) AS data]]></Parameter>
-      <Parameter name="key_field"><![CDATA[osm_id]]></Parameter>
-      <Parameter name="geometry_field"><![CDATA[way]]></Parameter>
       <Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
       <Parameter name="max_async_connection"><![CDATA[4]]></Parameter>
-      <Parameter name="simplify_geometries"><![CDATA[true]]></Parameter>
-      <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-      <Parameter name="extent"><![CDATA[-1363990,3994624,1824475,9411676]]></Parameter>
+      <Parameter name="table"><![CDATA[(SELECT 
+  a.osm_id, a.name, b.local_name,
+  CASE
+    WHEN b.local_name IS NULL THEN 'null'
+    ELSE 'done'
+  END AS check,
+  a.way 
+FROM planet_osm_point a
+FULL JOIN 
+(
+  SELECT osm_id, tags -> 'name:oc' AS local_name
+  FROM planet_osm_point 
+  WHERE (tags -> 'name:oc'::text IS NOT NULL)
+) AS b ON a.osm_id = b.osm_id
+WHERE name IS NOT NULL AND place IS NOT NULL
+) AS places]]></Parameter>
     </Datasource>
   </Layer>
-  <Style filter-mode="first" name="ways" opacity="0.5">
+  <Style filter-mode="first" name="ways">
     <Rule>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <Filter><![CDATA[([check] = 'null')]]></Filter>
@@ -157,6 +173,11 @@
       <MinScaleDenominator>400000</MinScaleDenominator>
       <Filter><![CDATA[([check] = 'null')]]></Filter>
       <LineSymbolizer stroke="#a90825" stroke-width="0.2" />
+    </Rule>
+    <Rule>
+      <MinScaleDenominator>750000</MinScaleDenominator>
+      <Filter><![CDATA[([check] = 'null')]]></Filter>
+      <LineSymbolizer stroke="#a90825" />
     </Rule>
     <Rule>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
@@ -188,6 +209,11 @@
       <LineSymbolizer stroke="#3d9733" stroke-width="0.2" />
     </Rule>
     <Rule>
+      <MinScaleDenominator>750000</MinScaleDenominator>
+      <Filter><![CDATA[([check] = 'done')]]></Filter>
+      <LineSymbolizer stroke="#3d9733" />
+    </Rule>
+    <Rule>
       <MaxScaleDenominator>50000</MaxScaleDenominator>
       <LineSymbolizer stroke-width="2.5" />
     </Rule>
@@ -212,22 +238,35 @@
       <LineSymbolizer stroke-width="0.2" />
     </Rule>
   </Style>
-  <Layer name="ways" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+  <Layer maximum-scale-denominator="750000" name="ways" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over" status="on">
     <StyleName><![CDATA[ways]]></StyleName>
     <Datasource>
       <Parameter name="type"><![CDATA[postgis]]></Parameter>
+      <Parameter name="dbname"><![CDATA[osm]]></Parameter>
+      <Parameter name="key_field"><![CDATA[]]></Parameter>
+      <Parameter name="geometry_field"><![CDATA[way]]></Parameter>
+      <Parameter name="extent"><![CDATA[-20037508,-20037508,20037508,20037508]]></Parameter>
       <Parameter name="host"><![CDATA[db.openstreetmap.world]]></Parameter>
       <Parameter name="user"><![CDATA[osmbr]]></Parameter>
       <Parameter name="password"><![CDATA[m4d31nbr31zh]]></Parameter>
-      <Parameter name="dbname"><![CDATA[osm]]></Parameter>
-      <Parameter name="table"><![CDATA[( SELECT  a.osm_id, a.name, b.local_name, CASE WHEN b.local_name IS NULL THEN 'null' ELSE 'done' END AS check, a.way  FROM planet_osm_line a FULL JOIN  ( SELECT osm_id, tags -> 'name:oc' AS local_name FROM planet_osm_line  WHERE (tags -> 'name:oc'::text IS NOT NULL) ) AS b ON a.osm_id = b.osm_id WHERE name IS NOT NULL AND highway IS NOT NULL ) AS data]]></Parameter>
-      <Parameter name="key_field"><![CDATA[osm_id]]></Parameter>
-      <Parameter name="geometry_field"><![CDATA[way]]></Parameter>
       <Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
       <Parameter name="max_async_connection"><![CDATA[4]]></Parameter>
-      <Parameter name="simplify_geometries"><![CDATA[true]]></Parameter>
-      <Parameter name="extent_cache"><![CDATA[auto]]></Parameter>
-      <Parameter name="extent"><![CDATA[-1363990,3994624,1824475,9411676]]></Parameter>
+      <Parameter name="table"><![CDATA[(SELECT 
+  a.osm_id, a.name, b.local_name,
+  CASE
+      WHEN b.local_name IS NULL THEN 'null'
+      ELSE 'done'
+  END AS check,
+  a.way 
+FROM planet_osm_line a
+FULL JOIN 
+(
+    SELECT osm_id, tags -> 'name:oc' AS local_name
+    FROM planet_osm_line 
+    WHERE (tags -> 'name:oc'::text IS NOT NULL)
+) AS b ON a.osm_id = b.osm_id
+WHERE name IS NOT NULL AND highway IS NOT NULL
+) AS ways]]></Parameter>
     </Datasource>
   </Layer>
 </Map>

@@ -1,0 +1,118 @@
+name: OpenStreetMap euskara da - control layer
+description: 'A general-purpose OpenStreetMap mapnik style, focused on minored langages, in CartoCSS'
+attribution: 'CC-BY-SA OSM-BZH'
+scale: 1
+metatile: 2
+bounds: &world
+  - -180
+  - -85
+  - 180
+  - 85
+center:
+  - -2.96
+  - 48.03
+  - 8
+format: 'png'
+interactivity: false
+minzoom: 4
+maxzoom: 18
+srs: "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+
+
+_parts:
+  # default values used by layers
+  extents: &extents
+    extent: *world
+    srs-name: "3857"
+    srs: "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+    class: ''
+    status: 'on'
+
+  extents84: &extents84
+    extent: *world
+    srs-name: "WGS84"
+    srs: "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"
+
+  osm2pgsql: &osm2pgsql
+    type: "postgis"
+    dbname: "osm"
+    key_field: ""
+    geometry_field: "way"
+    extent: "-20037508,-20037508,20037508,20037508"
+    host: db.openstreetmap.world
+    user: osmbr
+    password: m4d31nbr31zh
+    asynchronous_request: 'true'
+    max_async_connection: '4'
+
+
+# stylesheets
+Stylesheet:
+  - control_map.mss
+
+
+# the layers
+Layer:
+
+  - id: land_high
+    geometry: polygon
+    <<: *extents
+    Datasource:
+      file: /data/styles/data/land-polygons-split-3857/land_polygons.shp
+      type: shape
+
+
+  - id: places
+    geometry: point
+    <<: *extents
+    Datasource:
+      <<: *osm2pgsql
+      table: |-
+        (SELECT 
+          a.osm_id, a.name, b.local_name,
+          CASE
+            WHEN b.local_name IS NULL THEN 'null'
+            ELSE 'done'
+          END AS check,
+          a.way 
+        FROM planet_osm_point a
+        FULL JOIN 
+        (
+          SELECT osm_id, tags -> 'name:eu' AS local_name
+          FROM planet_osm_point 
+          WHERE (tags -> 'name:eu'::text IS NOT NULL)
+        ) AS b ON a.osm_id = b.osm_id
+        WHERE name IS NOT NULL AND place IS NOT NULL
+        ) AS places
+    simplify_geometries: 'false'
+    properties:
+      minzoom: 10
+
+
+  - id: ways
+    geometry: linestring
+    <<: *extents
+    Datasource:
+      <<: *osm2pgsql
+      table: |-
+        (SELECT 
+          a.osm_id, a.name, b.local_name,
+          CASE
+              WHEN b.local_name IS NULL THEN 'null'
+              ELSE 'done'
+          END AS check,
+          a.way 
+        FROM planet_osm_line a
+        FULL JOIN 
+        (
+            SELECT osm_id, tags -> 'name:eu' AS local_name
+            FROM planet_osm_line 
+            WHERE (tags -> 'name:eu'::text IS NOT NULL)
+        ) AS b ON a.osm_id = b.osm_id
+        WHERE name IS NOT NULL AND highway IS NOT NULL
+        ) AS ways
+    simplify_geometries: 'true'
+    properties:
+      minzoom: 10
+
+
