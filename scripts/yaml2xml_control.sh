@@ -27,6 +27,14 @@ carto osm_eu_control.mml > osm_eu_control.xml
 rm osm_eu_control.mml
 
 echo ""
+echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+echo "  GSW"
+
+cp osm_gsw_control.yml osm_gsw_control.mml
+carto osm_gsw_control.mml > osm_gsw_control.xml
+rm osm_gsw_control.mml
+
+echo ""
 echo ""
 
 ls -laGh osm_*.xml

@@ -27,6 +27,15 @@ carto osm_eu.mml > osm_eu.xml
 rm osm_eu.mml
 
 echo ""
+echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+echo "  GSW"
+
+cp osm_gsw.yml osm_gsw.mml
+carto osm_gsw.mml > osm_gsw.xml
+rm osm_gsw.mml
+
+
+echo ""
 echo ""
 
 ls -laGh osm_*.xml
