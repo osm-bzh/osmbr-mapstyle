@@ -72,10 +72,10 @@ We use 2 layers for low scales. They need to be in /data/styles/data/ :
 ```
 cd /data/styles/data/
 
-wget http://data.openstreetmapdata.com/simplified-land-polygons-complete-3857.zip
+wget https://osmdata.openstreetmap.de/download/simplified-land-polygons-complete-3857.zip
 unzip simplified-land-polygons-complete-3857.zip
 
-wget http://data.openstreetmapdata.com/land-polygons-split-3857.zip
+wget https://osmdata.openstreetmap.de/download/land-polygons-split-3857.zip
 unzip land-polygons-split-3857.zip
 
 cd simplified-land-polygons-complete-3857
