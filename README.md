@@ -8,7 +8,7 @@ It is derived from the Lyrk mapstyle you can found at [https://github.com/lyrk/l
 * [breton](https://tile.openstreetmap.bzh/br/)
 * [occitan](https://tile.openstreetmap.bzh/oc/)
 * [basque](https://tile.openstreetmap.bzh/eu/)
-* ...
+* [alsacien](https://tile.openstreetmap.bzh/gsw/)
  
 
 
@@ -19,10 +19,10 @@ Il est dérivé du style Lyrk que vous pouvez trouver ici : [https://github.com/
 
 **Ce style a été créé afin de mettre en œuvre des services cartographiques de tuiles pour les langues minorées de France** :
 
-* [breton](http://tile.openstreetmap.bzh/br/)
-* [occitan](tile.openstreetmap.bzh/oc/)
-* [basque](http://tile.openstreetmap.bzh/eu/)
-* ...
+* [breton](https://tile.openstreetmap.bzh/br/)
+* [occitan](https://tile.openstreetmap.bzh/oc/)
+* [basque](https://tile.openstreetmap.bzh/eu/)
+* [alsacien](https://tile.openstreetmap.bzh/gsw/)
 
 
 # Preview
