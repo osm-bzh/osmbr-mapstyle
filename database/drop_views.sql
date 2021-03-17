@@ -1,2 +1,2 @@
 ﻿
-DROP MATERIALIZED VIEW admin_places;
+DROP MATERIALIZED VIEW IF EXISTS admin_places;
