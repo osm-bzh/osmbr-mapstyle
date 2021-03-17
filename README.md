@@ -112,7 +112,11 @@ psql -d osm -c "CREATE EXTENSION IF NOT EXISTS postgis;"
 
 ### Load datas
 
-You need to install the ```osmctools``` package because we use ```osmconvert``` in the update script. So ```apt install osmctools``` will do the job.
+You need to install 2 packages :
+* the ```osmctools``` package because we use ```osmconvert``` to cut the dump
+* ```osm2pgsql``` to load into the database
+
+So ```apt install osmctools osm2pgsql``` will do the job.
 
 
 Then run ```/scripts/update_db.sh``` to load the database.
