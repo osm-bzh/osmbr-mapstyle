@@ -1,7 +1,7 @@
 database/sauv foreign table/*
-test*
 osm-bright.osm2pgsql.mml
 tmp/*
+test/*
 
 .thumb.png
 
