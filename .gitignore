@@ -14,3 +14,4 @@ test/*
 .Trashes
 ehthumbs.db
 Thumbs.db
+osm_br_test.yml
