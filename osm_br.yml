@@ -553,22 +553,19 @@ Layer:
             place,
             COALESCE(tags -> 'name:br'::text,'') as name
           FROM planet_osm_point
-          WHERE place IN ('village', 'hamlet')
-             AND COALESCE(tags -> 'name:br'::text,'') IS NOT NULL
+          WHERE
+             place IN ('suburb','village','locality','hamlet','quarter','neighbourhood','isolated_dwelling','farm')
+             AND COALESCE(tags -> 'name:br'::text) IS NOT NULL
              AND NOT tags @> 'capital=>yes'
-             OR (place IN ('suburb', 'quarter', 'neighbourhood', 'isolated_dwelling', 'farm')
-             ) AND name IS NOT NULL
           ORDER BY CASE
               WHEN place = 'suburb' THEN 7
               WHEN place = 'village' THEN 6
-              WHEN place = 'hamlet' THEN 5
+              WHEN place IN ('locality','hamlet') THEN 5
               WHEN place = 'quarter' THEN 4
               WHEN place = 'neighbourhood' THEN 3
               WHEN place = 'isolated_dwelling' THEN 2
               WHEN place = 'farm' THEN 1
-            END DESC,
-            length(COALESCE(tags -> 'name:br'::text,'')) DESC,
-            COALESCE(tags -> 'name:br'::text,'') ) AS placenames_small
+            END DESC) AS placenames_small
     properties:
       cache-features: true
       minzoom: 10
