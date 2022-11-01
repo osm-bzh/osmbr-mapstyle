@@ -362,35 +362,44 @@
 #placenames_small::hamlet {
   [place = 'hamlet'],
   [place = 'locality'] {
-    [zoom >= 14] {
+    [zoom >= 13] {
 
       text-name: '[name]';
       text-face-name: @sans;
       text-placement: point;
-      text-fill: @place_text;
-      text-size: 10;
       text-halo-fill: @other_halo;
-      text-halo-radius: 1;
-      text-wrap-width: 30;
       text-avoid-edges: true;
       text-label-position-tolerance: 20;
       
+      [zoom=13] {
+        text-size: 8;
+        text-fill: @place_text;
+        text-halo-radius: 1;
+        text-character-spacing: 0.55;
+        text-wrap-width: 30;
+        text-line-spacing: 1;
+      }
       [zoom>=14] {
         text-size: 10;
         text-fill: @place_text;
         text-halo-radius: 1.5;
-        text-character-spacing: 1;
+        text-character-spacing: 0.75;
         text-wrap-width: 50;
         text-line-spacing: 1;
       }
       [zoom=15] {
         text-size: 11;
-        text-halo-radius: 2;
-        text-wrap-width: 60; 
+        text-fill: @place_text_light;
+        text-halo-radius: 1.5;
+        text-wrap-width: 60;
+        text-label-position-tolerance: 10;
       }
       [zoom>=16] {
         text-size: 13;
-        text-wrap-width: 60; 
+        text-fill: @place_text_light;
+        text-halo-radius: 2;
+        text-wrap-width: 60;
+        text-label-position-tolerance: 10;
       }
     }
   }
