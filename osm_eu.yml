@@ -50,13 +50,13 @@ _parts:
 
 # stylesheets
 Stylesheet:
-  - palette.mss
-  - base.mss
-  - landcover.mss
-  - admin.mss
-  - roads.mss
-  - placenames.mss
-  - labels.mss
+  - styles/palette.mss
+  - styles/base.mss
+  - styles/landcover.mss
+  - styles/admin.mss
+  - styles/roads.mss
+  - styles/placenames.mss
+  - styles/labels.mss
 
 
 # the layers

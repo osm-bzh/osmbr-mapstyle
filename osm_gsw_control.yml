@@ -48,7 +48,7 @@ _parts:
 
 # stylesheets
 Stylesheet:
-  - control_map.mss
+  - styles/control_map.mss
 
 
 # the layers
