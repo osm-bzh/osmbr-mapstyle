@@ -42,8 +42,10 @@ _parts:
     host: db.openstreetmap.world
     user: osmbr
     password: m4d31nbr31zh
-    asynchronous_request: 'true'
-    max_async_connection: '4'
+    asynchronous_request: true
+    max_async_connection: 4
+    max_size: 50
+    cursor_size: 5000
 
 
 # stylesheets

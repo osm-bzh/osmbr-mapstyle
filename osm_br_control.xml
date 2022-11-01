@@ -124,8 +124,10 @@
       <Parameter name="host"><![CDATA[db.openstreetmap.world]]></Parameter>
       <Parameter name="user"><![CDATA[osmbr]]></Parameter>
       <Parameter name="password"><![CDATA[m4d31nbr31zh]]></Parameter>
-      <Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
-      <Parameter name="max_async_connection"><![CDATA[4]]></Parameter>
+      <Parameter name="asynchronous_request">true</Parameter>
+      <Parameter name="max_async_connection">4</Parameter>
+      <Parameter name="max_size">50</Parameter>
+      <Parameter name="cursor_size">5000</Parameter>
       <Parameter name="table"><![CDATA[(SELECT 
   a.osm_id, a.name, b.local_name,
   CASE
@@ -249,8 +251,10 @@ WHERE name IS NOT NULL AND place IS NOT NULL
       <Parameter name="host"><![CDATA[db.openstreetmap.world]]></Parameter>
       <Parameter name="user"><![CDATA[osmbr]]></Parameter>
       <Parameter name="password"><![CDATA[m4d31nbr31zh]]></Parameter>
-      <Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
-      <Parameter name="max_async_connection"><![CDATA[4]]></Parameter>
+      <Parameter name="asynchronous_request">true</Parameter>
+      <Parameter name="max_async_connection">4</Parameter>
+      <Parameter name="max_size">50</Parameter>
+      <Parameter name="cursor_size">5000</Parameter>
       <Parameter name="table"><![CDATA[(SELECT 
   a.osm_id, a.name, b.local_name,
   CASE
