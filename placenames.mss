@@ -8,9 +8,10 @@
 
 
 /* ================================================================== */
-/* PLACE NAMES  for countries
+/* PLACE NAMES  for countries => not in use
 /* ================================================================== */
 
+/*
 #place::country[type='country'][zoom>=5][zoom<8] {
   text-name: '[name]';
   text-face-name: @sans_bold;
@@ -46,7 +47,7 @@
     text-character-spacing: 2;
   }
 }
-
+*/
 
 /* ================================================================== */
 /* PLACE NAMES  for cities, towns
