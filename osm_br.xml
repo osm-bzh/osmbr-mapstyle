@@ -64,8 +64,10 @@
       <Parameter name="host"><![CDATA[db.openstreetmap.world]]></Parameter>
       <Parameter name="user"><![CDATA[osmbr]]></Parameter>
       <Parameter name="password"><![CDATA[m4d31nbr31zh]]></Parameter>
-      <Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
-      <Parameter name="max_async_connection"><![CDATA[4]]></Parameter>
+      <Parameter name="asynchronous_request">true</Parameter>
+      <Parameter name="max_async_connection">4</Parameter>
+      <Parameter name="max_size">50</Parameter>
+      <Parameter name="cursor_size">5000</Parameter>
       <Parameter name="table"><![CDATA[(SELECT
   osm_id, way, way_area AS area, COALESCE(landuse, leisure, "natural", highway, amenity, tourism) AS type
 FROM
@@ -315,8 +317,10 @@ WHERE
       <Parameter name="host"><![CDATA[db.openstreetmap.world]]></Parameter>
       <Parameter name="user"><![CDATA[osmbr]]></Parameter>
       <Parameter name="password"><![CDATA[m4d31nbr31zh]]></Parameter>
-      <Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
-      <Parameter name="max_async_connection"><![CDATA[4]]></Parameter>
+      <Parameter name="asynchronous_request">true</Parameter>
+      <Parameter name="max_async_connection">4</Parameter>
+      <Parameter name="max_size">50</Parameter>
+      <Parameter name="cursor_size">5000</Parameter>
       <Parameter name="table"><![CDATA[(SELECT
   osm_id, way, way_area AS area, COALESCE(landuse, leisure, "natural", highway, amenity, tourism) AS type
 FROM
@@ -439,8 +443,10 @@ ORDER BY z_order, way_area DESC
       <Parameter name="host"><![CDATA[db.openstreetmap.world]]></Parameter>
       <Parameter name="user"><![CDATA[osmbr]]></Parameter>
       <Parameter name="password"><![CDATA[m4d31nbr31zh]]></Parameter>
-      <Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
-      <Parameter name="max_async_connection"><![CDATA[4]]></Parameter>
+      <Parameter name="asynchronous_request">true</Parameter>
+      <Parameter name="max_async_connection">4</Parameter>
+      <Parameter name="max_size">50</Parameter>
+      <Parameter name="cursor_size">5000</Parameter>
       <Parameter name="table"><![CDATA[(SELECT
   osm_id, way, aeroway AS type
 FROM
@@ -468,8 +474,10 @@ WHERE
       <Parameter name="host"><![CDATA[db.openstreetmap.world]]></Parameter>
       <Parameter name="user"><![CDATA[osmbr]]></Parameter>
       <Parameter name="password"><![CDATA[m4d31nbr31zh]]></Parameter>
-      <Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
-      <Parameter name="max_async_connection"><![CDATA[4]]></Parameter>
+      <Parameter name="asynchronous_request">true</Parameter>
+      <Parameter name="max_async_connection">4</Parameter>
+      <Parameter name="max_size">50</Parameter>
+      <Parameter name="cursor_size">5000</Parameter>
       <Parameter name="table"><![CDATA[(SELECT
   osm_id, way, "natural" AS type, way_area AS area
 FROM
@@ -499,8 +507,10 @@ WHERE
       <Parameter name="host"><![CDATA[db.openstreetmap.world]]></Parameter>
       <Parameter name="user"><![CDATA[osmbr]]></Parameter>
       <Parameter name="password"><![CDATA[m4d31nbr31zh]]></Parameter>
-      <Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
-      <Parameter name="max_async_connection"><![CDATA[4]]></Parameter>
+      <Parameter name="asynchronous_request">true</Parameter>
+      <Parameter name="max_async_connection">4</Parameter>
+      <Parameter name="max_size">50</Parameter>
+      <Parameter name="cursor_size">5000</Parameter>
       <Parameter name="table"><![CDATA[(SELECT
   osm_id, way, "natural" AS type, way_area AS area
 FROM
@@ -529,8 +539,10 @@ WHERE
       <Parameter name="host"><![CDATA[db.openstreetmap.world]]></Parameter>
       <Parameter name="user"><![CDATA[osmbr]]></Parameter>
       <Parameter name="password"><![CDATA[m4d31nbr31zh]]></Parameter>
-      <Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
-      <Parameter name="max_async_connection"><![CDATA[4]]></Parameter>
+      <Parameter name="asynchronous_request">true</Parameter>
+      <Parameter name="max_async_connection">4</Parameter>
+      <Parameter name="max_size">50</Parameter>
+      <Parameter name="cursor_size">5000</Parameter>
       <Parameter name="table"><![CDATA[(SELECT 
   osm_id,
   way,
@@ -590,8 +602,10 @@ WHERE
       <Parameter name="host"><![CDATA[db.openstreetmap.world]]></Parameter>
       <Parameter name="user"><![CDATA[osmbr]]></Parameter>
       <Parameter name="password"><![CDATA[m4d31nbr31zh]]></Parameter>
-      <Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
-      <Parameter name="max_async_connection"><![CDATA[4]]></Parameter>
+      <Parameter name="asynchronous_request">true</Parameter>
+      <Parameter name="max_async_connection">4</Parameter>
+      <Parameter name="max_size">50</Parameter>
+      <Parameter name="cursor_size">5000</Parameter>
       <Parameter name="table"><![CDATA[(SELECT
   osm_id, COALESCE(tags -> 'name:br'::text) as name, COALESCE(waterway, '') as type, way
 FROM
@@ -656,8 +670,10 @@ ORDER BY z_order
       <Parameter name="host"><![CDATA[db.openstreetmap.world]]></Parameter>
       <Parameter name="user"><![CDATA[osmbr]]></Parameter>
       <Parameter name="password"><![CDATA[m4d31nbr31zh]]></Parameter>
-      <Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
-      <Parameter name="max_async_connection"><![CDATA[4]]></Parameter>
+      <Parameter name="asynchronous_request">true</Parameter>
+      <Parameter name="max_async_connection">4</Parameter>
+      <Parameter name="max_size">50</Parameter>
+      <Parameter name="cursor_size">5000</Parameter>
       <Parameter name="table"><![CDATA[(SELECT
   osm_id, COALESCE(tags -> 'name:br'::text) as name, COALESCE(waterway, '') as type, way
 FROM
@@ -854,8 +870,10 @@ ORDER BY z_order
       <Parameter name="host"><![CDATA[db.openstreetmap.world]]></Parameter>
       <Parameter name="user"><![CDATA[osmbr]]></Parameter>
       <Parameter name="password"><![CDATA[m4d31nbr31zh]]></Parameter>
-      <Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
-      <Parameter name="max_async_connection"><![CDATA[4]]></Parameter>
+      <Parameter name="asynchronous_request">true</Parameter>
+      <Parameter name="max_async_connection">4</Parameter>
+      <Parameter name="max_size">50</Parameter>
+      <Parameter name="cursor_size">5000</Parameter>
       <Parameter name="table"><![CDATA[(SELECT
   osm_id, COALESCE(tags -> 'name:br'::text) as name, COALESCE(waterway, '') as type, way
 FROM
@@ -927,8 +945,10 @@ ORDER BY z_order
       <Parameter name="host"><![CDATA[db.openstreetmap.world]]></Parameter>
       <Parameter name="user"><![CDATA[osmbr]]></Parameter>
       <Parameter name="password"><![CDATA[m4d31nbr31zh]]></Parameter>
-      <Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
-      <Parameter name="max_async_connection"><![CDATA[4]]></Parameter>
+      <Parameter name="asynchronous_request">true</Parameter>
+      <Parameter name="max_async_connection">4</Parameter>
+      <Parameter name="max_size">50</Parameter>
+      <Parameter name="cursor_size">5000</Parameter>
       <Parameter name="table"><![CDATA[(SELECT
   osm_id, way, 'building' AS type
 FROM
@@ -957,8 +977,10 @@ ORDER BY z_order, way_area DESC
       <Parameter name="host"><![CDATA[db.openstreetmap.world]]></Parameter>
       <Parameter name="user"><![CDATA[osmbr]]></Parameter>
       <Parameter name="password"><![CDATA[m4d31nbr31zh]]></Parameter>
-      <Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
-      <Parameter name="max_async_connection"><![CDATA[4]]></Parameter>
+      <Parameter name="asynchronous_request">true</Parameter>
+      <Parameter name="max_async_connection">4</Parameter>
+      <Parameter name="max_size">50</Parameter>
+      <Parameter name="cursor_size">5000</Parameter>
       <Parameter name="table"><![CDATA[(SELECT
   osm_id,
   way,
@@ -18146,8 +18168,10 @@ WHERE
       <Parameter name="host"><![CDATA[db.openstreetmap.world]]></Parameter>
       <Parameter name="user"><![CDATA[osmbr]]></Parameter>
       <Parameter name="password"><![CDATA[m4d31nbr31zh]]></Parameter>
-      <Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
-      <Parameter name="max_async_connection"><![CDATA[4]]></Parameter>
+      <Parameter name="asynchronous_request">true</Parameter>
+      <Parameter name="max_async_connection">4</Parameter>
+      <Parameter name="max_size">50</Parameter>
+      <Parameter name="cursor_size">5000</Parameter>
       <Parameter name="table"><![CDATA[(SELECT
   osm_id,
   way,
@@ -18239,8 +18263,10 @@ ORDER BY layer ASC, render ASC ) AS tunnel]]></Parameter>
       <Parameter name="host"><![CDATA[db.openstreetmap.world]]></Parameter>
       <Parameter name="user"><![CDATA[osmbr]]></Parameter>
       <Parameter name="password"><![CDATA[m4d31nbr31zh]]></Parameter>
-      <Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
-      <Parameter name="max_async_connection"><![CDATA[4]]></Parameter>
+      <Parameter name="asynchronous_request">true</Parameter>
+      <Parameter name="max_async_connection">4</Parameter>
+      <Parameter name="max_size">50</Parameter>
+      <Parameter name="cursor_size">5000</Parameter>
       <Parameter name="table"><![CDATA[(SELECT
   osm_id,
   way,
@@ -18382,8 +18408,10 @@ ORDER BY z_order  ) AS roads_low]]></Parameter>
       <Parameter name="host"><![CDATA[db.openstreetmap.world]]></Parameter>
       <Parameter name="user"><![CDATA[osmbr]]></Parameter>
       <Parameter name="password"><![CDATA[m4d31nbr31zh]]></Parameter>
-      <Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
-      <Parameter name="max_async_connection"><![CDATA[4]]></Parameter>
+      <Parameter name="asynchronous_request">true</Parameter>
+      <Parameter name="max_async_connection">4</Parameter>
+      <Parameter name="max_size">50</Parameter>
+      <Parameter name="cursor_size">5000</Parameter>
       <Parameter name="table"><![CDATA[(SELECT
   osm_id,
   way,
@@ -35518,8 +35546,10 @@ ORDER BY z_order  ) AS roads_med]]></Parameter>
       <Parameter name="host"><![CDATA[db.openstreetmap.world]]></Parameter>
       <Parameter name="user"><![CDATA[osmbr]]></Parameter>
       <Parameter name="password"><![CDATA[m4d31nbr31zh]]></Parameter>
-      <Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
-      <Parameter name="max_async_connection"><![CDATA[4]]></Parameter>
+      <Parameter name="asynchronous_request">true</Parameter>
+      <Parameter name="max_async_connection">4</Parameter>
+      <Parameter name="max_size">50</Parameter>
+      <Parameter name="cursor_size">5000</Parameter>
       <Parameter name="table"><![CDATA[(SELECT
   osm_id,
   way,
@@ -52718,8 +52748,10 @@ ORDER BY z_order   ) AS roads_high]]></Parameter>
       <Parameter name="host"><![CDATA[db.openstreetmap.world]]></Parameter>
       <Parameter name="user"><![CDATA[osmbr]]></Parameter>
       <Parameter name="password"><![CDATA[m4d31nbr31zh]]></Parameter>
-      <Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
-      <Parameter name="max_async_connection"><![CDATA[4]]></Parameter>
+      <Parameter name="asynchronous_request">true</Parameter>
+      <Parameter name="max_async_connection">4</Parameter>
+      <Parameter name="max_size">50</Parameter>
+      <Parameter name="cursor_size">5000</Parameter>
       <Parameter name="table"><![CDATA[(SELECT
   way,
   COALESCE(highway, railway) AS type,
@@ -52937,8 +52969,10 @@ ORDER BY layer ASC, render ASC   ) AS bridge]]></Parameter>
       <Parameter name="host"><![CDATA[db.openstreetmap.world]]></Parameter>
       <Parameter name="user"><![CDATA[osmbr]]></Parameter>
       <Parameter name="password"><![CDATA[m4d31nbr31zh]]></Parameter>
-      <Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
-      <Parameter name="max_async_connection"><![CDATA[4]]></Parameter>
+      <Parameter name="asynchronous_request">true</Parameter>
+      <Parameter name="max_async_connection">4</Parameter>
+      <Parameter name="max_size">50</Parameter>
+      <Parameter name="cursor_size">5000</Parameter>
       <Parameter name="table"><![CDATA[(SELECT
   ST_Simplify(b.way,!pixel_width!/4) as way,
   admin_level::integer AS admin_level,
@@ -53102,8 +53136,10 @@ ORDER BY admin_level DESC   ) AS admin_boundaries]]></Parameter>
       <Parameter name="host"><![CDATA[db.openstreetmap.world]]></Parameter>
       <Parameter name="user"><![CDATA[osmbr]]></Parameter>
       <Parameter name="password"><![CDATA[m4d31nbr31zh]]></Parameter>
-      <Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
-      <Parameter name="max_async_connection"><![CDATA[4]]></Parameter>
+      <Parameter name="asynchronous_request">true</Parameter>
+      <Parameter name="max_async_connection">4</Parameter>
+      <Parameter name="max_size">50</Parameter>
+      <Parameter name="cursor_size">5000</Parameter>
       <Parameter name="table"><![CDATA[(SELECT name, place, admin_level, way
 FROM
 (
@@ -53334,8 +53370,10 @@ ORDER BY admin_level, name ) AS placenames_medium]]></Parameter>
       <Parameter name="host"><![CDATA[db.openstreetmap.world]]></Parameter>
       <Parameter name="user"><![CDATA[osmbr]]></Parameter>
       <Parameter name="password"><![CDATA[m4d31nbr31zh]]></Parameter>
-      <Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
-      <Parameter name="max_async_connection"><![CDATA[4]]></Parameter>
+      <Parameter name="asynchronous_request">true</Parameter>
+      <Parameter name="max_async_connection">4</Parameter>
+      <Parameter name="max_size">50</Parameter>
+      <Parameter name="cursor_size">5000</Parameter>
       <Parameter name="table"><![CDATA[(SELECT
     way,
     place,
@@ -54279,8 +54317,10 @@ ORDER BY admin_level, name ) AS placenames_medium]]></Parameter>
       <Parameter name="host"><![CDATA[db.openstreetmap.world]]></Parameter>
       <Parameter name="user"><![CDATA[osmbr]]></Parameter>
       <Parameter name="password"><![CDATA[m4d31nbr31zh]]></Parameter>
-      <Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
-      <Parameter name="max_async_connection"><![CDATA[4]]></Parameter>
+      <Parameter name="asynchronous_request">true</Parameter>
+      <Parameter name="max_async_connection">4</Parameter>
+      <Parameter name="max_size">50</Parameter>
+      <Parameter name="cursor_size">5000</Parameter>
       <Parameter name="table"><![CDATA[(SELECT
   osm_id,
   COALESCE(highway, '') as type,
@@ -54360,8 +54400,10 @@ WHERE
       <Parameter name="host"><![CDATA[db.openstreetmap.world]]></Parameter>
       <Parameter name="user"><![CDATA[osmbr]]></Parameter>
       <Parameter name="password"><![CDATA[m4d31nbr31zh]]></Parameter>
-      <Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
-      <Parameter name="max_async_connection"><![CDATA[4]]></Parameter>
+      <Parameter name="asynchronous_request">true</Parameter>
+      <Parameter name="max_async_connection">4</Parameter>
+      <Parameter name="max_size">50</Parameter>
+      <Parameter name="cursor_size">5000</Parameter>
       <Parameter name="table"><![CDATA[(SELECT
   osm_id,
   COALESCE(highway, '') as type,
@@ -54400,8 +54442,10 @@ WHERE
       <Parameter name="host"><![CDATA[db.openstreetmap.world]]></Parameter>
       <Parameter name="user"><![CDATA[osmbr]]></Parameter>
       <Parameter name="password"><![CDATA[m4d31nbr31zh]]></Parameter>
-      <Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
-      <Parameter name="max_async_connection"><![CDATA[4]]></Parameter>
+      <Parameter name="asynchronous_request">true</Parameter>
+      <Parameter name="max_async_connection">4</Parameter>
+      <Parameter name="max_size">50</Parameter>
+      <Parameter name="cursor_size">5000</Parameter>
       <Parameter name="table"><![CDATA[(SELECT
   osm_id,
   COALESCE(highway, '') as type,
@@ -54430,8 +54474,10 @@ WHERE
       <Parameter name="host"><![CDATA[db.openstreetmap.world]]></Parameter>
       <Parameter name="user"><![CDATA[osmbr]]></Parameter>
       <Parameter name="password"><![CDATA[m4d31nbr31zh]]></Parameter>
-      <Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
-      <Parameter name="max_async_connection"><![CDATA[4]]></Parameter>
+      <Parameter name="asynchronous_request">true</Parameter>
+      <Parameter name="max_async_connection">4</Parameter>
+      <Parameter name="max_size">50</Parameter>
+      <Parameter name="cursor_size">5000</Parameter>
       <Parameter name="table"><![CDATA[(SELECT
     COALESCE(tags -> 'name:br'::text) as name,
     way,
@@ -54461,8 +54507,10 @@ WHERE
       <Parameter name="host"><![CDATA[db.openstreetmap.world]]></Parameter>
       <Parameter name="user"><![CDATA[osmbr]]></Parameter>
       <Parameter name="password"><![CDATA[m4d31nbr31zh]]></Parameter>
-      <Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
-      <Parameter name="max_async_connection"><![CDATA[4]]></Parameter>
+      <Parameter name="asynchronous_request">true</Parameter>
+      <Parameter name="max_async_connection">4</Parameter>
+      <Parameter name="max_size">50</Parameter>
+      <Parameter name="cursor_size">5000</Parameter>
       <Parameter name="table"><![CDATA[(SELECT
     COALESCE(tags -> 'name:br'::text) as name,
     way,
@@ -54491,8 +54539,10 @@ WHERE
       <Parameter name="host"><![CDATA[db.openstreetmap.world]]></Parameter>
       <Parameter name="user"><![CDATA[osmbr]]></Parameter>
       <Parameter name="password"><![CDATA[m4d31nbr31zh]]></Parameter>
-      <Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
-      <Parameter name="max_async_connection"><![CDATA[4]]></Parameter>
+      <Parameter name="asynchronous_request">true</Parameter>
+      <Parameter name="max_async_connection">4</Parameter>
+      <Parameter name="max_size">50</Parameter>
+      <Parameter name="cursor_size">5000</Parameter>
       <Parameter name="table"><![CDATA[(SELECT
     'Ti-Ker' as name,
     way,
@@ -54521,8 +54571,10 @@ WHERE
       <Parameter name="host"><![CDATA[db.openstreetmap.world]]></Parameter>
       <Parameter name="user"><![CDATA[osmbr]]></Parameter>
       <Parameter name="password"><![CDATA[m4d31nbr31zh]]></Parameter>
-      <Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
-      <Parameter name="max_async_connection"><![CDATA[4]]></Parameter>
+      <Parameter name="asynchronous_request">true</Parameter>
+      <Parameter name="max_async_connection">4</Parameter>
+      <Parameter name="max_size">50</Parameter>
+      <Parameter name="cursor_size">5000</Parameter>
       <Parameter name="table"><![CDATA[(SELECT
     'Porzh-houarn' as name,
     way,
