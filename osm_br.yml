@@ -53,6 +53,7 @@ Stylesheet:
   - landcover.mss
   - admin.mss
   - roads.mss
+  - placenames.mss
   - labels.mss
 
 
@@ -507,112 +508,68 @@ Layer:
       minzoom: 11
 
 
-  - id: place
-    geometry: linestring
+  - id: placenames_medium
+    geometry: point
     <<: *extents
     Datasource:
       <<: *osm2pgsql
       table: |-
-        (SELECT
-          osm_id,
-          COALESCE(tags -> 'name:br'::text) as name,
-          place as type,
-          admin_level,
-          COALESCE(tags->'is_capital'::text) as is_capital,
-          z_order,
-          way
-        FROM planet_osm_point
-        WHERE (tags -> 'name:br'::text IS NOT NULL)
-        ORDER BY z_order   ) AS place
-    simplify_geometries: 'false'
-    properties:
-      minzoom: 13
-
-
-  - id: admin_place
-    geometry: linestring
-    <<: *extents
-    Datasource:
-      <<: *osm2pgsql
-      table: |-
-        (SELECT
-          osm_id, place as type, MAX(admin_level) as admin_level, name, way
+        (SELECT name, place, admin_level, way
         FROM
         (
-            -- communes
-            (WITH
-                p AS (
-                    SELECT osm_id, CONCAT('n',osm_id) as admin_centre_id, place, COALESCE(tags -> 'name:br'::text,'') as name, way
-                    FROM planet_osm_point 
-                    WHERE place IN ('village','town')
-                    AND way && !bbox!
-                )
-                SELECT p.osm_id, p.place, 1 as admin_level, p.name, p.way
-                FROM planet_osm_rels AS r, p
-                WHERE
-                    r.members::text ~ 'admin_centre' AND r.tags::text ~ 'admin_level,8' 
-                    AND p.admin_centre_id = ANY(members)
-                    -- ceci pour forcer l'utilisation des indexes
-                    AND ARRAY[p.osm_id] && parts
-            )
-            -- chefs-lieux de canton
-            UNION
-            (WITH
-                p AS (
-                    SELECT osm_id, CONCAT('n',osm_id) as admin_centre_id, place, COALESCE(tags -> 'name:br'::text,'') as name, way
-                    FROM planet_osm_point 
-                    WHERE place IN ('village','town')
-                    AND way && !bbox!
-                )
-                SELECT p.osm_id, p.place, 2 as admin_level, p.name, p.way
-                FROM planet_osm_rels AS r, p
-                WHERE
-                    r.members::text ~ 'admin_centre' AND r.tags::text ~ 'political_division,canton'
-                    AND p.admin_centre_id = ANY(members)
-                    AND ARRAY[p.osm_id] && parts
-            )
-            -- sous-préfecture
-            UNION
-            (WITH
-                p AS (
-                    SELECT osm_id, CONCAT('n',osm_id) as admin_centre_id, place, COALESCE(tags -> 'name:br'::text,'') as name, way
-                    FROM planet_osm_point 
-                    WHERE place IN ('town','city')
-                    AND way && !bbox!
-                )
-                SELECT p.osm_id, p.place, 3 as admin_level, p.name, p.way
-                FROM planet_osm_rels AS r, p
-                WHERE
-                    r.members::text ~ 'admin_centre' AND r.tags::text ~ 'admin_level,7' 
-                    AND p.admin_centre_id = ANY(members)
-                    AND ARRAY[p.osm_id] && parts
-            )
-            -- préfecture
-            UNION
-            (WITH
-                p AS (
-                    SELECT osm_id, CONCAT('n',osm_id) as admin_centre_id, place, COALESCE(tags -> 'name:br'::text,'') as name, way
-                    FROM planet_osm_point 
-                    WHERE place IN ('town','city')
-                    AND way && !bbox!
-                )
-                SELECT p.osm_id, p.place, 4 as admin_level, p.name, p.way
-                FROM planet_osm_rels AS r, p
-                WHERE
-                    r.members::text ~ 'admin_centre' AND r.tags::text ~ 'admin_level,6' 
-                    AND p.admin_centre_id = ANY(members)
-                    AND ARRAY[p.osm_id] && parts
-            )
-        ) AS query
-        GROUP BY osm_id, place, name, way
-          ORDER BY admin_level DESC, name ASC   ) AS admin_place
-      srid: 3857
-      geometry_table: 'planet_osm_point'
-      geometry_field: 'way'
-      key_field: 'osm_id'
-      simplify_geometries: 'false'
+          SELECT
+            ROW_NUMBER() OVER(PARTITION BY p.osm_id 
+              ORDER BY substring(substring(r.tags::text,'admin_level,[0-9]'),'[0-9]') ASC) AS rank
+            , p.osm_id
+            , p.place
+            , COALESCE(p.tags -> 'name:br'::text,'') as name
+            , substring(substring(r.tags::text,'admin_level,[0-9]'),'[0-9]')::integer AS admin_level
+            , p.way
+          FROM planet_osm_point p
+            LEFT JOIN planet_osm_rels r ON (r.parts @> ARRAY[p.osm_id] AND r.members @> ARRAY['n' || p.osm_id])
+          WHERE
+            way && !bbox!
+            AND p.place IN ('town','city')
+            AND r.members::text ~ 'admin_centre'
+            AND r.tags::text ~ 'admin_level,[0-9]' = TRUE
+          GROUP BY osm_id, place, COALESCE(p.tags -> 'name:br'::text,''), way, substring(substring(r.tags::text,'admin_level,[0-9]'),'[0-9]')
+        ) AS src
+        WHERE rank = 1 AND name <> ''
+        ORDER BY admin_level, name ) AS placenames_medium
     properties:
-      minzoom: 5
+      cache-features: true
+      minzoom: 4
+      maxzoom: 15
+
+
+  - id: placenames_small
+    geometry: point
+    <<: *extents
+    Datasource:
+      <<: *osm2pgsql
+      table: |-
+        (SELECT
+            way,
+            place,
+            COALESCE(tags -> 'name:br'::text,'') as name
+          FROM planet_osm_point
+          WHERE
+             place IN ('suburb','village','locality','hamlet','quarter','neighbourhood','isolated_dwelling','farm')
+             AND COALESCE(tags -> 'name:br'::text) IS NOT NULL
+             AND NOT tags @> 'capital=>yes'
+          ORDER BY CASE
+              WHEN place = 'suburb' THEN 7
+              WHEN place = 'village' THEN 6
+              WHEN place IN ('locality','hamlet') THEN 5
+              WHEN place = 'quarter' THEN 4
+              WHEN place = 'neighbourhood' THEN 3
+              WHEN place = 'isolated_dwelling' THEN 2
+              WHEN place = 'farm' THEN 1
+            END DESC) AS placenames_small
+    properties:
+      cache-features: true
+      minzoom: 10
+      maxzoom: 17
 
 
   - id: motorway_label
@@ -752,12 +709,4 @@ Layer:
         ) AS train_station_text
     properties:
       minzoom: 14
-
-
-
-
-
-
-
-
 
