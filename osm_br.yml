@@ -571,7 +571,7 @@ Layer:
             COALESCE(tags -> 'name:br'::text,'') ) AS placenames_small
     properties:
       cache-features: true
-      minzoom: 11
+      minzoom: 10
       maxzoom: 17
 
 

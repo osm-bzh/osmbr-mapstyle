@@ -265,7 +265,7 @@
 
 #placenames_small::village {
   [place = 'village'] {
-  [zoom >=11 ][zoom <=16 ] {
+  [zoom >=10 ][zoom <=16 ] {
       
       text-name: "[name]";
       text-size: 10;
@@ -276,15 +276,27 @@
       text-wrap-width: 50; // 5.0 em
       text-line-spacing: -0.50; // -0.05 em
       text-margin: 7.0; // 0.7 em
-      
-      [zoom =11 ] {
+
+      [zoom = 10 ] {
         text-size: 8;
-        text-wrap-width: 55; // 5.0 em
+        text-wrap-width: 30; // 5.0 em
         text-line-spacing: -0.55; // -0.05 em
         text-margin: 7.7; // 0.7 em
       }
-      [zoom >=12 ][zoom <=13 ] {
+      [zoom = 11 ] {
         text-size: 10;
+        text-wrap-width: 40; // 5.0 em
+        text-line-spacing: -0.55; // -0.05 em
+        text-margin: 7.7; // 0.7 em
+      }
+      [zoom = 12 ] {
+        text-size: 12;
+        text-wrap-width: 50; // 5.0 em
+        text-line-spacing: -0.55; // -0.05 em
+        text-margin: 7.7; // 0.7 em
+      }
+      [zoom = 13 ] {
+        text-size: 13;
         text-wrap-width: 55; // 5.0 em
         text-line-spacing: -0.55; // -0.05 em
         text-margin: 7.7; // 0.7 em
@@ -292,19 +304,19 @@
       [zoom >= 14] {
         text-fill: @place_text_light;
         text-halo-fill: white;
-        text-size: 13;
+        text-size: 14;
         text-wrap-width: 65; // 5.0 em
         text-line-spacing: -0.65; // -0.05 em
         text-margin: 9.1; // 0.7 em
       }
       [zoom >= 15] {
-        text-size: 14;
+        text-size: 15;
         text-wrap-width: 70; // 5.0 em
         text-line-spacing: -0.70; // -0.05 em
         text-margin: 9.8; // 0.7 em
       }
       [zoom >= 16] {
-        text-size: 15;
+        text-size: 16;
         text-wrap-width: 75; // 5.0 em
         text-line-spacing: -0.75; // -0.05 em
         text-margin: 10.5; // 0.7 em
