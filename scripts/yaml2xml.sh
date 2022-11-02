@@ -34,6 +34,13 @@ cp osm_gsw.yml osm_gsw.mml
 carto osm_gsw.mml > osm_gsw.xml
 rm osm_gsw.mml
 
+echo ""
+echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+echo "  CA"
+
+cp osm_ca.yml osm_ca.mml
+carto osm_ca.mml > osm_ca.xml
+rm osm_ca.mml
 
 echo ""
 echo ""

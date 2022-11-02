@@ -35,6 +35,13 @@ carto osm_gsw_control.mml > osm_gsw_control.xml
 rm osm_gsw_control.mml
 
 echo ""
+echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+echo "  CA"
+
+cp osm_ca_control.yml osm_ca_control.mml
+carto osm_ca_control.mml > osm_ca_control.xml
+rm osm_ca_control.mml
+echo ""
 echo ""
 
 ls -laGh osm_*.xml

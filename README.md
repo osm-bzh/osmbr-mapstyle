@@ -9,6 +9,7 @@ It is derived from the Lyrk mapstyle you can found at [https://github.com/lyrk/l
 * [occitan](https://tile.openstreetmap.bzh/oc/)
 * [basque](https://tile.openstreetmap.bzh/eu/)
 * [alsacien](https://tile.openstreetmap.bzh/gsw/)
+* [catalan](https://tile.openstreetmap.bzh/ca/)
  
 
 
@@ -23,6 +24,7 @@ Il est dérivé du style Lyrk que vous pouvez trouver ici : [https://github.com/
 * [occitan](https://tile.openstreetmap.bzh/oc/)
 * [basque](https://tile.openstreetmap.bzh/eu/)
 * [alsacien](https://tile.openstreetmap.bzh/gsw/)
+* [catalan](https://tile.openstreetmap.bzh/ca/)
 
 
 # Preview
@@ -129,7 +131,7 @@ It will :
 
 ## See the map
 
-You can set up a whole tile server (see [here](https://switch2osm.org/serving-tiles/)) or, easier and faster, use [Kosmtik](https://github.com/kosmtik/kosmtik).
+You can set up a whole tile server (see [here](https://switch2osm.org/serving-tiles/)) or, easier and faster and for developement purposes, use [Kosmtik](https://github.com/kosmtik/kosmtik).
 
 
 
