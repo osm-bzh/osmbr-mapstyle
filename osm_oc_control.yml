@@ -60,7 +60,7 @@ Layer:
     geometry: polygon
     <<: *extents
     Datasource:
-      file: /data/styles/data/land-polygons-split-3857/land_polygons.shp
+      file: /data/project/styles/data/land-polygons-split-3857/land_polygons.shp
       type: shape
 
 
