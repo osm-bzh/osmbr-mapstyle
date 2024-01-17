@@ -23,7 +23,7 @@ echo ""
 
 # on le decoupe selon un polygone
 # utiliser JOSM avec le plugin poly pour créer un fichier .poly
-osmconvert /data/dumps/france-latest.osm.pbf -B=/data/styles/br/data/poly_extraction_bzh.poly --complete-ways -v -o=/data/dumps/breizh.osm.pbf
+osmconvert /data/dumps/france-latest.osm.pbf -B=/data/project/styles/br/data/poly_extraction_bzh.poly --complete-ways -v -o=/data/dumps/breizh.osm.pbf
 
 echo ""
 echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
@@ -34,14 +34,14 @@ date
 echo ""
 
 # on supprime les vues
-psql -h db.openstreetmap.local -U osmbr -d osm -f /data/styles/br/database/drop_views.sql
+psql -h db.openstreetmap.local -U osmbr -d osm -f /data/project/styles/br/database/drop_views.sql
 
 # on met à jour la base de données
 # authentification dans le pgpass
 osm2pgsql -H db.openstreetmap.local -U osmbr -d osm --hstore --slim --cache 3000 -E 3857 -v /data/dumps/breizh.osm.pbf 
 
 # on recrée les vues
-psql -h db.openstreetmap.local -U osmbr -d osmbr -f /data/styles/br/database/create_views.sql
+psql -h db.openstreetmap.local -U osmbr -d osmbr -f /data/project/styles/br/database/create_views.sql
 
 echo ""
 echo " Fin de la maj de la BD "

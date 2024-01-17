@@ -6,7 +6,7 @@
 #    simplified-land-polygons-complete-3857/simplified_land_polygons.shp
 #    land-polygons-split-3857/land_polygons.shp
 
-cd /data/styles/data/
+cd /data/project/styles/data/
 
 
 wget https://osmdata.openstreetmap.de/download/simplified-land-polygons-complete-3857.zip
@@ -30,5 +30,5 @@ rm -f land-polygons-split-3857.zip
 
 
 # à faire tous les 4 mois
-# 0 0 1 */3 * mael /data/styles/br/scripts/update_low_scale_layers.sh
+# 0 0 1 */3 * mael /data/project/styles/br/scripts/update_low_scale_layers.sh
 

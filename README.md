@@ -54,25 +54,25 @@ mkdir /data
 mkdir /data/dumps
 mkdir /data/styles
 
-cd /data/styles/
+cd /data/project/styles/
 git clone https://github.com/osm-bzh/osmbr-mapstyle.git
 
 # rename the directory
 mv osmbr-mapstyle br
 
 # move to the git clone repository
-cd /data/styles/br/
+cd /data/project/styles/br/
 ```
 
 ## Get low scales datas
 
-We use 2 layers for low scales. They need to be in /data/styles/data/ :
+We use 2 layers for low scales. They need to be in /data/project/styles/data/ :
 
 * simplified-land-polygons-complete-3857/simplified_land_polygons.shp
 * land-polygons-split-3857/land_polygons.shp
 
 ```
-cd /data/styles/data/
+cd /data/project/styles/data/
 
 wget https://osmdata.openstreetmap.de/download/simplified-land-polygons-complete-3857.zip
 unzip simplified-land-polygons-complete-3857.zip
