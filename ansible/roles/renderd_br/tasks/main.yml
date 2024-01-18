@@ -26,6 +26,7 @@
     state: directory
   loop:
     - /data/
+    - /data/tiles/
     - /data/project/
     - /data/project/styles
     - /data/project/styles/data
@@ -118,17 +119,17 @@
     group: root
     state: link
 
-- name: "création du répertoire /var/lib/mod_tile"
-  file:
-    path: /var/lib/mod_tile
-    state: directory
-    owner: www-data
-    group: www-data
+# - name: "création du répertoire /var/lib/mod_tile"
+#   file:
+#     path: /var/lib/mod_tile
+#     state: directory
+#     owner: www-data
+#     group: www-data
 
 - name: "création d'un fichier test"
   copy:
     content: ""
-    dest: /var/lib/mod_tile/tile.openstreetmap.bzh
+    dest: /data/tiles/tile.openstreetmap.bzh
     force: true
 
 - name: "Apache : mod headers"
@@ -166,31 +167,34 @@
 # et un daemon renderd actif et opérationnel
 # car /var/run/renderd/renderd.sock existe (user _renderd)
 
+# on pourra lancer renderd en mode debug avec 
+# sudo renderd -f
+
+# en debian 12 le socket est dorénavant le même en mode debug qu'en mode service
+
+# MAIS il manque le fichier de configuration du module mod_tile
+# cf https://switch2osm.org/serving-tiles/manually-building-a-tile-server-debian-12/
+# https://raw.githubusercontent.com/openstreetmap/mod_tile/python-implementation/etc/apache2/renderd.conf
+
+- name: "apache : apache_renderd.conf"
+  copy:
+    src: files/apache_renderd.conf
+    dest: /etc/apache2/conf-available/renderd.conf
+    owner: root
+    group: root
+
+# a2enconf renderd
+# - name: "apache : a2enconf renderd"
+#   community.general.apache2_module:
+#     state: present
+#     name: renderd
+- name: "apache : a2enconf renderd"
+  command: a2enconf renderd
 
 
-# MAIS si on veut lancer renderd en mode debug, celui-ci va créer un socket dans /var/run/
-# tandis que apache va vouloir utiliser le /var/run/renderd/renderd.sock
-# donc on fait un alias pour mettre tout le monde d'accord
-
-- name: "renderd : alias renderd.sock"
+- name: "renderd : owner de /data/tiles/"
   file:
-    src: /var/run/renderd/renderd.sock
-    dest: /var/run/renderd.sock
-    owner: _renderd
-    group: _renderd
-    state: link
-
-- name: "renderd : alias renderd.stats"
-  file:
-    src: /var/run/renderd/renderd.stats
-    dest: /var/run/renderd.stats
-    owner: _renderd
-    group: _renderd
-    state: link
-
-- name: "renderd : owner de /var/lib/mod_tile/"
-  file:
-    path: /var/lib/mod_tile/
+    path: /data/tiles/
     owner: _renderd
     group: _renderd
 
@@ -246,7 +250,7 @@
 - name: "mini carte de contrôle"
   copy:
     src: files/map_test.html
-    dest: /var/lib/mod_tile/
+    dest: /data/tiles/
     backup: no
     owner: www-data
     group: www-data
