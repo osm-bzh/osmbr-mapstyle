@@ -316,3 +316,26 @@
     prompt: "tester --> http://tile.openstreetmap.local/map_br.html"
 
 
+
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# tous les styles
+
+- name: "renderd : conf de production"
+  file:
+    src: /data/project/styles/br/renderd/renderd.conf
+    dest: /etc/renderd.conf
+    owner: root
+    group: root
+    state: link
+
+- name: "osm-br : renderd : restart"
+  ansible.builtin.systemd:
+    state: restarted
+    name: renderd
+
+- name: "osm-br : apache : restart"
+  ansible.builtin.systemd:
+    state: restarted
+    name: apache2
+
+
