@@ -267,3 +267,52 @@
     prompt: "tester --> http://tile.openstreetmap.bzh/map_test.html"
 
 
+
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# notre style
+
+- name: "osm-br : git clone"
+  git:
+    repo: 'https://github.com/osm-bzh/osmbr-mapstyle.git'
+    dest: /data/project/styles/br
+    clone: yes
+
+- name: "osm-br : conf renderd"
+  copy:
+    src: files/renderd_br.conf
+    dest: /etc/renderd_br.conf
+    backup: yes
+    owner: root
+    group: root
+
+- name: "renderd : alias renderd_br.conf"
+  file:
+    src: /etc/renderd_br.conf
+    dest: /etc/renderd.conf
+    owner: root
+    group: root
+    state: link
+
+- name: "mini carte de contrôle"
+  copy:
+    src: files/map_br.html
+    dest: /data/tiles/
+    backup: no
+    owner: root
+    group: root
+
+- name: "osm-br : renderd : restart"
+  ansible.builtin.systemd:
+    state: restarted
+    name: renderd
+
+- name: "osm-br : apache : restart"
+  ansible.builtin.systemd:
+    state: restarted
+    name: apache2
+
+- name: "test : style br"
+  pause:
+    prompt: "tester --> http://tile.openstreetmap.local/map_br.html"
+
+
