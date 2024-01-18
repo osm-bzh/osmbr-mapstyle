@@ -1,0 +1,12 @@
+- name: restart renderd
+  service:
+    name: renderd
+    state: restarted
+
+- name: reload apache2
+  service:
+    name: apache2
+    state: reloaded
+
+
+

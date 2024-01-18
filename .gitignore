@@ -15,3 +15,9 @@ test/*
 ehthumbs.db
 Thumbs.db
 osm_br_test.yml
+
+ansible/ansible_cache
+ansible/files/mael.key.pub
+ansible/users.yml
+ansible/files/bashrc_root
+ansible/files/bashrc_user

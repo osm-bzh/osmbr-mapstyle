@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Map[]>
+<Map background-color="#7da8d7" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+  <Parameters>
+    <Parameter name="name"><![CDATA[OpenStreetMap e Brezhoneg]]></Parameter>
+    <Parameter name="description"><![CDATA[test map]]></Parameter>
+    <Parameter name="attribution"><![CDATA[CC-BY-SA OSM-BZH]]></Parameter>
+    <Parameter name="scale">1</Parameter>
+    <Parameter name="metatile">2</Parameter>
+    <Parameter name="bounds">-180,-85,180,85</Parameter>
+    <Parameter name="center">-2.96,48.03,8</Parameter>
+    <Parameter name="format"><![CDATA[png]]></Parameter>
+    <Parameter name="minzoom">4</Parameter>
+    <Parameter name="maxzoom">18</Parameter>
+  </Parameters>
+  <Style filter-mode="first" name="land_low">
+    <Rule>
+      <MinScaleDenominator>750</MinScaleDenominator>
+      <PolygonSymbolizer fill="#fffff5" gamma="0.75" />
+    </Rule>
+  </Style>
+  <Layer maximum-scale-denominator="1000000000" minimum-scale-denominator="400000" name="land_low" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over" status="on">
+    <StyleName><![CDATA[land_low]]></StyleName>
+    <Datasource>
+      <Parameter name="file"><![CDATA[/data/project/styles/data/simplified-land-polygons-complete-3857/simplified_land_polygons.shp]]></Parameter>
+      <Parameter name="type"><![CDATA[shape]]></Parameter>
+    </Datasource>
+  </Layer>
+  <Style filter-mode="first" name="land_high">
+    <Rule>
+      <PolygonSymbolizer fill="#fffff5" gamma="0.75" />
+    </Rule>
+  </Style>
+  <Layer maximum-scale-denominator="1500000" minimum-scale-denominator="500" name="land_high" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over" status="on">
+    <StyleName><![CDATA[land_high]]></StyleName>
+    <Datasource>
+      <Parameter name="file"><![CDATA[/data/project/styles/data/land-polygons-split-3857/land_polygons.shp]]></Parameter>
+      <Parameter name="type"><![CDATA[shape]]></Parameter>
+    </Datasource>
+  </Layer>
+  <Style filter-mode="first" name="roads_low">
+    <Rule>
+      <MaxScaleDenominator>3000000</MaxScaleDenominator>
+      <MinScaleDenominator>1500000</MinScaleDenominator>
+      <Filter><![CDATA[([type] = 'primary')]]></Filter>
+      <LineSymbolizer stroke="#ffc859" stroke-width="1" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>3000000</MaxScaleDenominator>
+      <MinScaleDenominator>1500000</MinScaleDenominator>
+      <Filter><![CDATA[([type] = 'trunk')]]></Filter>
+      <LineSymbolizer stroke="#e68a5c" stroke-width="1.2" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>6500000</MaxScaleDenominator>
+      <MinScaleDenominator>3000000</MinScaleDenominator>
+      <Filter><![CDATA[([type] = 'trunk')]]></Filter>
+      <LineSymbolizer stroke="#e68a5c" stroke-width="0.6" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>12500000</MaxScaleDenominator>
+      <MinScaleDenominator>6500000</MinScaleDenominator>
+      <Filter><![CDATA[([type] = 'trunk')]]></Filter>
+      <LineSymbolizer stroke="#e68a5c" stroke-width="0.25" />
+    </Rule>
+    <Rule>
+      <Filter><![CDATA[([type] = 'trunk')]]></Filter>
+      <LineSymbolizer stroke="#e68a5c" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>3000000</MaxScaleDenominator>
+      <MinScaleDenominator>1500000</MinScaleDenominator>
+      <Filter><![CDATA[([type] = 'motorway')]]></Filter>
+      <LineSymbolizer stroke="#e65c5c" stroke-width="1.4" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>6500000</MaxScaleDenominator>
+      <MinScaleDenominator>3000000</MinScaleDenominator>
+      <Filter><![CDATA[([type] = 'motorway')]]></Filter>
+      <LineSymbolizer stroke="#e65c5c" stroke-width="0.9" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>12500000</MaxScaleDenominator>
+      <MinScaleDenominator>6500000</MinScaleDenominator>
+      <Filter><![CDATA[([type] = 'motorway')]]></Filter>
+      <LineSymbolizer stroke="#e65c5c" stroke-width="0.5" />
+    </Rule>
+    <Rule>
+      <MaxScaleDenominator>25000000</MaxScaleDenominator>
+      <MinScaleDenominator>12500000</MinScaleDenominator>
+      <Filter><![CDATA[([type] = 'motorway')]]></Filter>
+      <LineSymbolizer stroke="#e65c5c" stroke-width="0.4" />
+    </Rule>
+    <Rule>
+      <Filter><![CDATA[([type] = 'motorway')]]></Filter>
+      <LineSymbolizer stroke="#e65c5c" />
+    </Rule>
+  </Style>
+  <Layer maximum-scale-denominator="25000000" minimum-scale-denominator="500" name="roads_low" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over" status="on">
+    <StyleName><![CDATA[roads_low]]></StyleName>
+    <Datasource>
+      <Parameter name="type"><![CDATA[postgis]]></Parameter>
+      <Parameter name="dbname"><![CDATA[osm]]></Parameter>
+      <Parameter name="key_field"><![CDATA[]]></Parameter>
+      <Parameter name="geometry_field"><![CDATA[way]]></Parameter>
+      <Parameter name="extent"><![CDATA[-20037508,-20037508,20037508,20037508]]></Parameter>
+      <Parameter name="host"><![CDATA[db.openstreetmap.world]]></Parameter>
+      <Parameter name="user"><![CDATA[osmbr]]></Parameter>
+      <Parameter name="password"><![CDATA[m4d31nbr31zh]]></Parameter>
+      <Parameter name="asynchronous_request"><![CDATA[true]]></Parameter>
+      <Parameter name="max_async_connection"><![CDATA[4]]></Parameter>
+      <Parameter name="table"><![CDATA[(SELECT
+  osm_id,
+  way,
+  COALESCE(highway, railway) AS type, 
+  0 AS tunnel,
+  0 AS bridge,
+  access,
+  'fill' AS render, 
+  CASE 
+      WHEN highway IN ('motorway', 'trunk') THEN 'motorway' 
+      WHEN highway IN ('primary') THEN 'mainroad'  
+      WHEN railway IN ('rail') THEN 'railway'
+  ELSE 'other'
+  END AS stylegroup 
+FROM planet_osm_line 
+WHERE
+  highway IN ('motorway', 'trunk', 'primary')
+  OR railway IN ('rail')
+  AND (tunnel IS NULL OR tunnel = 'no') 
+  AND (bridge IS NULL OR bridge = 'no') 
+ORDER BY z_order  ) AS roads_low]]></Parameter>
+    </Datasource>
+  </Layer>
+</Map>
+

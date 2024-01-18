@@ -1,0 +1,265 @@
+- name: Installation des paquets
+  apt:
+    update_cache: yes
+    state: latest
+    pkg:
+      - nano
+      - htop
+      - iotop
+      - multitail
+      - zip
+      - unzip
+      - git
+      - wget
+      - curl
+      - links
+      - acl
+      - gnupg2
+      - python3
+      - python-is-python3
+      - osm2pgsql
+      - osmctools
+
+- name: "création des repertoires dans /data/project/"
+  file:
+    path: "{{ item }}"
+    state: directory
+  loop:
+    - /data/
+    - /data/project/
+    - /data/project/styles
+    - /data/project/styles/data
+
+
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+- name: "configure etc/hosts"
+  lineinfile:
+    path: "/etc/hosts"
+    line: "192.168.1.105  db.openstreetmap.world db.openstreetmap.local"
+    state: present
+
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+- name: "installation des fontes par apt"
+  apt:
+    state: latest
+    pkg:
+      - fonts-noto-cjk
+      - fonts-noto-hinted
+      - fonts-noto-unhinted
+      - fonts-unifont
+      - fonts-dejavu
+      - fonts-open-sans
+
+
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# Get low scales datas
+
+- name: "apt installation mapnik-utils"
+# pour shapeindex
+  apt:
+    state: latest
+    pkg: mapnik-utils
+
+- name: "low scales datas : simplified-land-polygons"
+  unarchive:
+    src: https://osmdata.openstreetmap.de/download/simplified-land-polygons-complete-3857.zip
+    dest: /data/project/styles/data/
+    remote_src: yes
+
+- name: "low scales datas : land-polygons-split"
+  unarchive:
+    src: https://osmdata.openstreetmap.de/download/land-polygons-split-3857.zip
+    dest: /data/project/styles/data/
+    remote_src: yes
+
+- name: "low scales datas : index simplified-land-polygons"
+  shell:
+    chdir: /data/project/styles/data/simplified-land-polygons-complete-3857/
+    cmd: shapeindex *.shp
+
+- name: "low scales datas : index land-polygons-split"
+  shell:
+    chdir: /data/project/styles/data/land-polygons-split-3857/
+    cmd: shapeindex *.shp
+
+- name: "low scales datas : permissions"
+  file:
+    path: /data/project/styles/data/
+    state: directory
+    recurse: yes
+    #owner: osm
+    #group: osm
+    mode: '0775'
+
+
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# apache : basique
+
+- name: "Apache : installation"
+  apt:
+    update_cache: yes
+    state: latest
+    pkg:
+      - apache2
+
+- name:  "Apache : configuration du site de base"
+  copy:
+    src: files/tile.openstreetmap_base.conf
+    dest: /etc/apache2/sites-available/tile.openstreetmap.conf
+    backup: yes
+
+- name: "Apache : activation du site"
+  file:
+    src: /etc/apache2/sites-available/tile.openstreetmap.conf
+    dest: /etc/apache2/sites-enabled/tile.openstreetmap.conf
+    owner: root
+    group: root
+    state: link
+
+- name: "création du répertoire /var/lib/mod_tile"
+  file:
+    path: /var/lib/mod_tile
+    state: directory
+    owner: www-data
+    group: www-data
+
+- name: "création d'un fichier test"
+  copy:
+    content: ""
+    dest: /var/lib/mod_tile/tile.openstreetmap.bzh
+    force: true
+
+- name: "Apache : mod headers"
+  shell: a2enmod headers
+
+- name: "Apache : redémarrage"
+  systemd:
+    name: apache2
+    state: restarted
+
+- name: "Apache : test"
+  pause:
+    prompt: "Tester --> http://tile.openstreetmap.bzh"
+
+
+
+
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# apache mod_tile + renderd
+
+- name: "installation mod_tile et renderd"
+  apt:
+    update_cache: yes
+    state: latest
+    pkg:
+      - libapache2-mod-tile
+      - renderd
+
+# à ce stade on a bien le mod_tile de apache actif car on trouve le fichier suivant :
+# /etc/apache2/mods-available/tile.load
+# et mod_tile activé dans apache -> apachectl -M
+
+# renderd est correctement installé :
+# on a un fichier /etc/renderd.conf
+# et un daemon renderd actif et opérationnel
+# car /var/run/renderd/renderd.sock existe (user _renderd)
+
+
+
+# MAIS si on veut lancer renderd en mode debug, celui-ci va créer un socket dans /var/run/
+# tandis que apache va vouloir utiliser le /var/run/renderd/renderd.sock
+# donc on fait un alias pour mettre tout le monde d'accord
+
+- name: "renderd : alias renderd.sock"
+  file:
+    src: /var/run/renderd/renderd.sock
+    dest: /var/run/renderd.sock
+    owner: _renderd
+    group: _renderd
+    state: link
+
+- name: "renderd : alias renderd.stats"
+  file:
+    src: /var/run/renderd/renderd.stats
+    dest: /var/run/renderd.stats
+    owner: _renderd
+    group: _renderd
+    state: link
+
+- name: "renderd : owner de /var/lib/mod_tile/"
+  file:
+    path: /var/lib/mod_tile/
+    owner: _renderd
+    group: _renderd
+
+- name: "renderd : configuration de test"
+  copy:
+    src: files/renderd_test.conf
+    dest: /etc/renderd_test.conf
+    backup: no
+    owner: root
+    group: root
+
+- name: "renderd : alias renderd_test.conf"
+  file:
+    src: /etc/renderd_test.conf
+    dest: /etc/renderd.conf
+    owner: root
+    group: root
+    state: link
+    force: true
+
+- name: "création du répertoire /data/project/styles/test/"
+  file:
+    path: /data/project/styles/test/
+    state: directory
+
+- name: "mapnik : style de test simple"
+  copy:
+    src: files/test_simple.xml
+    dest: /data/project/styles/test/test_simple.xml
+    backup: no
+    #owner: osm
+    #group: osm
+
+- name: "mapnik : alias test.xml"
+  file:
+    src: /data/project/styles/test/test_simple.xml
+    dest: /data/project/styles/test/test.xml
+    #owner: osm
+    #group: osm
+    state: link
+
+- name: "renderd : restart"
+  systemd:
+    state: restarted
+    name: renderd
+
+- name: "apache : restart"
+  systemd:
+    state: restarted
+    name: apache2
+
+
+- name: "mini carte de contrôle"
+  copy:
+    src: files/map_test.html
+    dest: /var/lib/mod_tile/
+    backup: no
+    owner: www-data
+    group: www-data
+
+
+# normalement : tout fonctionne donc : test !
+- name: "test : mod tile"
+  pause:
+    prompt: "tester --> http://tile.openstreetmap.bzh/mod_tile"
+
+# normalement : tout fonctionne donc : test !
+- name: "test : style de test"
+  pause:
+    prompt: "tester --> http://tile.openstreetmap.bzh/map_test.html"
+
+
