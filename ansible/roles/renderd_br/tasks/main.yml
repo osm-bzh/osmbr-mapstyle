@@ -320,6 +320,12 @@
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # tous les styles
 
+- name: "osm-br : git pull / refresh"
+  git:
+    repo: 'https://github.com/osm-bzh/osmbr-mapstyle.git'
+    dest: /data/project/styles/br
+    update: yes
+
 - name: "renderd : conf de production"
   file:
     src: /data/project/styles/br/renderd/renderd.conf
