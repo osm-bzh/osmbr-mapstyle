@@ -4,7 +4,9 @@ Documentation=man:renderd
 After=network.target auditd.service
 
 [Service]
-ExecStart=/usr/bin/renderd -f
+Type=forking
+ExecStart=/usr/bin/renderd
+PIDFile=/var/run/renderd/renderd.pid
 User=_renderd
 
 [Install]
