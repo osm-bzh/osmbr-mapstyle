@@ -26,7 +26,7 @@
     state: directory
   loop:
     - /data/
-    - /data/tiles/
+    - /var/cache/renderd/tiles/
     - /data/project/
     - /data/project/styles
     - /data/project/styles/data
@@ -129,7 +129,7 @@
 - name: "création d'un fichier test"
   copy:
     content: ""
-    dest: /data/tiles/tile.openstreetmap.bzh
+    dest: /var/cache/renderd/tiles/tile.openstreetmap.bzh
     force: true
 
 - name: "Apache : mod headers"
@@ -192,9 +192,9 @@
   command: a2enconf renderd
 
 
-- name: "renderd : owner de /data/tiles/"
+- name: "renderd : owner de /var/cache/renderd/tiles/"
   file:
-    path: /data/tiles/
+    path: /var/cache/renderd/tiles/
     owner: _renderd
     group: _renderd
 
@@ -250,7 +250,7 @@
 - name: "mini carte de contrôle"
   copy:
     src: files/map_test.html
-    dest: /data/tiles/
+    dest: /var/cache/renderd/tiles/
     backup: no
     owner: www-data
     group: www-data
@@ -296,7 +296,7 @@
 - name: "mini carte de contrôle"
   copy:
     src: files/map_br.html
-    dest: /data/tiles/
+    dest: /var/cache/renderd/tiles/
     backup: no
     owner: root
     group: root
