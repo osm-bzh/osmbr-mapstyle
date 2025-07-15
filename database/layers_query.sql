@@ -113,7 +113,7 @@ SELECT
 FROM
   planet_osm_polygon
 WHERE
-  building NOT IN ('', '0','false', 'no')
+  building IS NOT NULL AND building NOT IN ('', '0','false', 'no')
 ORDER BY z_order, way_area DESC
 
 
