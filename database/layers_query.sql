@@ -278,7 +278,7 @@ ORDER BY layer ASC, render ASC
 -- admin_boundaries
 SELECT
   ST_Simplify(b.way,!pixel_width!/4) as way,
-  admin_level::integer AS admin_level,
+  to_int(admin_level) AS admin_level,
   coalesce(b.tags->'maritime','no') AS maritime,
   count(r.*)::integer AS nb,
   string_agg(id::text,',') AS rels
