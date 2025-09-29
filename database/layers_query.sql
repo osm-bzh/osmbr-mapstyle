@@ -133,10 +133,10 @@ SELECT
       WHEN railway IN ('rail') THEN 'railway'
   ELSE 'other'
   END AS stylegroup 
-FROM planet_osm_line 
+FROM planet_osm_roads
 WHERE
-  highway IN ('motorway', 'trunk', 'primary')
-  OR railway IN ('rail')
+  (highway IN ('motorway', 'trunk', 'primary')
+    OR railway IN ('rail'))
   AND (tunnel IS NULL OR tunnel = 'no') 
   AND (bridge IS NULL OR bridge = 'no') 
 ORDER BY z_order
