@@ -323,7 +323,7 @@ SELECT
   CHAR_LENGTH(ref) AS reflen,
   way
 FROM
-  planet_osm_line
+  planet_osm_roads
 WHERE
   highway IN ('motorway', 'trunk')
   AND (COALESCE(tags -> 'name:br'::text,'') IS NOT NULL OR ref IS NOT NULL)
