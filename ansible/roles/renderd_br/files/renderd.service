@@ -4,10 +4,10 @@ Documentation=man:renderd
 After=network.target auditd.service
 
 [Service]
-Type=forking
-ExecStart=/usr/bin/renderd
-PIDFile=/var/run/renderd/renderd.pid
+ExecStart=/usr/bin/renderd -f
 User=_renderd
+PIDFile=/var/run/renderd/renderd.pid
+Environment=G_MESSAGES_DEBUG=all
 
 [Install]
 WantedBy=multi-user.target

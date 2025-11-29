@@ -158,6 +158,17 @@
       - libapache2-mod-tile
       - renderd
 
+- name: "modification du fichier renderd.service"
+  copy:
+    src: files/renderd.service
+    dest: /usr/lib/systemd/system/renderd.service
+    owner: root
+    group: root
+
+- name: "recharger la configuration des démons systemd"
+  ansible.builtin.systemd:
+    daemon_reload: yes
+
 # à ce stade on a bien le mod_tile de apache actif car on trouve le fichier suivant :
 # /etc/apache2/mods-available/tile.load
 # et mod_tile activé dans apache -> apachectl -M
