@@ -37,7 +37,7 @@
 - name: "configure etc/hosts"
   lineinfile:
     path: "/etc/hosts"
-    line: "192.168.1.105  db.openstreetmap.world db.openstreetmap.local"
+    line: "10.1.0.188  db.openstreetmap.world db.openstreetmap.local"
     state: present
 
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
