@@ -103,7 +103,7 @@
       <Parameter name="dbname"><![CDATA[osm]]></Parameter>
       <Parameter name="key_field"><![CDATA[]]></Parameter>
       <Parameter name="geometry_field"><![CDATA[way]]></Parameter>
-      <Parameter name="extent"><![CDATA[-20037508,-20037508,20037508,20037508]]></Parameter>
+      <Parameter name="extent"><![CDATA[-573295, 5974780, -111319, 6257910]]></Parameter>
       <Parameter name="host"><![CDATA[db.openstreetmap.world]]></Parameter>
       <Parameter name="user"><![CDATA[osmbr]]></Parameter>
       <Parameter name="password"><![CDATA[m4d31nbr31zh]]></Parameter>
